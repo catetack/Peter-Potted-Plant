@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour
     public GameObject Cube;
 
     InputSystem_Actions inputAction;//
+    public float speed;
     void Start()
     {
         inputAction = new InputSystem_Actions();
@@ -17,6 +18,8 @@ public class playerController : MonoBehaviour
     void Update()
     {
         //read value from joysticks
-        Debug.Log(inputAction.Player.Move.ReadValue<Vector2>());
+        Debug.Log(message: inputAction.Player.Move.ReadValue<Vector2>());
+        Vector3 translate = new Vector3(inputAction.Player.Move.ReadValue<Vector2>().x, 0, inputAction.Player.Move.ReadValue<Vector2>().y);
+        Cube.transform.Translate(speed*translate);
     }
 }
