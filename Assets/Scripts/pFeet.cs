@@ -1,11 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class playerController : MonoBehaviour
+public class pFeet : MonoBehaviour
 {
     public GameObject player;
 
     InputSystem_Actions inputActions; // variable reference but there is no object in memory
+
+    Vector2 controllerInput;
+    float legsThrottle;
+    float speedModifier = 0.1f;
+    float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,11 +22,10 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //displays the read value for the keyboard
-        //Debug.Log("LEGS: " + inputActions.Player.Legs.ReadValue<Vector2>() + ", " +
-        //inputActions.Player.Jump.ReadValue<float>() + System.Environment.NewLine +
-        //"HEAD: " + inputActions.Player.Head.ReadValue<Vector2>() + ", " +
-        //inputActions.Player.Burst.ReadValue<float>());
+
+        controllerInput = inputActions.Player.Legs.ReadValue<Vector2>();
+        legsThrottle = controllerInput.x;
+        speed = (legsThrottle /* + tiltToSpeedRatio */ ) * speedModifier;
+        player.transform.Translate(speed, 0, 0);
     }
 }
