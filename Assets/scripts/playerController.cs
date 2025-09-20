@@ -5,19 +5,20 @@ public class playerController : MonoBehaviour
 {
     public GameObject player;
 
-    InputSystem_Actions inputActions; // variable reference but there is no object in memory
+    InputSystem_Actions inputActions;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputActions = new InputSystem_Actions(); //create the instance for the controlls
+
+        inputActions = new InputSystem_Actions();
         inputActions.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         //displays the read value for the keyboard
         Debug.Log("LEGS: " + inputActions.Player.Legs.ReadValue<Vector2>() + ", " +
         inputActions.Player.Jump.ReadValue<float>() + System.Environment.NewLine +
