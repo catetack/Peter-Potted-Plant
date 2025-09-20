@@ -5,7 +5,7 @@ public class pFeet : MonoBehaviour
 {
     public GameObject player;
 
-    InputSystem_Actions inputActions; // variable reference but there is no object in memory
+    InputSystem_Actions inputActions;
 
     Vector2 controllerInput;
     float legsThrottle;
@@ -15,7 +15,8 @@ public class pFeet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputActions = new InputSystem_Actions(); //create the instance for the controlls
+
+        inputActions = new InputSystem_Actions();
         inputActions.Enable();
     }
 
