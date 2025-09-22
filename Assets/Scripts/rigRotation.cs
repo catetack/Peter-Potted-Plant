@@ -10,7 +10,7 @@ public class rigRotation : MonoBehaviour
     float headTorque;
     public float speedModifier = 0.1f;
     float speed;
-    float zRotation;
+    public float zRotation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
