@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
 
     private bool jumpHold;
 
-    private float chargeStart;
+    private float chargeStart=0f;
 
     //Ground check
     public bool isGrounded;
