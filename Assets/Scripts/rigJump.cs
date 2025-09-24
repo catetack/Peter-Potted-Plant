@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
-public class PlayerControl : MonoBehaviour
+public class rigJump : MonoBehaviour
 {
     private InputSystem_Actions  inputAction;
     Rigidbody2D playerRigidbody;
