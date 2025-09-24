@@ -8,7 +8,7 @@ public class rigRotation : MonoBehaviour
 
     Vector2 controllerInput;
     float headTorque;
-    float speedModifier = 5.0f;
+    float speedModifier = 300.0f;
     float speed;
 
     float rigRot;
@@ -27,7 +27,7 @@ public class rigRotation : MonoBehaviour
     {
         controllerInput = inputActions.Player.Head.ReadValue<Vector2>();
         headTorque = -controllerInput.x;
-        speed = headTorque * speedModifier /** Time.deltaTime */;
+        speed = headTorque * speedModifier * Time.deltaTime;
 
         //rig rotation function:
         rigRot = transform.eulerAngles.z;
