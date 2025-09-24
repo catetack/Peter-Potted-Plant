@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 public class playerLife : MonoBehaviour
 {
     Rigidbody2D rb;
+
+    //for initializing Sound Effects
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +37,7 @@ public class playerLife : MonoBehaviour
 
     private void Death()//Called when player is dead
     {
+        audioManager.PlaySoundEffect(audioManager.respawn);
         rb.bodyType = RigidbodyType2D.Static;
         Invoke("Restart", 1f);
     }
