@@ -13,7 +13,10 @@ public class playerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Death();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
