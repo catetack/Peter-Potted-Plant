@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2104925985}
-  speedModifier: 0.5
+  speedModifier: 10
   zRotation: 0
 --- !u!212 &2104925988
 SpriteRenderer:
