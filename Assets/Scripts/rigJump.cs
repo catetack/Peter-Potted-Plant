@@ -20,9 +20,11 @@ public class rigJump : MonoBehaviour
 
     private float chargeStart=0f;
 
-    //to do later
-    // public float fallAddition = 3.5f;
-    // public float jumpAddition = 3.5f;
+    [Range(1, 5)]//sliders for faster falling
+    public float fallAddition = 3.5f;
+
+    [Range(1, 5)]//sliders for max falling speed
+    public float maxFallSpeed = 100f;
 
     //Ground check
     public bool isGrounded;
@@ -69,11 +71,17 @@ public class rigJump : MonoBehaviour
     }
     private void Jump() 
     {
-        //to do later
-        // if(playerRigidbody.linearVelocityY < 0f)
-        // {
-
-        // }
+        if(playerRigidbody.linearVelocityY < 0f)
+        {
+            if(playerRigidbody.linearVelocityY< maxFallSpeed)
+            {
+                playerRigidbody.linearVelocityY += Physics2D.gravity.y * (fallAddition - 1) * Time.fixedDeltaTime;//Add an acceleration when falling
+            }
+            else
+            {
+                playerRigidbody.linearVelocityY = maxFallSpeed;
+            }
+        }
 
         if (isGrounded && jumpStart)
         {
