@@ -4091,7 +4091,7 @@ GameObject:
   - component: {fileID: 916726390}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4109,7 +4109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgMusicSource: {fileID: 1974364368}
-  soundFXSource: {fileID: 1459929916}
+  soundEffectsSource: {fileID: 0}
   bgMusic: {fileID: 8300000, guid: d12cf6d5c8a42354b93d06ce616560da, type: 3}
   jump: {fileID: 8300000, guid: bc15cead30d474843867b305e42cec20, type: 3}
 --- !u!4 &916726391
@@ -4408,7 +4408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1489567653
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4473,8 +4473,8 @@ Transform:
   m_GameObject: {fileID: 1489567652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -5.9, z: 0}
-  m_LocalScale: {x: 24.583488, y: 2.216544, z: 5.0376}
+  m_LocalPosition: {x: 0.6711, y: -5.4845, z: 0}
+  m_LocalScale: {x: 24.24178, y: 3.0475261, z: 5.0376}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
