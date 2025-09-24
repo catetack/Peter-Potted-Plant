@@ -9,7 +9,7 @@ public class playerLife : MonoBehaviour
     AudioManager audioManager;
     private void Awake()
     {
-        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,7 +41,7 @@ public class playerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         Invoke("Restart", 1f);
-        //audioManager.PlaySoundEffect(audioManager.respawn);
+        audioManager.PlaySoundEffect(audioManager.respawn);
     }
 
     private void Restart()//Reload the scene. This could be invoked in animation frames.
