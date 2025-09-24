@@ -5425,10 +5425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2aad9ab11522374d8ca642b4ae3c98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpMinSpeed: 8
-  jumpMaxSpeed: 12
-  fallAddition: 3.5
-  maxFallSpeed: 100
+  jumpSpeed: 16
+  fallAddition: 8
+  maxFallSpeed: 5
   isGrounded: 0
   groundCheck: {fileID: 291573064}
   ground:
