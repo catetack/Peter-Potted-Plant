@@ -8,9 +8,12 @@ public class rigRotation : MonoBehaviour
 
     Vector2 controllerInput;
     float headTorque;
-    public float speedModifier = 0.1f;
+    float speedModifier = 5.0f;
     float speed;
-    public float zRotation;
+
+    float rigRot;
+    float rotationClamp;
+    public float rotationRatio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,10 +26,17 @@ public class rigRotation : MonoBehaviour
     void Update()
     {
         controllerInput = inputActions.Player.Head.ReadValue<Vector2>();
-        headTorque = -controllerInput.x;//invert the input to match the direction of rotation
-        speed = headTorque * speedModifier;
+        headTorque = -controllerInput.x;
+        speed = headTorque * speedModifier /** Time.deltaTime */;
+
+        //rig rotation function:
+        rigRot = transform.eulerAngles.z;
+        rotationClamp = (rigRot > 180f) ? rigRot - 360f : rigRot;
+        rotationRatio = rotationClamp / 90f;
+
+        
+
         player.transform.Rotate(0, 0, speed);
 
-        zRotation = player.transform.eulerAngles.z;
     }
 }
