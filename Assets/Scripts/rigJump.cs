@@ -31,6 +31,14 @@ public class rigJump : MonoBehaviour
 
     public LayerMask ground;
 
+    //for initializing Sound Effects
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -72,6 +80,7 @@ public class rigJump : MonoBehaviour
             float chargeTime = Time.time - chargeStart;
             float jumpForce = Mathf.Clamp(chargeTime * 100f, jumpMinSpeed, jumpMaxSpeed);
 
+            audioManager.PlaySoundEffect(audioManager.jump);
             playerRigidbody.linearVelocity = Vector2.up * jumpForce;
             chargeStart = 0f;
             jumpStart = false;
