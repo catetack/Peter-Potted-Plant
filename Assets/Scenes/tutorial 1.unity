@@ -7589,7 +7589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpSpeed: 16
   fallAddition: 3.5
-  maxFallSpeed: 100
+  maxFallSpeed: 5
   isGrounded: 0
   groundCheck: {fileID: 291573064}
   ground:
