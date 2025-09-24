@@ -6,22 +6,23 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     private InputSystem_Actions  inputAction;
-    Rigidbody2D rb;
+    Rigidbody2D playerRigidbody;
 
     //Jump
-    [Range(4,10)]
+    [Range(4,10)]//sliders for jumpMinSpeed
     public float jumpMinSpeed = 8.0f;
 
-    [Range(11, 20)]
+    
+    [Range(11, 20)]//sliders for jumpMaxSpeed
     public float jumpMaxSpeed = 12.0f;
 
     private bool jumpStart=false;
 
     private float chargeStart=0f;
 
-    //Better Jump
-    public float fallAddition = 3.5f;
-    public float jumpAddition = 3.5f;
+    //to do later
+    // public float fallAddition = 3.5f;
+    // public float jumpAddition = 3.5f;
 
     //Ground check
     public bool isGrounded;
@@ -30,30 +31,22 @@ public class PlayerControl : MonoBehaviour
 
     public LayerMask ground;
 
-    private void Awake()
-    {
-        inputAction = new InputSystem_Actions();
-    }
-
-    private void OnEnable()
-    {
-        inputAction.Enable();
-        inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
-        inputAction.Player.Jump.canceled += ctx => jumpStart = true;
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        inputAction = new InputSystem_Actions();
 
+        inputAction.Enable();
+        inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
+        inputAction.Player.Jump.canceled += ctx => jumpStart = true;
+
+        playerRigidbody =GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Jump
-        jumpInput();
     }
 
     private void FixedUpdate()//Physics
@@ -66,26 +59,20 @@ public class PlayerControl : MonoBehaviour
     {
         inputAction.Disable();
     }
-
-    private void jumpInput()
-    {
-        //jumpPressed = inputAction.Player.Jump.IsPressed();
-        //Debug.Log(jumpPressed);
-    }
-
     private void Jump() 
     {
-        if(rb.linearVelocityY < 0f)
-        {
+        //to do later
+        // if(playerRigidbody.linearVelocityY < 0f)
+        // {
 
-        }
+        // }
 
-        if (isGrounded&&jumpStart)
+        if (isGrounded && jumpStart)
         {
             float chargeTime = Time.time - chargeStart;
-            Debug.Log(chargeTime*100f);
             float jumpForce = Mathf.Clamp(chargeTime * 100f, jumpMinSpeed, jumpMaxSpeed);
-            rb.linearVelocity=Vector2.up* jumpForce;
+
+            playerRigidbody.linearVelocity = Vector2.up * jumpForce;
             chargeStart = 0f;
             jumpStart = false;
         }
