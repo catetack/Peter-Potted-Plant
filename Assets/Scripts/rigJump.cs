@@ -9,18 +9,20 @@ public class rigJump : MonoBehaviour
     Rigidbody2D playerRigidbody;
 
     //Jump
-    [Range(4,10)]//sliders for jumpMinSpeed
-    public float jumpMinSpeed = 8.0f;
+    //[Range(4,10)]//sliders for jumpMinSpeed
+    //public float jumpMinSpeed = 8.0f;
 
-    
-    [Range(11, 20)]//sliders for jumpMaxSpeed
-    public float jumpMaxSpeed = 12.0f;
+    [Range(10,24)]//sliders for jumpMinSpeed
+    public float jumpSpeed = 16.0f;
+
+    //[Range(11, 20)]//sliders for jumpMaxSpeed
+    //public float jumpMaxSpeed = 12.0f;
 
     private bool jumpStart=false;
 
-    private float chargeStart=0f;
+    //private float chargeStart=0f;
 
-    [Range(1, 5)]//sliders for faster falling
+    [Range(1, 10)]//sliders for faster falling
     public float fallAddition = 3.5f;
 
     [Range(1, 5)]//sliders for max falling speed
@@ -47,8 +49,9 @@ public class rigJump : MonoBehaviour
         inputAction = new InputSystem_Actions();
 
         inputAction.Enable();
-        inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
-        inputAction.Player.Jump.canceled += ctx => jumpStart = true;
+        //inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
+        inputAction.Player.Jump.performed += ctx => jumpStart = true;
+        //inputAction.Player.Jump.canceled += ctx => jumpStart = true;
 
         playerRigidbody =GetComponent<Rigidbody2D>();
     }
@@ -85,12 +88,12 @@ public class rigJump : MonoBehaviour
 
         if (isGrounded && jumpStart)
         {
-            float chargeTime = Time.time - chargeStart;
-            float jumpForce = Mathf.Clamp(chargeTime * 100f, jumpMinSpeed, jumpMaxSpeed);
+            //float chargeTime = Time.time - chargeStart;
+            //float jumpForce = Mathf.Clamp(chargeTime * 100f, jumpMinSpeed, jumpMaxSpeed);
 
             audioManager.PlaySoundEffect(audioManager.jump);
-            playerRigidbody.linearVelocity = Vector2.up * jumpForce;
-            chargeStart = 0f;
+            playerRigidbody.linearVelocity = Vector2.up * jumpSpeed;
+            //chargeStart = 0f;
             jumpStart = false;
         }
     }
