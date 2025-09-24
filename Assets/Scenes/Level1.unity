@@ -5338,6 +5338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1504318924}
+  speed: 0
+  speedLimit: 2.5
   tiltToSpeedRatio: 0
 --- !u!212 &1504318926
 SpriteRenderer:
@@ -5425,6 +5427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpMinSpeed: 8
   jumpMaxSpeed: 12
+  fallAddition: 3.5
+  maxFallSpeed: 100
   isGrounded: 0
   groundCheck: {fileID: 291573064}
   ground:
@@ -5615,7 +5619,7 @@ GameObject:
   - component: {fileID: 2007974445}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5704,8 +5708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2104925985}
-  speedModifier: 0.5
-  zRotation: 0
+  rotationRatio: 0
 --- !u!212 &2104925988
 SpriteRenderer:
   m_ObjectHideFlags: 0
