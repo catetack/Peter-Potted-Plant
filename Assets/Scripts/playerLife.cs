@@ -9,7 +9,7 @@ public class playerLife : MonoBehaviour
     AudioManager audioManager;
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,8 +21,10 @@ public class playerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Debug.Log("RESPAWNED");
             Death();
         }
     }
@@ -37,9 +39,9 @@ public class playerLife : MonoBehaviour
 
     private void Death()//Called when player is dead
     {
-        audioManager.PlaySoundEffect(audioManager.respawn);
         rb.bodyType = RigidbodyType2D.Static;
         Invoke("Restart", 1f);
+        //audioManager.PlaySoundEffect(audioManager.respawn);
     }
 
     private void Restart()//Reload the scene. This could be invoked in animation frames.
