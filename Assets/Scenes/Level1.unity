@@ -5640,7 +5640,7 @@ MonoBehaviour:
   soundEffectsSrc: {fileID: 1440153894}
   backgroundNoise: {fileID: 8300000, guid: d12cf6d5c8a42354b93d06ce616560da, type: 3}
   jump: {fileID: 8300000, guid: bc15cead30d474843867b305e42cec20, type: 3}
-  jumpCharge: {fileID: 8300000, guid: 3ccb92ac8741ef54f82e90dbb23e6003, type: 3}
+  jumpCharge: {fileID: 8300000, guid: 7304020379860144fb52316bf04d057c, type: 3}
   moving: {fileID: 8300000, guid: 830405004f8a09b4098ddec7adbb2142, type: 3}
   falling: {fileID: 8300000, guid: 87d8558dd87903243b8c7db33e3b86b1, type: 3}
   respawn: {fileID: 8300000, guid: edf97890d710ee94dbcc7f30880a8db0, type: 3}
