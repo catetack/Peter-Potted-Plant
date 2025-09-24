@@ -1,0 +1,37 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class playerLife : MonoBehaviour
+{
+    Rigidbody2D rb;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb=GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Trap")
+        {
+            Death();
+        }
+    }
+
+    private void Death()//Called when player is dead
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+        Invoke("Restart", 1f);
+    }
+
+    private void Restart()//Reload the scene. This could be invoked in animation frames.
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+}
