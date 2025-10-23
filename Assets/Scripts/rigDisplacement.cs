@@ -3,32 +3,36 @@ using UnityEngine;
 
 public class rigDisplacement : MonoBehaviour
 {
-    bool KEYBOARD = true;
+    // Development tools
+    const bool KEYBOARD = true;
+    const bool DEBUG = true;
+
     public GameObject player;
-
     InputSystem_Actions inputActions;
-
     Vector2 controllerInput;
     float legsThrottle;
-    public float baseSpeedMultiplier;
-    public float airFriction = 0.99f;
 
+    float baseSpeedConstant;
+    float frictionConstant; // multiplier for the friction expression
     public float speed;
 
-    rigRotation rigRotScript;
+    rigRotation Rotation;
     Transform childTransform;
-    public float tiltToSpeedRatio = 0.0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
+        baseSpeedConstant = 25.0f;
+        frictionConstant = 10.0f;
+        speed = 0.0f;
+
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
 
         childTransform = transform.Find("Rotation");
         if (childTransform != null)
         {
-            rigRotScript = childTransform.GetComponent<rigRotation>();
-            if (rigRotScript == null)
+            Rotation = childTransform.GetComponent<rigRotation>();
+            if (Rotation == null)
             {
                 Debug.LogError("rigRotation script not found on 'Rotation' child.");
             }
@@ -39,43 +43,76 @@ public class rigDisplacement : MonoBehaviour
         }
     }
 
-
-    void FixedUpdate()
-    {
-        if (Math.Abs(legsThrottle) < 0.1f || Math.Abs(legsThrottle) > -0.1f)
-        {
-            speed *= airFriction;
-            Debug.Log("air friction applied");
-        }
-    }   
     // Update is called once per frame
     void Update()
     {
-
         playerInput();
+        devTools();
 
-        //speed limit for speed gained from legs
-        speed += (baseSpeedMultiplier * legsThrottle) * Time.deltaTime;
+        float frictionExpression;
+        float rotation = Rotation.rotationRatio * 10.0f;
+
+        if (Math.Abs(legsThrottle) > 0.1f)
+        {
+            speed = (baseSpeedConstant * legsThrottle) * Time.deltaTime; // temporal value
+        }
+
+        frictionExpression = 1 - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
+        speed *= frictionExpression; // temporal value
 
         player.transform.Translate(speed, 0, 0);
     }
 
     void playerInput()
     {
-
         controllerInput = inputActions.Player.Legs.ReadValue<Vector2>();
         legsThrottle = controllerInput.x;
 
         if (!KEYBOARD) return;
+
         if (Input.GetKey(KeyCode.D))
         {
-
             legsThrottle = 1.0f;
         }
         if (Input.GetKey(KeyCode.A))
         {
-
             legsThrottle = -1.0f;
+        }
+    }
+
+    void devTools()
+    {
+        if (!DEBUG) return;
+
+        if (Input.GetKey(KeyCode.Keypad0))
+        {
+            Debug.Log("speed: " + speed);
+            Debug.Log("frictionConstant: " + frictionConstant);
+            Debug.Log("baseSpeedConstant: " + baseSpeedConstant);
+            Debug.Log("legsThrottle: " + legsThrottle);
+            Debug.Log("rotationRatio: " + Rotation.rotationRatio);
+        }
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            frictionConstant -= 1.0f;
+            Debug.Log(frictionConstant);
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            frictionConstant += 1.0f;
+            Debug.Log(frictionConstant);
+        }
+        if (Input.GetKey(KeyCode.Keypad3))
+        {
+            CreateLagSpike();
+        }
+    }
+
+    void CreateLagSpike()
+    {
+        for (int i = 0; i < 10000000; i++)
+        {
+            Vector3 lag = new Vector3(MathF.Sin(i), MathF.Cos(i), MathF.Tan(i));
         }
     }
 }
