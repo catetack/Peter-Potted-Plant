@@ -89,7 +89,7 @@ public class rigDisplacement : MonoBehaviour
     {
         if (!DEBUG) return;
 
-        if (Input.GetKey(KeyCode.Keypad0))
+        if (Input.GetKeyUp(KeyCode.Keypad0))
         {
             Debug.Log("speed: " + displacementSpeed);
             Debug.Log("frictionConstant: " + frictionConstant);
@@ -97,14 +97,14 @@ public class rigDisplacement : MonoBehaviour
             Debug.Log("legsThrottle: " + legsThrottle);
             Debug.Log("rotationRatio: " + Rotation.rotationRatio);
         }
-        if (Input.GetKey(KeyCode.Keypad1))
+        if (Input.GetKeyUp(KeyCode.Keypad1))
         {
-            frictionConstant -= 1.0f;
+            frictionConstant -= 0.10f;
             Debug.Log(frictionConstant);
         }
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKeyUp(KeyCode.Keypad2))
         {
-            frictionConstant += 1.0f;
+            frictionConstant += 0.10f;
             Debug.Log(frictionConstant);
         }
         if (Input.GetKey(KeyCode.Keypad3))
