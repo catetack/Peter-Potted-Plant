@@ -22,7 +22,7 @@ public class rigDisplacement : MonoBehaviour
     void Start()
     {
         baseSpeedConstant = 25.0f;
-        frictionConstant = 10.0f;
+        frictionConstant = 1.0f;
         speed = 0.0f;
 
         inputActions = new InputSystem_Actions();
@@ -51,14 +51,15 @@ public class rigDisplacement : MonoBehaviour
 
         float frictionExpression;
         float rotation = Rotation.rotationRatio * 10.0f;
-
         if (Math.Abs(legsThrottle) > 0.1f)
         {
             speed = (baseSpeedConstant * legsThrottle) * Time.deltaTime; // temporal value
         }
 
-        frictionExpression = 1 - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
+        //friction calculation: friction is based on rotation angle. To adjust the friction sensitivity, increment/decrement by 0.1
+        frictionExpression = 1.0f - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
         speed *= frictionExpression; // temporal value
+        Debug.Log("speed: " + speed);
 
         player.transform.Translate(speed, 0, 0);
     }
@@ -84,7 +85,7 @@ public class rigDisplacement : MonoBehaviour
     {
         if (!DEBUG) return;
 
-        if (Input.GetKey(KeyCode.Keypad0))
+        if (Input.GetKeyUp(KeyCode.Keypad0))
         {
             Debug.Log("speed: " + speed);
             Debug.Log("frictionConstant: " + frictionConstant);
@@ -92,14 +93,14 @@ public class rigDisplacement : MonoBehaviour
             Debug.Log("legsThrottle: " + legsThrottle);
             Debug.Log("rotationRatio: " + Rotation.rotationRatio);
         }
-        if (Input.GetKey(KeyCode.Keypad1))
+        if (Input.GetKeyUp(KeyCode.Keypad1))
         {
-            frictionConstant -= 1.0f;
+            frictionConstant -= 0.10f;
             Debug.Log(frictionConstant);
         }
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKeyUp(KeyCode.Keypad2))
         {
-            frictionConstant += 1.0f;
+            frictionConstant += 0.10f;
             Debug.Log(frictionConstant);
         }
         if (Input.GetKey(KeyCode.Keypad3))
