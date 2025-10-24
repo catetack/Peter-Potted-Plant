@@ -18,9 +18,16 @@ public class rigRotation : MonoBehaviour
     float rotationClamp;
     public float rotationRatio;
 
+    rigDisplacement Displacement;
+    Transform childTransform;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Displacement = GetComponentInParent<rigDisplacement>();
+        if (Displacement == null)
+        {
+            Debug.LogError("rigDisplacement script not found on 'Displacement' parent.");
+        }
         inputActions = new InputSystem_Actions(); //create the instance for the controlls
         inputActions.Enable();
     }
@@ -29,24 +36,13 @@ public class rigRotation : MonoBehaviour
     void Update()
     {
         playerInput();
+        playerRotations();
+        movementRotations();
+        gravityRotation();
 
-        speed = headTorque * speedModifier * Time.deltaTime;
-
-        //rig rotation function:
-        rigRot = transform.eulerAngles.z;
-        rotationClamp = (rigRot > 180f) ? rigRot - 360f : rigRot;
-        rotationRatio = 1 - Math.Abs(rotationClamp / 180f);
-        if (Math.Abs(rotationClamp) != 0.0f)
-        {
-            rotationRatio *= rotationClamp / Math.Abs(rotationClamp);
-        }
-        else {
-            rotationRatio = 0.0f;
-        }        
         player.transform.Rotate(0, 0, speed);
-
     }
-    
+
     void playerInput()
     {
 
@@ -62,5 +58,35 @@ public class rigRotation : MonoBehaviour
         {
             headTorque = 1.0f;
         }
+    }
+    void playerRotations()
+    {
+        speed = headTorque * speedModifier * Time.deltaTime;
+
+        //rig rotation function:
+        rigRot = transform.eulerAngles.z;
+        rotationClamp = (rigRot > 180f) ? rigRot - 360f : rigRot;
+        rotationRatio = 1 - Math.Abs(rotationClamp / 180f);
+        if (Math.Abs(rotationClamp) != 0.0f)
+        {
+            rotationRatio *= rotationClamp / Math.Abs(rotationClamp);
+        }
+        else {
+            rotationRatio = 0.0f;
+        }        
+
+    }
+    void movementRotations()
+    {
+        float movementTorque = 250.0f;
+        //currently the at wich the head moves from the player speed is always the same, making it very difficult to keep the head stable.
+        //speed at which the head moves should decrease after the head passes +-20° from the top
+        speed += Displacement.displacementSpeed * movementTorque * Time.deltaTime;
+    }
+    void gravityRotation()
+    {
+        float gravityTorque = 2.0f;
+        //simulate gravity pulling the head downwards when not moving
+        speed += rotationClamp * gravityTorque * Time.deltaTime;
     }
 }

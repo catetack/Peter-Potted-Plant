@@ -14,7 +14,7 @@ public class rigDisplacement : MonoBehaviour
 
     float baseSpeedConstant;
     float frictionConstant; // multiplier for the friction expression
-    public float speed;
+    public float displacementSpeed;
 
     rigRotation Rotation;
     Transform childTransform;
@@ -22,8 +22,8 @@ public class rigDisplacement : MonoBehaviour
     void Start()
     {
         baseSpeedConstant = 25.0f;
-        frictionConstant = 10.0f;
-        speed = 0.0f;
+        frictionConstant = 1.0f;
+        displacementSpeed = 0.0f;
 
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
@@ -48,19 +48,9 @@ public class rigDisplacement : MonoBehaviour
     {
         playerInput();
         devTools();
+        playerMovement();
 
-        float frictionExpression;
-        float rotation = Rotation.rotationRatio * 10.0f;
-
-        if (Math.Abs(legsThrottle) > 0.1f)
-        {
-            speed = (baseSpeedConstant * legsThrottle) * Time.deltaTime; // temporal value
-        }
-
-        frictionExpression = 1 - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
-        speed *= frictionExpression; // temporal value
-
-        player.transform.Translate(speed, 0, 0);
+        player.transform.Translate(displacementSpeed, 0, 0);
     }
 
     void playerInput()
@@ -80,13 +70,28 @@ public class rigDisplacement : MonoBehaviour
         }
     }
 
+    void playerMovement()
+    {
+        
+        float frictionExpression;
+        float rotation = Rotation.rotationRatio * 10.0f;
+
+        if (Math.Abs(legsThrottle) > 0.1f)
+        {
+            displacementSpeed = (baseSpeedConstant * legsThrottle) * Time.deltaTime; // temporal value
+        }
+
+        frictionExpression = 1 - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
+        displacementSpeed *= frictionExpression; // temporal value
+
+    }
     void devTools()
     {
         if (!DEBUG) return;
 
         if (Input.GetKey(KeyCode.Keypad0))
         {
-            Debug.Log("speed: " + speed);
+            Debug.Log("speed: " + displacementSpeed);
             Debug.Log("frictionConstant: " + frictionConstant);
             Debug.Log("baseSpeedConstant: " + baseSpeedConstant);
             Debug.Log("legsThrottle: " + legsThrottle);
