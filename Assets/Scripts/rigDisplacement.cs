@@ -17,8 +17,7 @@ public class rigDisplacement : MonoBehaviour
     public float displacementSpeed;
 
     rigRotation Rotation;
-    Transform childTransform;
-
+    headCollisionHandler HeadCollision;
     void Start()
     {
         baseSpeedConstant = 25.0f;
@@ -28,19 +27,18 @@ public class rigDisplacement : MonoBehaviour
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
 
-        childTransform = transform.Find("Rotation");
-        if (childTransform != null)
-        {
-            Rotation = childTransform.GetComponent<rigRotation>();
-            if (Rotation == null)
-            {
-                Debug.LogError("rigRotation script not found on 'Rotation' child.");
-            }
-        }
-        else
+        Rotation = GetComponentInChildren<rigRotation>();
+        HeadCollision = GetComponentInChildren<headCollisionHandler>();
+
+        if (Rotation == null)
         {
             Debug.LogError("'Rotation' child GameObject not found.");
         }
+        if (HeadCollision == null)
+        {
+            Debug.LogError("'HeadCollision' child GameObject not found.");
+        }
+
     }
 
     // Update is called once per frame
@@ -48,7 +46,16 @@ public class rigDisplacement : MonoBehaviour
     {
         playerInput();
         devTools();
-        playerMovement();
+        float targetSpeed = 0.0f;
+        if (HeadCollision.isColliding)
+        {
+            float blend = Mathf.Pow(0.5f, 25.0f * Time.deltaTime);
+            displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);
+        }
+        else
+        {
+            playerMovement();
+        }
 
         player.transform.Translate(displacementSpeed, 0, 0);
     }
@@ -59,7 +66,6 @@ public class rigDisplacement : MonoBehaviour
         legsThrottle = controllerInput.x;
 
         if (!KEYBOARD) return;
-
         if (Input.GetKey(KeyCode.D))
         {
             legsThrottle = 1.0f;
