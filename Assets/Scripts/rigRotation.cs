@@ -19,7 +19,6 @@ public class rigRotation : MonoBehaviour
     public float rotationRatio;
 
     rigDisplacement Displacement;
-    Transform childTransform;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,7 +46,14 @@ public class rigRotation : MonoBehaviour
     {
 
         controllerInput = inputActions.Player.Head.ReadValue<Vector2>();
-        headTorque = -controllerInput.x;
+        if (Math.Abs(controllerInput.x) > 0.1f)
+        {
+            headTorque = -controllerInput.x;
+        }
+        else
+        {
+            headTorque = 0.0f;
+        }
 
         if (!KEYBOARD) return;
         if (Input.GetKey(KeyCode.RightArrow))
@@ -73,14 +79,14 @@ public class rigRotation : MonoBehaviour
         }
         else {
             rotationRatio = 0.0f;
-        }        
+        }
 
     }
     void movementRotations()
     {
         float movementTorque = 250.0f;
         //currently the at wich the head moves from the player speed is always the same, making it very difficult to keep the head stable.
-        //speed at which the head moves should decrease after the head passes +-20° from the top
+        //speed at which the head moves should increase after the head passes +-20° from the top
         speed += Displacement.displacementSpeed * movementTorque * Time.deltaTime;
     }
     void gravityRotation()
