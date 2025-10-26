@@ -19,13 +19,19 @@ public class rigRotation : MonoBehaviour
     public float rotationRatio;
 
     rigDisplacement Displacement;
+    headCollisionHandler HeadCollision;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Displacement = GetComponentInParent<rigDisplacement>();
+        HeadCollision = GetComponentInChildren<headCollisionHandler>();
         if (Displacement == null)
         {
             Debug.LogError("rigDisplacement script not found on 'Displacement' parent.");
+        }
+        if (HeadCollision == null)
+        {
+            Debug.LogError("'peterHead' child GameObject not found.");
         }
         inputActions = new InputSystem_Actions(); //create the instance for the controlls
         inputActions.Enable();
@@ -35,9 +41,16 @@ public class rigRotation : MonoBehaviour
     void Update()
     {
         playerInput();
-        playerRotations();
-        movementRotations();
-        gravityRotation();
+        if (HeadCollision.isColliding)
+        {
+            speed = 0.0f;
+        }
+        else
+        {
+            playerRotations();
+            movementRotations();
+            gravityRotation();
+        }
 
         player.transform.Rotate(0, 0, speed);
     }
