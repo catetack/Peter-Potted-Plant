@@ -91,10 +91,10 @@ public class rigDisplacement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Keypad0))
         {
-            Debug.Log("speed: " + displacementSpeed);
-            Debug.Log("frictionConstant: " + frictionConstant);
             Debug.Log("baseSpeedConstant: " + baseSpeedConstant);
+            Debug.Log("frictionConstant: " + frictionConstant);
             Debug.Log("legsThrottle: " + legsThrottle);
+            Debug.Log("speed: " + displacementSpeed);
             Debug.Log("rotationRatio: " + Rotation.rotationRatio);
         }
         if (Input.GetKeyUp(KeyCode.Keypad1))
@@ -112,7 +112,6 @@ public class rigDisplacement : MonoBehaviour
             CreateLagSpike();
         }
     }
-
     void CreateLagSpike()
     {
         for (int i = 0; i < 10000000; i++)
