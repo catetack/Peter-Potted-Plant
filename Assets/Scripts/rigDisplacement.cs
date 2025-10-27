@@ -16,29 +16,17 @@ public class rigDisplacement : MonoBehaviour
     float frictionConstant; // multiplier for the friction expression
     public float displacementSpeed;
 
-    rigRotation Rotation;
-    headCollisionHandler HeadCollision;
+    playerStateManager PlayerState;
     void Start()
     {
         baseSpeedConstant = 25.0f;
         frictionConstant = 1.0f;
         displacementSpeed = 0.0f;
-
+        assignObjects();
+        
+        
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
-
-        Rotation = GetComponentInChildren<rigRotation>();
-        HeadCollision = GetComponentInChildren<headCollisionHandler>();
-
-        if (Rotation == null)
-        {
-            Debug.LogError("'Rotation' child GameObject not found.");
-        }
-        if (HeadCollision == null)
-        {
-            Debug.LogError("'HeadCollision' child GameObject not found.");
-        }
-
     }
 
     // Update is called once per frame
@@ -46,20 +34,29 @@ public class rigDisplacement : MonoBehaviour
     {
         playerInput();
         devTools();
-        float targetSpeed = 0.0f;
-        if (HeadCollision.isColliding)
+        if (PlayerState.isDowned)
         {
+            float targetSpeed = 0.0f;
             float blend = Mathf.Pow(0.5f, 25.0f * Time.deltaTime);
-            displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);
+            displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);//smooth stop when downed
         }
         else
         {
             playerMovement();
         }
 
+        PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
     }
 
+    void assignObjects()
+    {
+        PlayerState = GetComponentInParent<playerStateManager>();
+        if (PlayerState == null)
+        {
+            Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
+        }
+    }
     void playerInput()
     {
         controllerInput = inputActions.Player.Legs.ReadValue<Vector2>();
@@ -80,15 +77,19 @@ public class rigDisplacement : MonoBehaviour
     {
         
         float frictionExpression;
-        float rotation = Rotation.rotationRatio * 10.0f;
+        float rotation = PlayerState.rotationRatio * 10.0f;
 
         if (Math.Abs(legsThrottle) > 0.1f)
         {
-            displacementSpeed = (baseSpeedConstant * legsThrottle) * Time.deltaTime; // temporal value
+            displacementSpeed = (baseSpeedConstant * legsThrottle) * Time.deltaTime;
         }
 
-        frictionExpression = 1 - frictionConstant * Math.Abs(rotation) * Time.deltaTime;
-        displacementSpeed *= frictionExpression; // temporal value
+        frictionExpression = frictionConstant * Math.Abs(rotation);
+
+        float targetSpeed = 0.0f;
+        float blend = Mathf.Pow(0.5f, frictionExpression * Time.deltaTime);
+        displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);
+        //displacementSpeed *= frictionExpression; //deceleration due to friction
 
     }
     void devTools()
@@ -101,7 +102,7 @@ public class rigDisplacement : MonoBehaviour
             Debug.Log("frictionConstant: " + frictionConstant);
             Debug.Log("legsThrottle: " + legsThrottle);
             Debug.Log("speed: " + displacementSpeed);
-            Debug.Log("rotationRatio: " + Rotation.rotationRatio);
+            Debug.Log("rotationRatio: " + PlayerState.rotationRatio);
         }
         if (Input.GetKeyUp(KeyCode.Keypad1))
         {

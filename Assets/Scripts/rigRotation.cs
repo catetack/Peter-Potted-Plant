@@ -9,30 +9,19 @@ public class rigRotation : MonoBehaviour
 
     InputSystem_Actions inputActions; // variable reference but there is no object in memory
 
-    Vector2 controllerInput;
+    Vector2 yStickInput;
     float headTorque;
     float speedModifier = 300.0f;
-    float speed;
+    float rotationSpeed;
 
     float rigRot;
     float rotationClamp;
-    public float rotationRatio;
-
-    rigDisplacement Displacement;
-    headCollisionHandler HeadCollision;
+    playerStateManager PlayerState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Displacement = GetComponentInParent<rigDisplacement>();
-        HeadCollision = GetComponentInChildren<headCollisionHandler>();
-        if (Displacement == null)
-        {
-            Debug.LogError("rigDisplacement script not found on 'Displacement' parent.");
-        }
-        if (HeadCollision == null)
-        {
-            Debug.LogError("'peterHead' child GameObject not found.");
-        }
+        assignObjects();
+        
         inputActions = new InputSystem_Actions(); //create the instance for the controlls
         inputActions.Enable();
     }
@@ -41,27 +30,35 @@ public class rigRotation : MonoBehaviour
     void Update()
     {
         playerInput();
-        if (HeadCollision.isColliding)
+        if (PlayerState.isDowned)
         {
-            speed = 0.0f;
+            rotationSpeed = 0.0f;
         }
         else
         {
             playerRotations();
-            movementRotations();
-            gravityRotation();
+            //movementRotations();
+            //gravityRotation();
         }
 
-        player.transform.Rotate(0, 0, speed);
+        player.transform.Rotate(0, 0, rotationSpeed);
+    }
+    void assignObjects()
+    {
+        PlayerState = GetComponentInParent<playerStateManager>();
+        if (PlayerState == null)
+        {
+            Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
+        }
     }
 
     void playerInput()
     {
 
-        controllerInput = inputActions.Player.Head.ReadValue<Vector2>();
-        if (Math.Abs(controllerInput.x) > 0.1f)
+        yStickInput = inputActions.Player.Head.ReadValue<Vector2>();
+        if (Math.Abs(yStickInput.x) > 0.1f)
         {
-            headTorque = -controllerInput.x;
+            headTorque = -yStickInput.x;
         }
         else
         {
@@ -80,18 +77,18 @@ public class rigRotation : MonoBehaviour
     }
     void playerRotations()
     {
-        speed = headTorque * speedModifier * Time.deltaTime;
+        rotationSpeed = headTorque * speedModifier * Time.deltaTime;
 
         //rig rotation function:
         rigRot = transform.eulerAngles.z;
         rotationClamp = (rigRot > 180f) ? rigRot - 360f : rigRot;
-        rotationRatio = 1 - Math.Abs(rotationClamp / 180f);
+        PlayerState.rotationRatio = 1 - Math.Abs(rotationClamp / 180f);
         if (Math.Abs(rotationClamp) != 0.0f)
         {
-            rotationRatio *= rotationClamp / Math.Abs(rotationClamp);
+            PlayerState.rotationRatio *= rotationClamp / Math.Abs(rotationClamp);
         }
         else {
-            rotationRatio = 0.0f;
+            PlayerState.rotationRatio = 0.0f;
         }
 
     }
@@ -100,12 +97,13 @@ public class rigRotation : MonoBehaviour
         float movementTorque = 250.0f;
         //currently the at wich the head moves from the player speed is always the same, making it very difficult to keep the head stable.
         //speed at which the head moves should increase after the head passes +-20° from the top
-        speed += Displacement.displacementSpeed * movementTorque * Time.deltaTime;
+        rotationSpeed += PlayerState.displacementSpeed * movementTorque * Time.deltaTime;
     }
     void gravityRotation()
     {
         float gravityTorque = 2.0f;
         //simulate gravity pulling the head downwards when not moving
-        speed += rotationClamp * gravityTorque * Time.deltaTime;
+        rotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
     }
+
 }
