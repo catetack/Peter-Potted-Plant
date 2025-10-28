@@ -25,9 +25,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "ReviveLeft",
                     "type": "Button",
                     "id": "d57dc2d0-0c01-4fe4-a8b3-5172c66109a8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReviveRight",
+                    "type": "Button",
+                    "id": "6c835d03-89b4-43a0-9289-5d5879ffb00d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -79,23 +88,12 @@
                 },
                 {
                     "name": "",
-                    "id": "04eccb2b-b4e2-45c3-abdc-00339b182df6",
-                    "path": "<XInputController>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "517dc83a-2784-4e55-b4fd-4d96d3bd9904",
                     "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Jump",
+                    "action": "ReviveLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -106,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Jump",
+                    "action": "ReviveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

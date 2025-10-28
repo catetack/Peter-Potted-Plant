@@ -50,7 +50,7 @@ public class rigJump : MonoBehaviour
 
         inputAction.Enable();
         //inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
-        inputAction.Player.Jump.performed += ctx => jumpStart = true;
+        //inputAction.Player.Jump.performed += ctx => jumpStart = true;
         //inputAction.Player.Jump.canceled += ctx => jumpStart = true;
 
         playerRigidbody =GetComponent<Rigidbody2D>();

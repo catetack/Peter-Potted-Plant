@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class playerStateManager : MonoBehaviour
@@ -11,15 +12,17 @@ public class playerStateManager : MonoBehaviour
 
     public float displacementSpeed = 0.0f;
     public float arduinoWaterLevel = 0.0f;
+
+    public float health = 100.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        isHeavy = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        isHeavy = true;
+        
     }
 }

@@ -30,9 +30,18 @@ public class rigRotation : MonoBehaviour
     void Update()
     {
         playerInput();
+
         if (PlayerState.isDowned)
         {
-            rotationSpeed = 0.0f;
+            if (PlayerState.isReviving)
+            {
+                playerRotations();
+                raisedRotation();
+            }
+            else
+            {
+                rotationSpeed = 0.0f;
+            }
         }
         else if (!PlayerState.isDowned && !PlayerState.isHeavy)
         {
@@ -45,12 +54,13 @@ public class rigRotation : MonoBehaviour
             gravityRotation();
         }
 
+
         player.transform.Rotate(0, 0, rotationSpeed);
     }
     void assignObjects()
     {
         PlayerState = GetComponentInParent<playerStateManager>();
-        if (PlayerState == null)
+        if (PlayerState == null)    
         {
             Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
         }
@@ -60,7 +70,7 @@ public class rigRotation : MonoBehaviour
     {
 
         yStickInput = inputActions.Player.Head.ReadValue<Vector2>();
-        if (Math.Abs(yStickInput.x) > 0.1f)
+        if (Math.Abs(yStickInput.x) > 0.1f && !PlayerState.isDowned)
         {
             headTorque = -yStickInput.x;
         }
@@ -110,6 +120,11 @@ public class rigRotation : MonoBehaviour
         float gravityTorque = 3.0f;
         //simulate gravity pulling the head downwards when not moving
         rotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
+    }
+    void raisedRotation()
+    {
+        float raiseTorque = 2.0f;
+        rotationSpeed -= rotationClamp * raiseTorque * Time.deltaTime;
     }
 
 }
