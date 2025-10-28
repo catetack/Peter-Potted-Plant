@@ -34,7 +34,7 @@ public class rigDisplacement : MonoBehaviour
     {
         playerInput();
         devTools();
-        if (PlayerState.isDowned)
+        if (PlayerState.isDowned || PlayerState.isReviving)
         {
             float targetSpeed = 0.0f;
             float blend = Mathf.Pow(0.5f, 25.0f * Time.deltaTime);
@@ -85,7 +85,6 @@ public class rigDisplacement : MonoBehaviour
             speedFromTilt = (10.0f - Math.Abs(rotation)) * 5.0f * legsThrottle / Math.Abs(legsThrottle);
             displacementSpeed = (baseSpeedConstant * legsThrottle + speedFromTilt) * Time.deltaTime;
         }
-        Debug.Log("speedFromTilt: " + speedFromTilt + "rotation: " + Math.Abs(rotation) + " displacementSpeed: " + displacementSpeed);
 
         frictionExpression = frictionConstant * Math.Abs(rotation);
 
@@ -114,17 +113,6 @@ public class rigDisplacement : MonoBehaviour
         {
             frictionConstant += 0.10f;
             Debug.Log(frictionConstant);
-        }
-        if (Input.GetKey(KeyCode.Keypad3))
-        {
-            CreateLagSpike();
-        }
-    }
-    void CreateLagSpike()
-    {
-        for (int i = 0; i < 10000000; i++)
-        {
-            Vector3 lag = new Vector3(MathF.Sin(i), MathF.Cos(i), MathF.Tan(i));
         }
     }
 }

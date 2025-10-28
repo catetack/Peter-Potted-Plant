@@ -111,9 +111,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""ReviveLeft"",
                     ""type"": ""Button"",
                     ""id"": ""d57dc2d0-0c01-4fe4-a8b3-5172c66109a8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReviveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c835d03-89b4-43a0-9289-5d5879ffb00d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -165,23 +174,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""04eccb2b-b4e2-45c3-abdc-00339b182df6"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""517dc83a-2784-4e55-b4fd-4d96d3bd9904"",
                     ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Jump"",
+                    ""action"": ""ReviveLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -192,7 +190,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Jump"",
+                    ""action"": ""ReviveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -266,7 +264,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Head = m_Player.FindAction("Head", throwIfNotFound: true);
         m_Player_Legs = m_Player.FindAction("Legs", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_ReviveLeft = m_Player.FindAction("ReviveLeft", throwIfNotFound: true);
+        m_Player_ReviveRight = m_Player.FindAction("ReviveRight", throwIfNotFound: true);
         m_Player_Burst = m_Player.FindAction("Burst", throwIfNotFound: true);
     }
 
@@ -350,7 +349,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Head;
     private readonly InputAction m_Player_Legs;
-    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_ReviveLeft;
+    private readonly InputAction m_Player_ReviveRight;
     private readonly InputAction m_Player_Burst;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -372,9 +372,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Legs => m_Wrapper.m_Player_Legs;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Jump".
+        /// Provides access to the underlying input action "Player/ReviveLeft".
         /// </summary>
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @ReviveLeft => m_Wrapper.m_Player_ReviveLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ReviveRight".
+        /// </summary>
+        public InputAction @ReviveRight => m_Wrapper.m_Player_ReviveRight;
         /// <summary>
         /// Provides access to the underlying input action "Player/Burst".
         /// </summary>
@@ -411,9 +415,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Legs.started += instance.OnLegs;
             @Legs.performed += instance.OnLegs;
             @Legs.canceled += instance.OnLegs;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
+            @ReviveLeft.started += instance.OnReviveLeft;
+            @ReviveLeft.performed += instance.OnReviveLeft;
+            @ReviveLeft.canceled += instance.OnReviveLeft;
+            @ReviveRight.started += instance.OnReviveRight;
+            @ReviveRight.performed += instance.OnReviveRight;
+            @ReviveRight.canceled += instance.OnReviveRight;
             @Burst.started += instance.OnBurst;
             @Burst.performed += instance.OnBurst;
             @Burst.canceled += instance.OnBurst;
@@ -434,9 +441,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Legs.started -= instance.OnLegs;
             @Legs.performed -= instance.OnLegs;
             @Legs.canceled -= instance.OnLegs;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
+            @ReviveLeft.started -= instance.OnReviveLeft;
+            @ReviveLeft.performed -= instance.OnReviveLeft;
+            @ReviveLeft.canceled -= instance.OnReviveLeft;
+            @ReviveRight.started -= instance.OnReviveRight;
+            @ReviveRight.performed -= instance.OnReviveRight;
+            @ReviveRight.canceled -= instance.OnReviveRight;
             @Burst.started -= instance.OnBurst;
             @Burst.performed -= instance.OnBurst;
             @Burst.canceled -= instance.OnBurst;
@@ -560,12 +570,19 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLegs(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "ReviveLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnJump(InputAction.CallbackContext context);
+        void OnReviveLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReviveRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReviveRight(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Burst" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

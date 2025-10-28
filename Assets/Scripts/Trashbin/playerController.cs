@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
 
         //displays the read value for the keyboard
         Debug.Log("LEGS: " + inputActions.Player.Legs.ReadValue<Vector2>() + ", " +
-        inputActions.Player.Jump.ReadValue<float>() + System.Environment.NewLine +
+        //inputActions.Player.Jump.ReadValue<float>() + System.Environment.NewLine +
         "HEAD: " + inputActions.Player.Head.ReadValue<Vector2>() + ", " +
         inputActions.Player.Burst.ReadValue<float>());
     }

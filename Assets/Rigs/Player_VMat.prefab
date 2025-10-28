@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 959587616954770275}
   - component: {fileID: 1285815958142990403}
-  - component: {fileID: 2553400930974762859}
-  - component: {fileID: 1403306209848184732}
-  - component: {fileID: 5381193325884361904}
   m_Layer: 0
   m_Name: peterFeet
   m_TagString: Untagged
@@ -90,46 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2553400930974762859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3520640404650818167}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6c8dbe8d7be48489a879bfe84031e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3520640404650818167}
---- !u!114 &1403306209848184732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3520640404650818167}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 439afc52ee5d868459b4504ec55cae60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3520640404650818167}
---- !u!114 &5381193325884361904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3520640404650818167}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e341e366933e3074d8feea4f315bdb29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3520640404650818167}
-  speedModifier: 1
 --- !u!1 &4027814927522076924
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,9 +496,10 @@ GameObject:
   m_Component:
   - component: {fileID: 460100235286497639}
   - component: {fileID: 3221881474388363829}
+  - component: {fileID: 3759705527753191242}
   m_Layer: 0
   m_Name: Player_VMat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -581,6 +539,19 @@ MonoBehaviour:
   rotationSpeed: 0
   displacementSpeed: 0
   arduinoWaterLevel: 0
+  health: 100
+--- !u!114 &3759705527753191242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756416423645251802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3a988a78c7d7644a719b2bf6594d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7453846011536872588
 GameObject:
   m_ObjectHideFlags: 0

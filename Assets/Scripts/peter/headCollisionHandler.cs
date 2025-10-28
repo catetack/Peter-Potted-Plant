@@ -36,10 +36,8 @@ public class headCollisionHandler : MonoBehaviour
         {
             isColliding = true;
             PlayerState.isDowned = true;
+            PlayerState.health = 0.0f;
         }
-        Debug.Log("Triggered by: " + other.gameObject.name);
-        Debug.Log("Is Colliding: " + isColliding);
-        // Add specific actions for trigger events
     }
 
 }
