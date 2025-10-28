@@ -1,18 +1,28 @@
+using System;
 using UnityEngine;
 
 public class headCollisionHandler : MonoBehaviour
 {
-    public bool isColliding = false;
+    bool isColliding = false;
+    playerStateManager PlayerState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        assignObjects();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    void assignObjects()
+    {
+        PlayerState = GetComponentInParent<playerStateManager>();
+        if (PlayerState == null)
+        {
+            Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,6 +35,7 @@ public class headCollisionHandler : MonoBehaviour
         if (other.gameObject.CompareTag("Ground") || other.gameObject.name == "Ground")
         {
             isColliding = true;
+            PlayerState.isDowned = true;
         }
         Debug.Log("Triggered by: " + other.gameObject.name);
         Debug.Log("Is Colliding: " + isColliding);

@@ -5,12 +5,12 @@ public class followPlayer : MonoBehaviour
 
     GameObject player;
     Vector3 playerPosition;
-    public float verticalOffset = 5.0f; 
+    public float verticalOffset = -15.0f; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.Find("peterFeet");
+        player = GameObject.Find("peterHead");
         if (player == null)
         {
             Debug.LogError("Player GameObject not found. Please ensure there is a GameObject named 'peterFeet' in the scene.");
@@ -22,6 +22,6 @@ public class followPlayer : MonoBehaviour
     {
     
         playerPosition = player.transform.position;
-        transform.position = new Vector3(playerPosition.x, playerPosition.y + verticalOffset, transform.position.z);
+        transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
     }
 }
