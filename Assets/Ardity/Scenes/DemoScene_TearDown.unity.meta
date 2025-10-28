@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5284e77923778441980c704cec7cdb5
+timeCreated: 1475678359
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Scenes/DemoScene_TearDown.unity
+  uploadId: 262010

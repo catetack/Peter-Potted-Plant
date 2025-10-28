@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 90ada353031a1b44aab2cf9add446940
+timeCreated: 1446932973
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Scripts/Threads/SerialThreadLines.cs
+  uploadId: 262010
