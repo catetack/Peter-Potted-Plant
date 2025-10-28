@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2587cb0c77e84fe40a30c2a78189fc38
+timeCreated: 1490929474
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Scenes/DemoScene_CustomDelimiter.unity
+  uploadId: 262010

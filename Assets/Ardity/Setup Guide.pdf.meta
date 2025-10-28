@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8f2f455235421ee4c876e07c92dc3b3f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Setup Guide.pdf
+  uploadId: 262010
