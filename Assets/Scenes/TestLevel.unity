@@ -7268,7 +7268,7 @@ GameObject:
   - component: {fileID: 1504318930}
   m_Layer: 0
   m_Name: Displacement
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7286,10 +7286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1504318924}
-  baseSpeedMultiplier: 0
-  airFriction: 0.99
-  speed: 0
-  tiltToSpeedRatio: 0
+  displacementSpeed: 0
 --- !u!212 &1504318926
 SpriteRenderer:
   m_ObjectHideFlags: 0
