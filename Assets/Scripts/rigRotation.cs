@@ -82,6 +82,8 @@ public class rigRotation : MonoBehaviour
     void playerRotations()
     {
         rotationSpeed = headTorque * speedModifier * Time.deltaTime;
+        //float blend = Mathf.Pow(0.5f, 5.0f * Time.deltaTime);
+        //rotationSpeed = Mathf.Lerp(targetSpeed, rotationSpeed, blend);
 
         //rig rotation function:
         rigRot = transform.eulerAngles.z;
