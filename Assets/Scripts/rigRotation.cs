@@ -34,11 +34,15 @@ public class rigRotation : MonoBehaviour
         {
             rotationSpeed = 0.0f;
         }
-        else
+        else if (!PlayerState.isDowned && !PlayerState.isHeavy)
         {
             playerRotations();
-            //movementRotations();
-            //gravityRotation();
+        }
+        else if (!PlayerState.isDowned && PlayerState.isHeavy)
+        {
+            playerRotations();
+            movementRotations();
+            gravityRotation();
         }
 
         player.transform.Rotate(0, 0, rotationSpeed);
@@ -101,7 +105,7 @@ public class rigRotation : MonoBehaviour
     }
     void gravityRotation()
     {
-        float gravityTorque = 2.0f;
+        float gravityTorque = 3.0f;
         //simulate gravity pulling the head downwards when not moving
         rotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
     }

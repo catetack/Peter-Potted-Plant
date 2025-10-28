@@ -78,19 +78,20 @@ public class rigDisplacement : MonoBehaviour
         
         float frictionExpression;
         float rotation = PlayerState.rotationRatio * 10.0f;
+        float speedFromTilt = 0.0f; // max of 20 when upright, min of 0 when horizontal
 
         if (Math.Abs(legsThrottle) > 0.1f)
         {
-            displacementSpeed = (baseSpeedConstant * legsThrottle) * Time.deltaTime;
+            speedFromTilt = (10.0f - Math.Abs(rotation)) * 5.0f * legsThrottle / Math.Abs(legsThrottle);
+            displacementSpeed = (baseSpeedConstant * legsThrottle + speedFromTilt) * Time.deltaTime;
         }
+        Debug.Log("speedFromTilt: " + speedFromTilt + "rotation: " + Math.Abs(rotation) + " displacementSpeed: " + displacementSpeed);
 
         frictionExpression = frictionConstant * Math.Abs(rotation);
 
         float targetSpeed = 0.0f;
         float blend = Mathf.Pow(0.5f, frictionExpression * Time.deltaTime);
         displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);
-        //displacementSpeed *= frictionExpression; //deceleration due to friction
-
     }
     void devTools()
     {
