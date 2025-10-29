@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Threading;
 using System.Diagnostics;
 
-public class arduinoBUtton : MonoBehaviour
+public class MyListener : MonoBehaviour
 {
     SerialPort serialPort = new SerialPort("COM4", 9600); // Change COM3 to your Arduino's port
     GameObject cubeModifier;
