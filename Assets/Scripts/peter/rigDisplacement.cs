@@ -19,7 +19,7 @@ public class rigDisplacement : MonoBehaviour
     playerStateManager PlayerState;
     void Start()
     {
-        baseSpeedConstant = 25.0f;
+        baseSpeedConstant = 5.0f;
         frictionConstant = 1.0f;
         displacementSpeed = 0.0f;
         assignObjects();
