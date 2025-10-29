@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e575dce1ef60f354c8c84be8706e0ad1
+timeCreated: 1492576005
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Scripts/Threads/SerialThreadCustomDelimiter.cs
+  uploadId: 262010

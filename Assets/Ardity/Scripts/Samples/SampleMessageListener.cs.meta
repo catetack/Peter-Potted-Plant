@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 1a03027548d784348a5d2b1fbe819cfa
+timeCreated: 1461990120
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Scripts/Samples/SampleMessageListener.cs
+  uploadId: 262010

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e246aa68d79c3e6489397d781fa90434
+timeCreated: 1490930520
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123819
+  packageName: 'Ardity: Arduino + Unity communication made easy'
+  packageVersion: 1.1.0
+  assetPath: Assets/Ardity/Prefabs/SerialController_BinaryDelimited.prefab
+  uploadId: 262010
