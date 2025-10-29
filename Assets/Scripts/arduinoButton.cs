@@ -6,16 +6,14 @@ using System.Diagnostics;
 
 public class MyListener : MonoBehaviour
 {
-    SerialPort serialPort = new SerialPort("COM4", 9600); // Change COM3 to your Arduino's port
+    SerialPort serialPort = new SerialPort("COM4", 9600);
     GameObject cubeModifier;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cubeModifier = GameObject.Find("Cube");
     }
 
-    // Update is called once per frame
     void Update()
     {
 
