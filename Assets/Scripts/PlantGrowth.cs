@@ -10,6 +10,7 @@ public class PlantGrowth : MonoBehaviour
     public Sprite plantStage3;
     public Sprite plantStage4;
 
+
     private void Start()
     {
         if (serialController == null)
