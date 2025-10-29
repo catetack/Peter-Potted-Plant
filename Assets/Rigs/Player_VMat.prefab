@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 3584979829033026754}
   - component: {fileID: 1950958925386787302}
   - component: {fileID: 7294989231969605695}
+  - component: {fileID: 3322059716515769297}
   m_Layer: 0
   m_Name: Displacement
   m_TagString: Player
@@ -859,6 +860,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3322059716515769297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453846011536872588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddd20ac277702143af98d5168e145e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7994016927922926439
 GameObject:
   m_ObjectHideFlags: 0
