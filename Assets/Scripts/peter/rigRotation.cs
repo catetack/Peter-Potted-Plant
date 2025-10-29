@@ -118,7 +118,7 @@ public class rigRotation : MonoBehaviour
     }
     void gravityRotation()
     {
-        float gravityTorque = 3.0f;
+        float gravityTorque = 2.0f;
         //simulate gravity pulling the head downwards when not moving
         rotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
     }
