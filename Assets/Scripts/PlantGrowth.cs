@@ -36,11 +36,11 @@ public class PlantGrowth : MonoBehaviour
         int waterValue;
         if (int.TryParse(message, out waterValue))
         {
-            if (waterValue < 50)
+            if (waterValue < 75)
                 plantRenderer.sprite = plantStage1;
-            else if (waterValue < 100)
-                plantRenderer.sprite = plantStage2;
             else if (waterValue < 150)
+                plantRenderer.sprite = plantStage2;
+            else if (waterValue < 225)
                 plantRenderer.sprite = plantStage3;
             else
                 plantRenderer.sprite = plantStage4;
