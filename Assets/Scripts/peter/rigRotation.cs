@@ -46,6 +46,7 @@ public class rigRotation : MonoBehaviour
         else if (!PlayerState.isDowned && !PlayerState.isHeavy)
         {
             playerRotations();
+            lightRotation();
         }
         else if (!PlayerState.isDowned && PlayerState.isHeavy)
         {
@@ -125,6 +126,11 @@ public class rigRotation : MonoBehaviour
     {
         float raiseTorque = 2.0f;
         rotationSpeed -= rotationClamp * raiseTorque * Time.deltaTime;
+    }
+    void lightRotation()
+    {
+        float lightTorque = 5.0f;
+        rotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
     }
 
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class movingEnemy : MonoBehaviour
+public class movingBase : MonoBehaviour
 {
     //[SerializeField]
 
