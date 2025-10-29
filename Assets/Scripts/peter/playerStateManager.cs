@@ -5,7 +5,7 @@ public class playerStateManager : MonoBehaviour
 {
     public bool isDowned = false;
     public bool isReviving = false;
-    public bool isHeavy = true;
+    public bool isHeavy = false;
     public float health = 100.0f;
 
 
@@ -21,7 +21,7 @@ public class playerStateManager : MonoBehaviour
     void Start()
     {
         peterHead = GameObject.Find("peterHead");
-        isHeavy = true;
+        isHeavy = false;
     }
 
     // Update is called once per frame
