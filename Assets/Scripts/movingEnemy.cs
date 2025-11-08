@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+public enum EnemyState
+{
+    Patrol,Chase
+}
 public class movingEnemy : MonoBehaviour
 {
     //[SerializeField]
@@ -13,9 +18,9 @@ public class movingEnemy : MonoBehaviour
     int i = 0;
 
     //Locate player and chasing
-    public bool playerisFound;
-    public Transform playerPos;
-    public Transform spawnPos;
+    public EnemyState currentState;
+    public Transform playerTf;
+    public Transform spawnTf;
     float distance;
     float awayfromCenter;
     public float chasingRadius =10f;
@@ -27,34 +32,37 @@ public class movingEnemy : MonoBehaviour
     {
         timer = startWaitTime;
         //spawnPos=GetComponent<Transform>();
-        playerisFound = false;
+        currentState = EnemyState.Patrol;
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPos = GameObject.Find("Displacement").GetComponent<Transform>();
+        playerTf = GameObject.Find("Displacement").GetComponent<Transform>();
 
-        if (playerPos != null)
+        if (playerTf != null)
         {
-            distance = (transform.position - playerPos.position).sqrMagnitude;
-            if (distance < chasingRadius)
+            //First, make sure the enemy chase only when the player is in the range
+            awayfromCenter = (transform.position - spawnTf.position).sqrMagnitude;
+            if(awayfromCenter < rangeRadius )
             {
-                playerisFound = true;
-            }
-            else
-            {
-                playerisFound= false;
+                distance = (transform.position - playerTf.position).sqrMagnitude;
+                if (distance < chasingRadius)
+                {
+                    currentState = EnemyState.Chase;
+                }
+                
             }
         }
 
-        if (playerisFound )
+        switch (currentState)
         {
-            Chasing();
-        }
-        else
-        {
-            regularMove();
+            case EnemyState.Patrol:
+                regularMove();
+                break;
+            case EnemyState.Chase:
+                Chasing();
+                break;
         }
 
     }
@@ -88,13 +96,12 @@ public class movingEnemy : MonoBehaviour
 
     void Chasing()
     {
-        transform.position = Vector2.MoveTowards(transform.position,playerPos.position,chasingSpeed*Time.deltaTime);
-        //awayfromCenter = (transform.position - spawnPos.position).sqrMagnitude;
-        //if (awayfromCenter > rangeRadius)
-        //{
-            //playerisFound = false;
-        //}
-
+        awayfromCenter = (transform.position - spawnTf.position).sqrMagnitude;
+        if (awayfromCenter > rangeRadius)
+        {
+            currentState = EnemyState.Patrol;
+        }
+        transform.position = Vector2.MoveTowards(transform.position,playerTf.position,chasingSpeed*Time.deltaTime);
     }
 
     private void OnDrawGizmos()
@@ -103,7 +110,7 @@ public class movingEnemy : MonoBehaviour
        Gizmos.DrawWireSphere(transform.position, chasingRadius);
 
        Gizmos.color = Color.yellow;
-       Gizmos.DrawWireSphere(spawnPos.position, rangeRadius);
+       Gizmos.DrawWireSphere(spawnTf.position, rangeRadius);
     }
 
     private void MoveCheck()//Check the movement to flip,for animation
