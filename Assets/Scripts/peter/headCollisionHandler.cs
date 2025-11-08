@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class headCollisionHandler : MonoBehaviour
 {
-    bool isColliding = false;
     playerStateManager PlayerState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +25,7 @@ public class headCollisionHandler : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
+        
         Debug.Log("Collided with: " + collision.gameObject.name);
         // Add specific actions here, e.g., applying damage, playing a sound
     }
@@ -34,7 +34,6 @@ public class headCollisionHandler : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.name == "Ground")
         {
-            isColliding = true;
             PlayerState.isDowned = true;
             PlayerState.isHeavy = false;
             PlayerState.health = 0.0f;
