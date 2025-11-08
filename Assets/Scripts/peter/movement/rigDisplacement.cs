@@ -19,26 +19,23 @@ public class rigDisplacement : MonoBehaviour
     playerStateManager PlayerState;
     void Start()
     {
-        baseSpeedConstant = 25.0f;
-        frictionConstant = 1.0f;
-        displacementSpeed = 0.0f;
+        
         assignObjects();
         
         
-        inputActions = new InputSystem_Actions();
-        inputActions.Enable();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         playerInput();
         devTools();
         if (PlayerState.isDowned || PlayerState.isReviving)
         {
-            float targetSpeed = 0.0f;
-            float blend = Mathf.Pow(0.5f, 25.0f * Time.deltaTime);
-            displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);//smooth stop when downed
+            float blend = Mathf.Pow(0.5f, baseSpeedConstant * Time.deltaTime);
+            displacementSpeed = Mathf.Lerp(0.0f, displacementSpeed, blend);//smooth stop when downed
         }
         else
         {
@@ -51,11 +48,16 @@ public class rigDisplacement : MonoBehaviour
 
     void assignObjects()
     {
+        inputActions = new InputSystem_Actions();
+        
+        baseSpeedConstant = 25.0f;
+        frictionConstant = 1.0f;
+        displacementSpeed = 0.0f;
+
         PlayerState = GetComponentInParent<playerStateManager>();
-        if (PlayerState == null)
-        {
-            Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
-        }
+        if (PlayerState == null)Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
+
+        inputActions.Enable();
     }
     void playerInput()
     {

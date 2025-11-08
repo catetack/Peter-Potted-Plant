@@ -8,9 +8,10 @@ public class rigRotation : MonoBehaviour
     //references
     playerStateManager PlayerState;
     public GameObject player;
-    
+
     //debug
     bool KEYBOARD = true;
+    const float INPUT_DEADZONE = 0.1f;
 
     //input
     InputSystem_Actions inputActions;
@@ -71,9 +72,10 @@ public class rigRotation : MonoBehaviour
     }
     void assignObjects()
     {
-        
+
         inputActions = new InputSystem_Actions(); //create the instance for the controlls
         
+        //magic numbers
         raiseTorque = 2.0f;
         gravityTorque = 2.0f;
         lightTorque = 5.0f;
@@ -92,29 +94,22 @@ public class rigRotation : MonoBehaviour
 
     void playerInput()
     {
-
         yStickInput = inputActions.Player.Head.ReadValue<Vector2>();
-        if (Math.Abs(yStickInput.x) > 0.1f && !PlayerState.isDowned)
+        
+        // Reset torque first
+        headTorque = 0.0f;
+        
+        // Controller input (only when not downed)
+        if (Math.Abs(yStickInput.x) > INPUT_DEADZONE && !PlayerState.isDowned)
         {
-            
             headTorque = -yStickInput.x;
         }
-        else
+        
+        // Keyboard override (if enabled)
+        if (KEYBOARD)
         {
-            
-            headTorque = 0.0f;
-        }
-
-        if (!KEYBOARD) return;
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            
-            headTorque = -1.0f;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            
-            headTorque = 1.0f;
+            if (Input.GetKey(KeyCode.RightArrow)) headTorque = -1.0f;
+            if (Input.GetKey(KeyCode.LeftArrow)) headTorque = 1.0f;
         }
     }
     void playerRotations()
