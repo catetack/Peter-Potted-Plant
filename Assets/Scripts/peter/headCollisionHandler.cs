@@ -36,6 +36,7 @@ public class headCollisionHandler : MonoBehaviour
         {
             isColliding = true;
             PlayerState.isDowned = true;
+            PlayerState.isHeavy = false;
             PlayerState.health = 0.0f;
         }
     }

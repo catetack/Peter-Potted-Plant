@@ -16,7 +16,9 @@ public class Spring : MonoBehaviour
             //Animation scripts here
 
             //Function scripts
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity=new Vector2 (collision.gameObject.GetComponent<Rigidbody2D>().linearVelocityX, 0);
+            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity=Vector2.up*jumpForce;
         }
     }
 }

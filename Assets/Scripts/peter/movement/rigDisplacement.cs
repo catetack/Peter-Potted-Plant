@@ -15,8 +15,10 @@ public class rigDisplacement : MonoBehaviour
     float baseSpeedConstant;
     float frictionConstant; // multiplier for the friction expression
     public float displacementSpeed;
+    public float maxFallingSpeed = 0.1f;
 
     playerStateManager PlayerState;
+    Rigidbody2D rb;
     void Start()
     {
         baseSpeedConstant = 25.0f;
@@ -27,6 +29,8 @@ public class rigDisplacement : MonoBehaviour
         
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
+
+        rb=GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -43,6 +47,19 @@ public class rigDisplacement : MonoBehaviour
         else
         {
             playerMovement();
+        }
+
+        //Limit the max falling speed
+        if (rb.linearVelocityY < 0f)
+        {
+            if (Mathf.Abs(rb.linearVelocityY) < maxFallingSpeed)
+            {
+
+            }
+            else
+            {
+                rb.linearVelocityY = -maxFallingSpeed;
+            }
         }
 
         PlayerState.displacementSpeed = displacementSpeed;
