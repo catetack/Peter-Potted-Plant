@@ -3,30 +3,49 @@ using UnityEngine;
 
 public class rigDisplacement : MonoBehaviour
 {
-    // Development tools
+    //Debug
     const bool KEYBOARD = true;
     const bool DEBUG = true;
 
+    //References
+    playerStateManager PlayerState;
     public GameObject player;
+    Rigidbody2D rb;
+
     InputSystem_Actions inputActions;
     Vector2 leftStickInput;
     float legsThrottle;
 
+    //Lateral movement
     float baseSpeedConstant;
-    float frictionConstant; // multiplier for the friction expression
-    public float displacementSpeed;
+    float frictionConstant;
     float speedFromTilt;
     float frictionExpression;
     float targetDisplacementSpeed;
+    public float displacementSpeed;
 
+    //Vertical movement
+    float maxFallingSpeed;
 
-
-    playerStateManager PlayerState;
-    Rigidbody2D rb;
     void Start()
     {
 
         AssignObjects();
+    }
+    void AssignObjects()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        inputActions = new InputSystem_Actions();
+        inputActions.Player.Legs.Enable();
+
+        baseSpeedConstant = 25.0f;
+        frictionConstant = 10.0f;
+        displacementSpeed = 0.0f;
+        maxFallingSpeed = 0.1f;
+        targetDisplacementSpeed = 0.0f;
+
+        PlayerState = GetComponentInParent<playerStateManager>();
+        if (PlayerState == null) Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
     }
 
     // Update is called once per frame
@@ -36,22 +55,27 @@ public class rigDisplacement : MonoBehaviour
         PlayerInput();
         DevTools();
         InStateMovement();
+        //FallingSpeed();
+        player.transform.Translate(displacementSpeed, 0, 0);
+    }
 
+    private void FallingSpeed()
+    {
         //Limit the max falling speed
         if (rb.linearVelocityY < 0f)
         {
+
             if (Mathf.Abs(rb.linearVelocityY) < maxFallingSpeed)
             {
 
             }
             else
             {
+
                 rb.linearVelocityY = -maxFallingSpeed;
             }
         }
-
         PlayerState.displacementSpeed = displacementSpeed;
-        player.transform.Translate(displacementSpeed, 0, 0);
     }
 
     private void InStateMovement()
@@ -61,19 +85,6 @@ public class rigDisplacement : MonoBehaviour
         else PlayerMovement();
     }
 
-    void AssignObjects()
-    {
-        inputActions = new InputSystem_Actions();
-        inputActions.Player.Legs.Enable();
-
-        baseSpeedConstant = 25.0f;
-        frictionConstant = 10.0f;
-        displacementSpeed = 0.0f;
-        targetDisplacementSpeed = 0.0f;
-
-        PlayerState = GetComponentInParent<playerStateManager>();
-        if (PlayerState == null) Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
-    }
     void PlayerInput()
     {
         

@@ -27,7 +27,6 @@ public class rigRevive : MonoBehaviour
         }
         if (PlayerState.health >= 100.0f)
         {
-            Debug.Log("Player fully healed.");
             PlayerState.health = 100.0f;
             PlayerState.isReviving = false;
             PlayerState.isDowned = false;
