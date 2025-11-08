@@ -9,97 +9,111 @@ public class rigDisplacement : MonoBehaviour
 
     public GameObject player;
     InputSystem_Actions inputActions;
-    Vector2 controllerInput;
+    Vector2 leftStickInput;
     float legsThrottle;
 
     float baseSpeedConstant;
     float frictionConstant; // multiplier for the friction expression
     public float displacementSpeed;
+    float speedFromTilt;
+    float frictionExpression;
+    float targetDisplacementSpeed;
+
+
 
     playerStateManager PlayerState;
     void Start()
     {
-        
-        assignObjects();
-        
-        
-        
+
+        AssignObjects();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        playerInput();
-        devTools();
-        if (PlayerState.isDowned || PlayerState.isReviving)
-        {
-            float blend = Mathf.Pow(0.5f, baseSpeedConstant * Time.deltaTime);
-            displacementSpeed = Mathf.Lerp(0.0f, displacementSpeed, blend);//smooth stop when downed
-        }
-        else
-        {
-            playerMovement();
-        }
+
+        PlayerInput();
+        DevTools();
+        InStateMovement();
 
         PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
     }
 
-    void assignObjects()
+    private void InStateMovement()
+    {
+        
+        if (PlayerState.isDowned || PlayerState.isReviving) DisplacementBreaks();
+        else PlayerMovement();
+    }
+
+    void AssignObjects()
     {
         inputActions = new InputSystem_Actions();
-        
+        inputActions.Player.Legs.Enable();
+
         baseSpeedConstant = 25.0f;
-        frictionConstant = 1.0f;
+        frictionConstant = 10.0f;
         displacementSpeed = 0.0f;
+        targetDisplacementSpeed = 0.0f;
 
         PlayerState = GetComponentInParent<playerStateManager>();
-        if (PlayerState == null)Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
-
-        inputActions.Enable();
+        if (PlayerState == null) Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
     }
-    void playerInput()
-    {
-        controllerInput = inputActions.Player.Legs.ReadValue<Vector2>();
-        legsThrottle = controllerInput.x;
-
-        if (!KEYBOARD) return;
-        if (Input.GetKey(KeyCode.D))
-        {
-            legsThrottle = 1.0f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            legsThrottle = -1.0f;
-        }
-    }
-
-    void playerMovement()
+    void PlayerInput()
     {
         
-        float frictionExpression;
-        float rotation = PlayerState.rotationRatio * 10.0f;
-        float speedFromTilt = 0.0f; // max of 20 when upright, min of 0 when horizontal
-
-        if (Math.Abs(legsThrottle) > 0.1f)
-        {
-            speedFromTilt = (10.0f - Math.Abs(rotation)) * 5.0f * legsThrottle / Math.Abs(legsThrottle);
-            displacementSpeed = (baseSpeedConstant * legsThrottle + speedFromTilt) * Time.deltaTime;
-        }
-
-        frictionExpression = frictionConstant * Math.Abs(rotation);
-
-        float targetSpeed = 0.0f;
-        float blend = Mathf.Pow(0.5f, frictionExpression * Time.deltaTime);
-        displacementSpeed = Mathf.Lerp(targetSpeed, displacementSpeed, blend);
+        ControllerInput();
+        if (KEYBOARD) KeyboardInput();
     }
-    void devTools()
+
+    private void KeyboardInput()
+    {
+
+        if (Input.GetKey(KeyCode.D)) legsThrottle = 1.0f;
+        if (Input.GetKey(KeyCode.A)) legsThrottle = -1.0f;
+    }
+
+    private void ControllerInput()
+    {
+
+        leftStickInput = inputActions.Player.Legs.ReadValue<Vector2>();
+        legsThrottle = leftStickInput.x;
+    }
+
+    void PlayerMovement()
+    {
+
+        speedFromTilt = (1.0f - Math.Abs(PlayerState.rotationRatio)) * 50.0f * legsThrottle / Math.Abs(legsThrottle);
+        TargetThrottleSpeed();
+        MovementSmoothing();
+    }
+
+    private void TargetThrottleSpeed()
+    {
+
+        if (Math.Abs(legsThrottle) > 0.2f) targetDisplacementSpeed = (baseSpeedConstant * legsThrottle + speedFromTilt) * Time.deltaTime;
+        else targetDisplacementSpeed = 0.0f;
+    }
+
+    private void MovementSmoothing()
+    {
+
+        frictionExpression = frictionConstant * Math.Abs(PlayerState.rotationRatio);
+        displacementSpeed = Mathf.Lerp(targetDisplacementSpeed, displacementSpeed, Mathf.Pow(0.5f, frictionExpression * Time.deltaTime));
+    }
+
+    void DisplacementBreaks()
+    {
+        
+        displacementSpeed = Mathf.Lerp(0.0f, displacementSpeed, Mathf.Pow(0.5f, baseSpeedConstant * Time.deltaTime));
+    }
+    void DevTools()
     {
         if (!DEBUG) return;
-
         if (Input.GetKeyUp(KeyCode.Keypad0))
         {
+
             Debug.Log("baseSpeedConstant: " + baseSpeedConstant);
             Debug.Log("frictionConstant: " + frictionConstant);
             Debug.Log("legsThrottle: " + legsThrottle);
@@ -108,11 +122,13 @@ public class rigDisplacement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Keypad1))
         {
+
             frictionConstant -= 0.10f;
             Debug.Log(frictionConstant);
         }
         if (Input.GetKeyUp(KeyCode.Keypad2))
         {
+
             frictionConstant += 0.10f;
             Debug.Log(frictionConstant);
         }
