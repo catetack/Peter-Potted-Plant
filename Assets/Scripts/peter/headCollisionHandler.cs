@@ -35,6 +35,7 @@ public class headCollisionHandler : MonoBehaviour
         if (other.gameObject.CompareTag("Ground") || other.gameObject.name == "Ground")
         {
             PlayerState.isDowned = true;
+            PlayerState.isHeavy = false;
             PlayerState.health = 0.0f;
         }
     }

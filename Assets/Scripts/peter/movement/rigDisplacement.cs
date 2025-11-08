@@ -22,6 +22,7 @@ public class rigDisplacement : MonoBehaviour
 
 
     playerStateManager PlayerState;
+    Rigidbody2D rb;
     void Start()
     {
 
@@ -35,6 +36,19 @@ public class rigDisplacement : MonoBehaviour
         PlayerInput();
         DevTools();
         InStateMovement();
+
+        //Limit the max falling speed
+        if (rb.linearVelocityY < 0f)
+        {
+            if (Mathf.Abs(rb.linearVelocityY) < maxFallingSpeed)
+            {
+
+            }
+            else
+            {
+                rb.linearVelocityY = -maxFallingSpeed;
+            }
+        }
 
         PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
