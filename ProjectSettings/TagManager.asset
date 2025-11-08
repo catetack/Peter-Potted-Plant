@@ -10,6 +10,8 @@ TagManager:
   - Spring
   - UI
   - WaterDrop
+  - Vine
+  - Ladder
   layers:
   - Default
   - TransparentFX
