@@ -16,8 +16,6 @@ public class rigDisplacement : MonoBehaviour
     float frictionConstant; // multiplier for the friction expression
     public float displacementSpeed;
 
-    Animator peterAnimator;
-
     playerStateManager PlayerState;
     void Start()
     {
@@ -25,8 +23,6 @@ public class rigDisplacement : MonoBehaviour
         frictionConstant = 1.0f;
         displacementSpeed = 0.0f;
         assignObjects();
-
-        peterAnimator = GetComponentInChildren<Animator>();
         
         inputActions = new InputSystem_Actions();
         inputActions.Enable();
@@ -50,10 +46,6 @@ public class rigDisplacement : MonoBehaviour
 
         PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
-        peterAnimator.SetFloat("speed", controllerInput.x);
-
-        //Debug.Log(legsThrottle);
-        Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
     }
 
     void assignObjects()
