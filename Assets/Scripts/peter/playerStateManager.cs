@@ -11,7 +11,7 @@ public class playerStateManager : MonoBehaviour
     Animator peterAnimator;
 
 
-    public float rotationRatio = 0.0f;//outputs from 0 <- -10||10 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
+    public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
     public float rotationSpeed = 0.0f;
 
     public float displacementSpeed = 0.0f;
