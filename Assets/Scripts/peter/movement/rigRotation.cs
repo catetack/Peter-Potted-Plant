@@ -11,7 +11,7 @@ public class rigRotation : MonoBehaviour
 
     //debug
     bool KEYBOARD = true;
-    const float INPUT_DEADZONE = 0.1f;
+    const float INPUT_DEADZONE = 0.2f;
 
     //input
     InputSystem_Actions inputActions;
@@ -19,7 +19,8 @@ public class rigRotation : MonoBehaviour
     float rotationClamp;
 
     //forces
-    float movementTorque;
+    const float BASE_MOVEMENT_TORQUE = 600.0f;
+    float resultingMovementTorque;
     float headTorque;
     float raiseTorque;
     float gravityTorque;
@@ -80,7 +81,7 @@ public class rigRotation : MonoBehaviour
         gravityTorque = 2.0f;
         lightTorque = 5.0f;
         torqueModifier = 300.0f;
-        movementTorque = 250.0f;
+        resultingMovementTorque = 0;
         
         inputActions.Enable();
 
@@ -102,12 +103,14 @@ public class rigRotation : MonoBehaviour
         // Controller input (only when not downed)
         if (Math.Abs(yStickInput.x) > INPUT_DEADZONE && !PlayerState.isDowned)
         {
+
             headTorque = -yStickInput.x;
         }
         
         // Keyboard override (if enabled)
         if (KEYBOARD)
         {
+
             if (Input.GetKey(KeyCode.RightArrow)) headTorque = -1.0f;
             if (Input.GetKey(KeyCode.LeftArrow)) headTorque = 1.0f;
         }
@@ -116,6 +119,13 @@ public class rigRotation : MonoBehaviour
     {
 
         normalizeRotation();
+        RotationDirection();
+
+        rotationSpeed = headTorque * torqueModifier * Time.deltaTime;
+    }
+
+    private void RotationDirection()
+    {
         if (Math.Abs(rotationClamp) != 0.0f)
         {
 
@@ -126,9 +136,8 @@ public class rigRotation : MonoBehaviour
 
             PlayerState.rotationRatio = 0.0f;
         }
-
-        rotationSpeed = headTorque * torqueModifier * Time.deltaTime;
     }
+
     void normalizeRotation()
     {
         
@@ -137,8 +146,10 @@ public class rigRotation : MonoBehaviour
     }
     void movementRotations()
     {
-        
-        rotationSpeed += PlayerState.displacementSpeed * movementTorque * Time.deltaTime;
+        //reduce effect of movement on rotation when closer to the bottom
+        resultingMovementTorque = BASE_MOVEMENT_TORQUE * (PlayerState.rotationRatio*PlayerState.rotationRatio);
+        Debug.Log("movmentTorque: " + resultingMovementTorque);
+        rotationSpeed += PlayerState.displacementSpeed * resultingMovementTorque * Time.deltaTime;
     }
 
     void gravityRotation()

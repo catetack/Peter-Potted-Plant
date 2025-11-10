@@ -6,6 +6,8 @@ public class rigDisplacement : MonoBehaviour
     //Debug
     const bool KEYBOARD = true;
     const bool DEBUG = true;
+    const float INPUT_DEADZONE = 0.2f;
+
 
     //References
     playerStateManager PlayerState;
@@ -38,7 +40,7 @@ public class rigDisplacement : MonoBehaviour
         inputActions = new InputSystem_Actions();
         inputActions.Player.Legs.Enable();
 
-        baseSpeedConstant = 25.0f;
+        baseSpeedConstant = 2.0f;
         frictionConstant = 10.0f;
         displacementSpeed = 0.0f;
         maxFallingSpeed = 0.1f;
@@ -56,6 +58,7 @@ public class rigDisplacement : MonoBehaviour
         DevTools();
         InStateMovement();
         //FallingSpeed();
+        PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
     }
 
@@ -109,7 +112,7 @@ public class rigDisplacement : MonoBehaviour
     void PlayerMovement()
     {
 
-        speedFromTilt = (1.0f - Math.Abs(PlayerState.rotationRatio)) * 50.0f * legsThrottle / Math.Abs(legsThrottle);
+        speedFromTilt = baseSpeedConstant + (1.0f - Math.Abs(PlayerState.rotationRatio)) * 100.0f;
         TargetThrottleSpeed();
         MovementSmoothing();
     }
@@ -117,7 +120,7 @@ public class rigDisplacement : MonoBehaviour
     private void TargetThrottleSpeed()
     {
 
-        if (Math.Abs(legsThrottle) > 0.2f) targetDisplacementSpeed = (baseSpeedConstant * legsThrottle + speedFromTilt) * Time.deltaTime;
+        if (Math.Abs(legsThrottle) > INPUT_DEADZONE) targetDisplacementSpeed = (legsThrottle * speedFromTilt) * Time.deltaTime;
         else targetDisplacementSpeed = 0.0f;
     }
 
