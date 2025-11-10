@@ -22,6 +22,7 @@ public class rigDisplacement : MonoBehaviour
     float baseSpeedConstant;
     float frictionConstant;
     float speedFromTilt;
+    float tiltSpeedModifier;
     float frictionExpression;
     float targetDisplacementSpeed;
     public float displacementSpeed;
@@ -42,6 +43,7 @@ public class rigDisplacement : MonoBehaviour
 
         baseSpeedConstant = 2.0f;
         frictionConstant = 10.0f;
+        tiltSpeedModifier = 100.0f;
         displacementSpeed = 0.0f;
         maxFallingSpeed = 0.1f;
         targetDisplacementSpeed = 0.0f;
@@ -112,7 +114,7 @@ public class rigDisplacement : MonoBehaviour
     void PlayerMovement()
     {
 
-        speedFromTilt = baseSpeedConstant + (1.0f - Math.Abs(PlayerState.rotationRatio)) * 100.0f;
+        speedFromTilt = baseSpeedConstant + (1.0f - Math.Abs(PlayerState.rotationRatio)) * tiltSpeedModifier;
         TargetThrottleSpeed();
         MovementSmoothing();
     }
