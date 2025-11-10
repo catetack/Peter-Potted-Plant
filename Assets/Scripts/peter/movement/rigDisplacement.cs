@@ -32,12 +32,11 @@ public class rigDisplacement : MonoBehaviour
 
     void Start()
     {
-
-        AssignObjects();
-    }
-    void AssignObjects()
-    {
-        rb = GetComponent<Rigidbody2D>();
+        baseSpeedConstant = 25.0f;
+        frictionConstant = 1.0f;
+        displacementSpeed = 0.0f;
+        assignObjects();
+        
         inputActions = new InputSystem_Actions();
         inputActions.Player.Legs.Enable();
 
