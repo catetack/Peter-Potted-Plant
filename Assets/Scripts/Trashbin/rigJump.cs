@@ -46,14 +46,14 @@ public class rigJump : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputAction = new InputSystem_Actions();
+        //inputAction = new InputSystem_Actions();
 
-        inputAction.Enable();
+        //nputAction.Enable();
         //inputAction.Player.Jump.started += ctx => chargeStart = Time.time;
         //inputAction.Player.Jump.performed += ctx => jumpStart = true;
         //inputAction.Player.Jump.canceled += ctx => jumpStart = true;
 
-        playerRigidbody =GetComponent<Rigidbody2D>();
+        //playerRigidbody =GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -64,17 +64,17 @@ public class rigJump : MonoBehaviour
 
     private void FixedUpdate()//Physics
     {
-        onGround();
-        Jump();
+        //onGround();
+        //Jump();
     }
 
     private void OnDisable()
     {
-        inputAction.Disable();
+        //inputAction.Disable();
     }
-    private void Jump() 
+    private void Jump()
     {
-        if(playerRigidbody.linearVelocityY < 0f)
+        /*if(playerRigidbody.linearVelocityY < 0f)
         {
             if(playerRigidbody.linearVelocityY< maxFallSpeed)
             {
@@ -85,8 +85,9 @@ public class rigJump : MonoBehaviour
                 playerRigidbody.linearVelocityY = maxFallSpeed;
             }
         }
+        */
 
-        if (isGrounded && jumpStart)
+        /*if (isGrounded && jumpStart)
         {
             //float chargeTime = Time.time - chargeStart;
             //float jumpForce = Mathf.Clamp(chargeTime * 100f, jumpMinSpeed, jumpMaxSpeed);
@@ -96,10 +97,11 @@ public class rigJump : MonoBehaviour
             //chargeStart = 0f;
             jumpStart = false;
         }
+        */
     }
 
     private void onGround()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
     }
 }
