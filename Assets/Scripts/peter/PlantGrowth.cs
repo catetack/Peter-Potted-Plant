@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlantGrowth : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlantGrowth : MonoBehaviour
     public Sprite plantStage3;
     public Sprite plantStage4;
 
+    // 👇 NEW: anyone can subscribe to get the latest water value
+    public static event Action<int> WaterValueChanged;
 
     private void Start()
     {
@@ -22,19 +25,12 @@ public class PlantGrowth : MonoBehaviour
         string message = serialController.ReadSerialMessage();
         if (message == null) return;
 
-        //// Handle possible connection messages from Ardity
-        //if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
-        //    Debug.Log("Arduino connected");
-        //else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
-        //    Debug.Log("Arduino disconnected");
-        //else
-            UpdatePlantSprite(message);
+        UpdatePlantSprite(message);
     }
 
     void UpdatePlantSprite(string message)
     {
-        int waterValue;
-        if (int.TryParse(message, out waterValue))
+        if (int.TryParse(message, out int waterValue))
         {
             if (waterValue < 75)
                 plantRenderer.sprite = plantStage1;
@@ -44,6 +40,9 @@ public class PlantGrowth : MonoBehaviour
                 plantRenderer.sprite = plantStage3;
             else
                 plantRenderer.sprite = plantStage4;
+
+            // 👇 NEW: broadcast the water value for any thirst UI / gameplay to use
+            WaterValueChanged?.Invoke(waterValue);
         }
     }
 }
