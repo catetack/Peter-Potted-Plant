@@ -34,9 +34,8 @@ public class playerStateManager : MonoBehaviour
     {
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
-        peterAnimator.SetFloat("speed", displacementSpeed);
+        peterAnimator.SetFloat("Speed", displacementSpeed);
 
-        //Debug.Log(legsThrottle);
-        Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
+        UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Speed"));
     }
 }
