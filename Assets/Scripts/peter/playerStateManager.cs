@@ -40,8 +40,6 @@ public class playerStateManager : MonoBehaviour
         //sets animation value to Peter's speed
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
-        UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
-
         //if peter is moving forward, change his animation speed to match how fast he is moving
         if (peterAnimator.GetFloat("Displacement Speed") >= 0.1)
         {
@@ -54,6 +52,7 @@ public class playerStateManager : MonoBehaviour
             peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
         }
 
+        //UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
         //UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
     }
 }
