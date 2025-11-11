@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8411356}
   m_Layer: 0
   m_Name: peterLegs
-  m_TagString: Untagged
+  m_TagString: Legs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6995,9 +6995,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1191292121730608395, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_Size.x
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191292121730608395, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_Size.y
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191292121730608395, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d2a4ddb8d4185c044b121fef432c0507, type: 3}
+    - target: {fileID: 1191292121730608395, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191292121730608395, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291689107394216705, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291689107394216705, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2288017051787294454, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175253449792211209, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175253449792211209, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175253449792211209, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 6756416423645251802, guid: dce9dd0b76504f84f9ff179e25add041, type: 3}
       propertyPath: m_Name
