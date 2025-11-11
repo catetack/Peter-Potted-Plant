@@ -42,10 +42,10 @@ public class ThirstUI : MonoBehaviour
 
     private int MapToLevel(int waterValue)
     {
-        if (waterValue < 75) return 0; // Very thirsty → 1 droplet
-        if (waterValue < 150) return 1; // Thirsty → 2 droplets
-        if (waterValue < 225) return 2; // Normal → 3 droplets
-        return 3; // Hydrated → 4 droplets
+        if (waterValue < 75) return 0; // Very thirsty - 1 droplet
+        if (waterValue < 150) return 1; // Thirsty - 2 droplets
+        if (waterValue < 225) return 2; // Normal - 3 droplets
+        return 3; // Hydrated - 4 droplets
     }
 
     private void UpdateDroplets(int level)
