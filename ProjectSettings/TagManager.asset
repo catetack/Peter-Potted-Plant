@@ -49,5 +49,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: wood
+    uniqueID: 1927020169
+    locked: 0
+  - name: back tree
+    uniqueID: 3068071585
+    locked: 0
+  - name: tree
+    uniqueID: 3773858835
+    locked: 0
+  - name: tree details
+    uniqueID: 368921705
+    locked: 0
   m_RenderingLayers:
   - Default
