@@ -17,6 +17,7 @@ public class waterDropManager : MonoBehaviour
     {
         pState = GameObject.Find("Player").GetComponent<playerStateManager>();
     }
+
     private void Update()
     {
         if(!playerLastDeathState&&pState.isDowned&&isCollected)
@@ -28,18 +29,18 @@ public class waterDropManager : MonoBehaviour
 
         playerLastDeathState=pState.isDowned;
 
-        if (childWaterDrop == null && !isCollected)
-        {
-            isCollected = true;
-
-            // Spawn coin sprite on player's head
-            if (coinPrefab != null && playerHead != null)
-            {
-                GameObject coin = Instantiate(coinPrefab, playerHead.position, Quaternion.identity, playerHead);
-
-                // Optionally offset it above the head
-                coin.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-            }
-        }
     }
+
+    public void OnDropCollected()
+    {
+        // spawn coin when water drop collected
+        if (coinPrefab != null && playerHead != null)
+        {
+            GameObject coin = Instantiate(coinPrefab, playerHead.position, Quaternion.identity, playerHead);
+            coin.transform.localPosition = new Vector3(0f, 0.5f, 0f);
+        }
+
+        isCollected = true;
+    }
+
 }
