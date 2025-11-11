@@ -12,6 +12,8 @@ public class playerStateManager : MonoBehaviour
 
     Animator peterAnimator;
 
+    AnimationState walking;
+
 
     public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
     public float rotationSpeed = 0.0f;
@@ -34,8 +36,13 @@ public class playerStateManager : MonoBehaviour
     {
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
-        peterAnimator.SetFloat("Speed", displacementSpeed);
+        peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
-        UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Speed"));
+        //UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Displacement Speed"));
+
+        if (peterAnimator.GetFloat("Displacement Speed") >= 0.1 || peterAnimator.GetFloat("Displacement Speed") <= -0.1)
+        {
+            peterAnimator.speed = 1 + displacementSpeed;
+        }
     }
 }
