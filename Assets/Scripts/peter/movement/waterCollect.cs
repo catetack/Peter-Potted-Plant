@@ -6,6 +6,8 @@ public class waterCollect : MonoBehaviour
 {
     playerStateManager PlayerState;
 
+    public bool touchPed = false;
+
     void Start()
     {
         assignObjects();
@@ -17,6 +19,12 @@ public class waterCollect : MonoBehaviour
         {
             PlayerState.isHeavy = true;
             Destroy(collision.gameObject);
+        }
+
+        else if(collision.gameObject.CompareTag("Pedestal"))
+        {
+            PlayerState.isHeavy = false;
+            touchPed = true;
         }
     }
 
