@@ -12,6 +12,7 @@ TagManager:
   - WaterDrop
   - Vine
   - Ladder
+  - Pedestal
   layers:
   - Default
   - TransparentFX
