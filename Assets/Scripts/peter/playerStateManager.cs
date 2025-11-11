@@ -36,13 +36,24 @@ public class playerStateManager : MonoBehaviour
     {
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
+
+        //sets animation value to Peter's speed
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
-        //UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Displacement Speed"));
+        UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
 
-        if (peterAnimator.GetFloat("Displacement Speed") >= 0.1 || peterAnimator.GetFloat("Displacement Speed") <= -0.1)
+        //if peter is moving forward, change his animation speed to match how fast he is moving
+        if (peterAnimator.GetFloat("Displacement Speed") >= 0.1)
         {
             peterAnimator.speed = 1 + displacementSpeed;
         }
+
+        //if peter is moving backward, change his animation speed to match how fast he is moving
+        else if (peterAnimator.GetFloat("Displacement Speed") <= -0.1)
+        {
+            peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
+        }
+
+        //UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
     }
 }

@@ -2956,7 +2956,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: leftFemur
+    path: rightFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2968,7 +2968,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: leftFemur
+    path: rightFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2980,7 +2980,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: leftFemur
+    path: rightFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2992,7 +2992,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: rightFemur
+    path: leftFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3004,7 +3004,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: rightFemur
+    path: leftFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -3016,7 +3016,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: rightFemur
+    path: leftFemur
     classID: 4
     script: {fileID: 0}
     flags: 0
