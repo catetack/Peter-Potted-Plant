@@ -28,7 +28,7 @@ public class rigDisplacement : MonoBehaviour
     public float displacementSpeed;
 
     //Vertical movement
-    float maxFallingSpeed;
+    public float maxFallingSpeed;
 
     //Pause Menu
     PauseMenu pm;
@@ -49,7 +49,7 @@ public class rigDisplacement : MonoBehaviour
         frictionConstant = 10.0f;
         tiltSpeedModifier = 100.0f;
         displacementSpeed = 0.0f;
-        maxFallingSpeed = 0.1f;
+        maxFallingSpeed = 5f;//This one is not working
         targetDisplacementSpeed = 0.0f;
 
         PlayerState = GetComponentInParent<playerStateManager>();
@@ -65,7 +65,10 @@ public class rigDisplacement : MonoBehaviour
         InStateMovement();
         //FallingSpeed();
         PlayerState.displacementSpeed = displacementSpeed;
-        player.transform.Translate(displacementSpeed, 0, 0);
+
+        //Here is the older one
+        //player.transform.Translate(displacementSpeed, 0, 0);
+        player.transform.Translate(displacementSpeed, rb.linearVelocityY*Time.deltaTime, 0);
 
         if(pm!=null)
         {
