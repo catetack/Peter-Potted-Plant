@@ -8,6 +8,9 @@ public class waterCollect : MonoBehaviour
     public waterDropManager dropManager;
 
     private void Start()
+    public bool touchPed = false;
+
+    void Start()
     {
         assignObjects();
     }
@@ -19,6 +22,12 @@ public class waterCollect : MonoBehaviour
             PlayerState.isHeavy = true;
             dropManager.OnDropCollected();
             Destroy(collision.gameObject);
+        }
+
+        else if(collision.gameObject.CompareTag("Pedestal"))
+        {
+            PlayerState.isHeavy = false;
+            touchPed = true;
         }
     }
 
