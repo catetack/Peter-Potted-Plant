@@ -149,7 +149,6 @@ public class rigRotation : MonoBehaviour
     {
         //reduce effect of movement on rotation when closer to the bottom
         resultingMovementTorque = BASE_MOVEMENT_TORQUE * (PlayerState.rotationRatio*PlayerState.rotationRatio);
-        Debug.Log("movmentTorque: " + resultingMovementTorque);
         rotationSpeed += PlayerState.displacementSpeed * resultingMovementTorque * Time.deltaTime;
     }
 

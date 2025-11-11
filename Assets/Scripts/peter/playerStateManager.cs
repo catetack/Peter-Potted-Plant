@@ -44,6 +44,7 @@ public class playerStateManager : MonoBehaviour
         //Debug.Log(arduinoWaterValue);
 
         //sets animation value to Peter's speed
+
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
         ///if Peter is still, play the idle animation
@@ -65,13 +66,5 @@ public class playerStateManager : MonoBehaviour
             peterRenderer.flipX = true;
             peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
         }
-
-        UnityEngine.Debug.Log("flipped is " + peterRenderer.flipX);
-
-        //UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
-        //UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
-        //Debug.Log(legsThrottle);
-        //Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
-        UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Speed"));
     }
 }

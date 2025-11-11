@@ -53,6 +53,5 @@ public class headRotations : MonoBehaviour
     {
 
         rotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
-        Debug.Log("Light rotation applied: " + (rotationSpeed));
     }
 }
