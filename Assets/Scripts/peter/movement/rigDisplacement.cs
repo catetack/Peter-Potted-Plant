@@ -30,10 +30,14 @@ public class rigDisplacement : MonoBehaviour
     //Vertical movement
     float maxFallingSpeed;
 
+    //Pause Menu
+    PauseMenu pm;
+
     void Start()
     {
 
         AssignObjects();
+        pm=GameObject.Find("Main Camera").GetComponent<PauseMenu>();
     }
     void AssignObjects()
     {
@@ -62,6 +66,15 @@ public class rigDisplacement : MonoBehaviour
         //FallingSpeed();
         PlayerState.displacementSpeed = displacementSpeed;
         player.transform.Translate(displacementSpeed, 0, 0);
+
+        if(pm!=null)
+        {
+            if(!pm.GetmenuKey())
+            {
+                displacementSpeed = 0.0f;
+            }
+            
+        }
     }
 
     private void FallingSpeed()
