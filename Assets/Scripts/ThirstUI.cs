@@ -1,18 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class ThirstUI : MonoBehaviour
 {
     public Image[] dropletImages;
+    public Volume globalVolume;
 
-    [Header("Startup")]
-    [Tooltip("What to show before any sensor data arrives")]
-    public int defaultWaterValue = 225; // show 4 filled at start
+    private ColorAdjustments colorAdjustments;
+
+    private void Start()
+    {
+        if (globalVolume != null)
+        {
+            // Colour adjustments for grayscale
+            if (globalVolume.profile.TryGet(out ColorAdjustments ca))
+            {
+                colorAdjustments = ca;
+            }
+        }
+    }
 
     private void OnEnable()
     {
-        UpdateDroplets(MapToLevel(defaultWaterValue));
-
         PlantGrowth.WaterValueChanged += OnWaterValueChanged;
     }
 
@@ -25,6 +37,7 @@ public class ThirstUI : MonoBehaviour
     {
         int level = MapToLevel(waterValue);
         UpdateDroplets(level);
+        UpdateEnvironmentGrayscale(level);
     }
 
     private int MapToLevel(int waterValue)
@@ -32,7 +45,7 @@ public class ThirstUI : MonoBehaviour
         if (waterValue < 75) return 0; // Very thirsty → 1 droplet
         if (waterValue < 150) return 1; // Thirsty → 2 droplets
         if (waterValue < 225) return 2; // Normal → 3 droplets
-        return 3;                       // Hydrated → 4 droplets
+        return 3; // Hydrated → 4 droplets
     }
 
     private void UpdateDroplets(int level)
@@ -46,5 +59,17 @@ public class ThirstUI : MonoBehaviour
             c.a = filled ? 1f : 0.2f;
             dropletImages[i].color = c;
         }
+    }
+
+    private void UpdateEnvironmentGrayscale(int level)
+    {
+        if (colorAdjustments == null) return;
+
+        // Saturation
+        // 3 = full color
+        // 0 = grayscale
+        float saturation = Mathf.Lerp(-100f, 0f, level / 3f);
+
+        colorAdjustments.saturation.Override(saturation);
     }
 }

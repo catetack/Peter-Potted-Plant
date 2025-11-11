@@ -12,7 +12,6 @@ public class PlantGrowth : MonoBehaviour
     public Sprite plantStage4;
     playerStateManager playerState;
 
-    // anyone can subscribe to get the latest water value
     public static event Action<int> WaterValueChanged;
 
     private void Start()
