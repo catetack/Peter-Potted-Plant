@@ -625,7 +625,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -815,7 +815,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0.48584908, g: 1, b: 0.48584908, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -823,7 +823,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3119708528002761090
@@ -1172,7 +1172,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.48584908, b: 0.48584908, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1180,7 +1180,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7497627645746467203
@@ -1197,6 +1197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7453846011536872588}
   displacementSpeed: 0
+  maxFallingSpeed: 0
 --- !u!114 &3584979829033026754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,6 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddd20ac277702143af98d5168e145e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropManager: {fileID: 0}
   touchPed: 0
 --- !u!1 &7706020620269370609
 GameObject:
@@ -1547,7 +1549,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7973364599720582955, guid: 0b0aa14c0d9b5d04898c0f03e9c88efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
