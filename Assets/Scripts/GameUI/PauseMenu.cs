@@ -33,12 +33,14 @@ public class PauseMenu : MonoBehaviour
             {
                 menuList.SetActive(true);
                 menuKeys = false;
+                Time.timeScale = (0);//Time is stoped
             }
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             menuList.SetActive(false);
             menuKeys = true;
+            Time.timeScale = (1);
         }
     }
 
@@ -51,12 +53,14 @@ public class PauseMenu : MonoBehaviour
             
                 menuList.SetActive(true);
                 menuKeys = false;
-            
+                Time.timeScale = (0);//Time is stoped
+
         }
         else
         {
             menuList.SetActive(false);
             menuKeys = true;
+            Time.timeScale = (1);
         }
     }
 
@@ -67,5 +71,10 @@ public class PauseMenu : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
+    }
+
+    public bool GetmenuKey()
+    {
+        return menuKeys;
     }
 }
