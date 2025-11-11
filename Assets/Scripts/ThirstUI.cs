@@ -3,12 +3,11 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
-//using static System.Net.Mime.MediaTypeNames;
 
 public class ThirstUI : MonoBehaviour
 {
     public Image[] dropletImages;
-    public Volume globalVolume; // Assign your Global Volume here
+    public Volume globalVolume;
 
     private ColorAdjustments colorAdjustments;
 
@@ -16,14 +15,10 @@ public class ThirstUI : MonoBehaviour
     {
         if (globalVolume != null)
         {
-            // Try to get ColorAdjustments from the Volume
+            // Colour adjustments for grayscale
             if (globalVolume.profile.TryGet(out ColorAdjustments ca))
             {
                 colorAdjustments = ca;
-            }
-            else
-            {
-                //Debug.LogWarning("No ColorAdjustments found in the Volume!");
             }
         }
     }
@@ -47,10 +42,10 @@ public class ThirstUI : MonoBehaviour
 
     private int MapToLevel(int waterValue)
     {
-        if (waterValue < 75) return 0;
-        if (waterValue < 150) return 1;
-        if (waterValue < 225) return 2;
-        return 3;
+        if (waterValue < 75) return 0; // Very thirsty → 1 droplet
+        if (waterValue < 150) return 1; // Thirsty → 2 droplets
+        if (waterValue < 225) return 2; // Normal → 3 droplets
+        return 3; // Hydrated → 4 droplets
     }
 
     private void UpdateDroplets(int level)
@@ -70,9 +65,9 @@ public class ThirstUI : MonoBehaviour
     {
         if (colorAdjustments == null) return;
 
-        // Convert thirst level (0–3) into saturation (0 to -100)
+        // Saturation
         // 3 = hydrated → full color
-        // 0 = dying → full grayscale
+        // 0 = dying → grayscale
         float saturation = Mathf.Lerp(-100f, 0f, level / 3f);
 
         colorAdjustments.saturation.Override(saturation);
