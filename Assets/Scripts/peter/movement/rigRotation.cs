@@ -107,6 +107,7 @@ public class rigRotation : MonoBehaviour
             headTorque = -yStickInput.x;
         }
         
+        PlayerState.headTorque = headTorque;
         // Keyboard override (if enabled)
         if (KEYBOARD)
         {
@@ -118,7 +119,7 @@ public class rigRotation : MonoBehaviour
     void playerRotations()
     {
 
-        normalizeRotation();
+        NormalizeRotation();
         RotationDirection();
 
         rotationSpeed = headTorque * torqueModifier * Time.deltaTime;
@@ -138,7 +139,7 @@ public class rigRotation : MonoBehaviour
         }
     }
 
-    void normalizeRotation()
+    void NormalizeRotation()
     {
         
         rotationClamp = (transform.eulerAngles.z > 180f) ? transform.eulerAngles.z - 360f : transform.eulerAngles.z;
