@@ -7,7 +7,7 @@ public class waterCollect : MonoBehaviour
     playerStateManager PlayerState;
     public waterDropManager dropManager;
 
-    private void Start()
+    //private void Start();
     public bool touchPed = false;
 
     void Start()
