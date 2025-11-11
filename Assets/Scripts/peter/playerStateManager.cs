@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 public class playerStateManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class playerStateManager : MonoBehaviour
     public bool isReviving = false;
     public bool isHeavy = false;
     public float health = 100.0f;
+    public float arduinoWaterValue;
 
 
     public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
@@ -28,5 +30,6 @@ public class playerStateManager : MonoBehaviour
     void Update()
     {
         headPosition = peterHead.transform.position;
+        //Debug.Log(arduinoWaterValue);
     }
 }

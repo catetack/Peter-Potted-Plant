@@ -10,8 +10,9 @@ public class PlantGrowth : MonoBehaviour
     public Sprite plantStage2;
     public Sprite plantStage3;
     public Sprite plantStage4;
+    playerStateManager playerState;
 
-    // 👇 NEW: anyone can subscribe to get the latest water value
+    // anyone can subscribe to get the latest water value
     public static event Action<int> WaterValueChanged;
 
     private void Start()
@@ -41,8 +42,9 @@ public class PlantGrowth : MonoBehaviour
             else
                 plantRenderer.sprite = plantStage4;
 
-            // 👇 NEW: broadcast the water value for any thirst UI / gameplay to use
+            // broadcast the water value for thirst UI
             WaterValueChanged?.Invoke(waterValue);
+            playerState.arduinoWaterValue = waterValue;
         }
     }
 }

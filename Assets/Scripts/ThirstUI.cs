@@ -11,10 +11,8 @@ public class ThirstUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // Draw once immediately so UI is visible when you press Play
         UpdateDroplets(MapToLevel(defaultWaterValue));
 
-        // Subscribe to live data
         PlantGrowth.WaterValueChanged += OnWaterValueChanged;
     }
 
@@ -25,8 +23,6 @@ public class ThirstUI : MonoBehaviour
 
     private void OnWaterValueChanged(int waterValue)
     {
-        // Debug to verify we're receiving data
-        // Debug.Log($"ThirstUI got water: {waterValue}");
         int level = MapToLevel(waterValue);
         UpdateDroplets(level);
     }
@@ -45,7 +41,7 @@ public class ThirstUI : MonoBehaviour
         {
             if (dropletImages[i] == null) continue;
 
-            bool filled = i <= level; // level 0 → index 0 filled; level 3 → all filled
+            bool filled = i <= level;
             Color c = dropletImages[i].color;
             c.a = filled ? 1f : 0.2f;
             dropletImages[i].color = c;
