@@ -67,5 +67,8 @@ public class playerStateManager : MonoBehaviour
 
         //UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
         //UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
+        //Debug.Log(legsThrottle);
+        //Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
+        UnityEngine.Debug.Log("animation speed is " + peterAnimator.GetFloat("Speed"));
     }
 }
