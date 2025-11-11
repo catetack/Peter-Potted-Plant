@@ -5,13 +5,13 @@ public class ThirstUI : MonoBehaviour
 {
     public Image[] dropletImages;
 
-    [Header("Startup")]
-    [Tooltip("What to show before any sensor data arrives")]
-    public int defaultWaterValue = 225; // show 4 filled at start
+    //[Header("Startup")]
+    //[Tooltip("What to show before any sensor data arrives")]
+    //public int defaultWaterValue = 225;
 
     private void OnEnable()
     {
-        UpdateDroplets(MapToLevel(defaultWaterValue));
+        //UpdateDroplets(MapToLevel(defaultWaterValue));
 
         PlantGrowth.WaterValueChanged += OnWaterValueChanged;
     }

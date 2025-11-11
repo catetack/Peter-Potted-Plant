@@ -37,6 +37,6 @@ public class playerStateManager : MonoBehaviour
         peterAnimator.SetFloat("speed", displacementSpeed);
 
         //Debug.Log(legsThrottle);
-        Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
+        //Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
     }
 }
