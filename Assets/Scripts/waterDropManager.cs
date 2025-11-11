@@ -9,6 +9,9 @@ public class waterDropManager : MonoBehaviour
     public GameObject childWaterDrop;
     public GameObject waterDropBase;
 
+    // coin
+    public GameObject coinPrefab;
+    public Transform playerHead;
     waterCollect playerWaterCollect;
 
     private void Start()
@@ -17,6 +20,7 @@ public class waterDropManager : MonoBehaviour
         playerWaterCollect = GameObject.Find("Displacement").GetComponent<waterCollect>();
 
     }
+
     private void Update()
     {
         if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed)&&isCollected)
@@ -31,9 +35,18 @@ public class waterDropManager : MonoBehaviour
 
         playerLastDeathState=pState.isDowned;
 
-        if(childWaterDrop == null)
-        {
-            isCollected = true;
-        }
     }
+
+    public void OnDropCollected()
+    {
+        // spawn coin when water drop collected
+        if (coinPrefab != null && playerHead != null)
+        {
+            GameObject coin = Instantiate(coinPrefab, playerHead.position, Quaternion.identity, playerHead);
+            coin.transform.localPosition = new Vector3(0f, 0.5f, 0f);
+        }
+
+        isCollected = true;
+    }
+
 }
