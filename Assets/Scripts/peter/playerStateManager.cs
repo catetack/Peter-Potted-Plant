@@ -10,6 +10,8 @@ public class playerStateManager : MonoBehaviour
     public float health = 100.0f;
     public float arduinoWaterValue;
 
+    Animator peterAnimator;
+
 
     public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
     public float rotationSpeed = 0.0f;
@@ -24,6 +26,7 @@ public class playerStateManager : MonoBehaviour
     {
         peterHead = GameObject.Find("peterHead");
         isHeavy = false;
+        peterAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -31,5 +34,9 @@ public class playerStateManager : MonoBehaviour
     {
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
+        peterAnimator.SetFloat("speed", displacementSpeed);
+
+        //Debug.Log(legsThrottle);
+        Debug.Log("animation speed is " + peterAnimator.GetFloat("speed"));
     }
 }
