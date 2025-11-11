@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerStateManager : MonoBehaviour
@@ -12,9 +13,6 @@ public class playerStateManager : MonoBehaviour
     public float arduinoWaterValue;
 
     Animator peterAnimator;
-
-    AnimationState walking;
-
 
     public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
     public float rotationSpeed = 0.0f;
@@ -45,22 +43,24 @@ public class playerStateManager : MonoBehaviour
         ///if Peter is still, play the idle animation
         if (peterAnimator.GetFloat("Displacement Speed") <= 0.1 && peterAnimator.GetFloat("Displacement Speed") >= -0.1)
         {
+            UnityEngine.Debug.Log("Idle");
             peterAnimator.speed = 1;
-            
         }
 
         //if Peter is moving forward, change his animation speed to match how fast he is moving
         else if (peterAnimator.GetFloat("Displacement Speed") > 0.1)
         {
+            UnityEngine.Debug.Log("Forward");
             peterAnimator.speed = 1 + displacementSpeed;
         }
 
-        else
+        else if (peterAnimator.GetFloat("Displacement Speed") < -0.1)
         {
+            UnityEngine.Debug.Log("Backward");
             peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
         }
 
-        UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
-        UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
+        //UnityEngine.Debug.Log("displacement speed is " + peterAnimator.GetFloat("Displacement Speed"));
+        //UnityEngine.Debug.Log("animation speed is " + peterAnimator.speed);
     }
 }
