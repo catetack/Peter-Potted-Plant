@@ -66,8 +66,8 @@ public class ThirstUI : MonoBehaviour
         if (colorAdjustments == null) return;
 
         // Saturation
-        // 3 = hydrated → full color
-        // 0 = dying → grayscale
+        // 3 = full color
+        // 0 = grayscale
         float saturation = Mathf.Lerp(-100f, 0f, level / 3f);
 
         colorAdjustments.saturation.Override(saturation);
