@@ -5,7 +5,7 @@ public class rigDisplacement : MonoBehaviour
 {
     //Debug
     const bool KEYBOARD = true;
-    const bool DEBUG = true;
+    const bool DEBUG = false;
     const float INPUT_DEADZONE = 0.2f;
 
 

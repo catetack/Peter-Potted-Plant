@@ -26,7 +26,7 @@ public class headRotations : MonoBehaviour
     void Update()
     {
 
-        if (!PlayerState.isDowned && !PlayerState.isHeavy)
+        if (!PlayerState.isDowned)
         {
             playerRotations();
             LightRotation();
@@ -53,6 +53,5 @@ public class headRotations : MonoBehaviour
     {
 
         rotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
-        Debug.Log("Light rotation applied: " + (rotationSpeed));
     }
 }
