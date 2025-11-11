@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 public class playerStateManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class playerStateManager : MonoBehaviour
     public bool isReviving = false;
     public bool isHeavy = false;
     public float health = 100.0f;
+    public float arduinoWaterValue;
 
     Animator peterAnimator;
 
@@ -31,6 +33,7 @@ public class playerStateManager : MonoBehaviour
     void Update()
     {
         headPosition = peterHead.transform.position;
+        //Debug.Log(arduinoWaterValue);
         peterAnimator.SetFloat("speed", displacementSpeed);
 
         //Debug.Log(legsThrottle);
