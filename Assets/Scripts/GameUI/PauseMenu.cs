@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class PauseMenu : MonoBehaviour
     {
         inputActions = new InputSystem_Actions();
         inputActions.Player.Pause.started += ctx=>Menu();
+        inputActions.Player.Restart.started += ctx=>Restart();
     }
 
     private void OnEnable()
     {
-        inputActions.Player.Pause.Enable();
+        inputActions.Player.Enable();
     }
     private void Update()
     {
@@ -40,6 +42,8 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    
+
     private void Menu()
     {
         if (menuKeys)
@@ -54,5 +58,14 @@ public class PauseMenu : MonoBehaviour
             menuList.SetActive(false);
             menuKeys = true;
         }
+    }
+
+    private void Restart()
+    {
+        if(!menuKeys)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
     }
 }
