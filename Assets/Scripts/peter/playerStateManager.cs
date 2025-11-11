@@ -16,13 +16,12 @@ public class playerStateManager : MonoBehaviour
     SpriteRenderer peterRenderer;
 
     public float headTorque;
-
-
     public float rotationRatio = 0.0f;//outputs from 0 <- +1||-1 -> 0.  10 is at the top, 0 is at the bottom. The sign indicates direction.
     public float rotationSpeed = 0.0f;
-
     public float displacementSpeed = 0.0f;
+
     public float arduinoWaterLevel = 0.0f;
+    public int waterDropletLevel = 0;
 
     GameObject peterHead;
     public Vector3 headPosition;
@@ -44,7 +43,7 @@ public class playerStateManager : MonoBehaviour
         //Debug.Log(arduinoWaterValue);
 
         //sets animation value to Peter's speed
-
+        
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
         ///if Peter is still, play the idle animation

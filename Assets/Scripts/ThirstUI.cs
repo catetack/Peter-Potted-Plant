@@ -6,13 +6,22 @@ using UnityEngine.UI;
 
 public class ThirstUI : MonoBehaviour
 {
+    bool DEBUG = true;
+
+    int WATER_LEVEL_NONE = 75;
+    int WATER_LEVEL_LOW = 150;
+    int WATER_LEVEL_NORMAL = 225;
+
     public Image[] dropletImages;
     public Volume globalVolume;
-
     private ColorAdjustments colorAdjustments;
+    float deathTimer;
+
+    playerStateManager PlayerState;
 
     private void Start()
     {
+        AssignObjects();
         if (globalVolume != null)
         {
             // Colour adjustments for grayscale
@@ -23,6 +32,23 @@ public class ThirstUI : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        DeathByThirst();
+        DebugMode();
+    }
+    private void AssignObjects()
+    {
+        if (DEBUG)
+        {
+            OnWaterValueChanged(250);
+        }
+        PlayerState = GameObject.Find("Player").GetComponent<playerStateManager>();
+        if (PlayerState == null)
+        {
+            //UnityEngine.Debug.LogError("playerStateManager not found in the scene.");
+        }
+    }
     private void OnEnable()
     {
         PlantGrowth.WaterValueChanged += OnWaterValueChanged;
@@ -35,16 +61,16 @@ public class ThirstUI : MonoBehaviour
 
     private void OnWaterValueChanged(int waterValue)
     {
-        int level = MapToLevel(waterValue);
-        UpdateDroplets(level);
-        UpdateEnvironmentGrayscale(level);
+        PlayerState.waterDropletLevel = MapToLevel(waterValue);
+        UpdateDroplets(PlayerState.waterDropletLevel);
+        UpdateEnvironmentGrayscale(PlayerState.waterDropletLevel);
     }
 
     private int MapToLevel(int waterValue)
     {
-        if (waterValue < 75) return 0; // Very thirsty - 1 droplet
-        if (waterValue < 150) return 1; // Thirsty - 2 droplets
-        if (waterValue < 225) return 2; // Normal - 3 droplets
+        if (waterValue < WATER_LEVEL_NONE) return 0; // Very thirsty - 1 droplet
+        if (waterValue < WATER_LEVEL_LOW) return 1; // Thirsty - 2 droplets
+        if (waterValue < WATER_LEVEL_NORMAL) return 2; // Normal - 3 droplets
         return 3; // Hydrated - 4 droplets
     }
 
@@ -71,5 +97,44 @@ public class ThirstUI : MonoBehaviour
         float saturation = Mathf.Lerp(-100f, 0f, level / 3f);
 
         colorAdjustments.saturation.Override(saturation);
+    }
+    void DebugMode()
+    {
+        //for testing purposes only
+        if (DEBUG)
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad0))
+            {
+                OnWaterValueChanged(WATER_LEVEL_NONE - 10);
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                OnWaterValueChanged(WATER_LEVEL_LOW - 10);
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                OnWaterValueChanged(WATER_LEVEL_NORMAL - 10);
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                OnWaterValueChanged(250);
+                //UnityEngine.Debug.Log("Water Level set to max for testing.");
+            }
+        }
+    }
+    void DeathByThirst()
+    {
+        if (PlayerState.waterDropletLevel == 0)
+        {
+            deathTimer += Time.deltaTime;
+            if (deathTimer >= 5.0f)
+            {
+                PlayerState.isDowned = true;
+            }
+        }
+        else
+        {
+            deathTimer = 0.0f; // Reset timer if not at level 0
+        }
     }
 }
