@@ -29,7 +29,7 @@ public class playerStateManager : MonoBehaviour
         peterHead = GameObject.Find("peterHead");
         isHeavy = false;
         peterAnimator = GetComponentInChildren<Animator>();
-        peterRenderer = GetComponentInChildren<SpriteRenderer>();
+        peterRenderer = GameObject.FindWithTag("Legs").GetComponent<SpriteRenderer>();
         peterAnimator.speed = 1; //make sure peter starts off idle
         peterRenderer.flipX = false;
     }
@@ -44,20 +44,20 @@ public class playerStateManager : MonoBehaviour
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
         ///if Peter is still, play the idle animation
-        if (peterAnimator.GetFloat("Displacement Speed") <= 0.1 && peterAnimator.GetFloat("Displacement Speed") >= -0.1)
+        if (peterAnimator.GetFloat("Displacement Speed") <= 0.05 && peterAnimator.GetFloat("Displacement Speed") >= -0.05)
         {
             peterRenderer.flipX = false;
             peterAnimator.speed = 1;
         }
 
         //if Peter is moving forward, change his animation speed to match how fast he is moving
-        else if (peterAnimator.GetFloat("Displacement Speed") > 0.1)
+        else if (peterAnimator.GetFloat("Displacement Speed") > 0.05)
         {
             peterRenderer.flipX = false;
             peterAnimator.speed = 1 + displacementSpeed;
         }
 
-        else if (peterAnimator.GetFloat("Displacement Speed") < -0.1)
+        else if (peterAnimator.GetFloat("Displacement Speed") < -0.05)
         {
             peterRenderer.flipX = true;
             peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
