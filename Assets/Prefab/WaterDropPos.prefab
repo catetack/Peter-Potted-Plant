@@ -48,7 +48,7 @@ MonoBehaviour:
   isCollected: 0
   childWaterDrop: {fileID: 0}
   waterDropBase: {fileID: 1217094822486809764, guid: 2e8b1789ea5236844a3d51072da1428b, type: 3}
-  coinPrefab: {fileID: 0}
+  coinPrefab: {fileID: 1217094822486809764, guid: 2e8b1789ea5236844a3d51072da1428b, type: 3}
   playerHead: {fileID: 0}
 --- !u!1001 &7412538297116410007
 PrefabInstance:
