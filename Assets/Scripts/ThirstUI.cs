@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ThirstUI : MonoBehaviour
 {
-    bool DEBUG = true;
+    bool DEBUG = false;
 
     int WATER_LEVEL_NONE = 75;
     int WATER_LEVEL_LOW = 150;
