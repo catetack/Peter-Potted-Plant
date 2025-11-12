@@ -80,7 +80,7 @@ public class rigRotation : MonoBehaviour
         raiseTorque = 2.0f;
         gravityTorque = 2.0f;
         lightTorque = 5.0f;
-        torqueModifier = 300.0f;
+        torqueModifier = 200.0f;
         resultingMovementTorque = 0;
         
         inputActions.Enable();

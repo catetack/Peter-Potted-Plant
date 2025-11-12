@@ -23,7 +23,7 @@ public class rigRevive : MonoBehaviour
         reviveCheck();
         if (PlayerState.isReviving && PlayerState.health < 100.0f)
         {
-            PlayerState.health += 40.0f * Time.deltaTime;
+            PlayerState.health += 60.0f * Time.deltaTime;
         }
         if (PlayerState.health >= 100.0f)
         {
