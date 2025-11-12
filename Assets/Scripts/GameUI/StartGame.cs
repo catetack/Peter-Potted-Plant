@@ -3,8 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-   public void StartMenu()
+   public void Level1()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+
+    public void Level2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 }
