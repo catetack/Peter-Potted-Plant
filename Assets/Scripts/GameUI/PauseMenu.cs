@@ -68,7 +68,8 @@ public class PauseMenu : MonoBehaviour
     {
         if(!menuKeys)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(0);
         }
         
     }
