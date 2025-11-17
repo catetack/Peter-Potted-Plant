@@ -27,6 +27,7 @@ public class rigRotation : MonoBehaviour
     float lightTorque;
     float torqueModifier;
     float rotationSpeed;
+    float targetRotationSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,7 +53,7 @@ public class rigRotation : MonoBehaviour
             else
             {
                 
-                rotationSpeed = 0.0f;
+                targetRotationSpeed = 0.0f;
             }
         }
         else if (!PlayerState.isDowned && !PlayerState.isHeavy)
@@ -68,7 +69,7 @@ public class rigRotation : MonoBehaviour
             movementRotations();
             gravityRotation();
         }
-
+        ApplyRotationSpeedSmoothing();
         player.transform.Rotate(0, 0, rotationSpeed);
     }
     void assignObjects()
@@ -78,7 +79,7 @@ public class rigRotation : MonoBehaviour
         
         //magic numbers
         raiseTorque = 2.0f;
-        gravityTorque = 1.75f;
+        gravityTorque = 3.5f;
         lightTorque = 5.0f;
         torqueModifier = 225.0f;
         resultingMovementTorque = 0;
@@ -122,7 +123,7 @@ public class rigRotation : MonoBehaviour
         NormalizeRotation();
         RotationDirection();
 
-        rotationSpeed = headTorque * torqueModifier * Time.deltaTime;
+        targetRotationSpeed = headTorque * torqueModifier * Time.deltaTime;
     }
 
     private void RotationDirection()
@@ -149,22 +150,28 @@ public class rigRotation : MonoBehaviour
     {
         //reduce effect of movement on rotation when closer to the bottom
         resultingMovementTorque = BASE_MOVEMENT_TORQUE * (PlayerState.rotationRatio*PlayerState.rotationRatio);
-        rotationSpeed += PlayerState.displacementSpeed * resultingMovementTorque * Time.deltaTime;
+        targetRotationSpeed += PlayerState.displacementSpeed * resultingMovementTorque * Time.deltaTime;
     }
 
     void gravityRotation()
     {
         
-        rotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
+        targetRotationSpeed += rotationClamp * gravityTorque * Time.deltaTime;
     }
     void raisedRotation()
     {
         
-        rotationSpeed -= rotationClamp * raiseTorque * Time.deltaTime;
+        targetRotationSpeed -= rotationClamp * raiseTorque * Time.deltaTime;
     }
     void lightRotation()
     {
         
-        rotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
+        targetRotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
     }
+
+    void ApplyRotationSpeedSmoothing()
+    {
+        rotationSpeed = Mathf.Lerp(targetRotationSpeed, rotationSpeed, Mathf.Pow(0.5f, 5.0f * Time.deltaTime));
+    }
+        
 }
