@@ -19,7 +19,7 @@ public class rigDisplacement : MonoBehaviour
     float legsThrottle;
 
     //Lateral movement
-    float baseSpeedConstant;
+    public float baseSpeedConstant;
     float frictionConstant;
     float speedFromTilt;
     float tiltSpeedModifier;
