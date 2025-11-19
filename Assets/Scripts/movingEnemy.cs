@@ -41,8 +41,8 @@ public class movingEnemy : MonoBehaviour
         playerTf = GameObject.Find("Displacement").GetComponent<Transform>();
         patrolCenterTf = transform.parent.Find("PatrolCenter");
 
-        Ani= gameObject.AddComponent<Animator>();
-        spriteRender = gameObject.AddComponent<SpriteRenderer>();
+        Ani= GetComponent<Animator>();
+        spriteRender = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -126,9 +126,13 @@ public class movingEnemy : MonoBehaviour
         {
             spriteRender.flipX = false;
         }
+        else if(transform.position.x == partrolPoints[i].transform.position.x)
+        {
+
+        }
         else
         {
-            spriteRender.flipX= true;
+            spriteRender.flipX = true;
         }
     }
 }
