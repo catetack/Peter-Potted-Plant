@@ -47,6 +47,9 @@ public class playerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        UnityEngine.Debug.Log(displacementSpeed);
+
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
 
@@ -55,23 +58,33 @@ public class playerStateManager : MonoBehaviour
         peterAnimator.SetFloat("Displacement Speed", displacementSpeed);
 
         ///if Peter is still, play the idle animation
-        if (peterAnimator.GetFloat("Displacement Speed") <= 0.05 && peterAnimator.GetFloat("Displacement Speed") >= -0.05)
+        if (peterAnimator.GetFloat("Displacement Speed") <= 0.02 && peterAnimator.GetFloat("Displacement Speed") >= -0.02)
         {
-            peterRenderer.flipX = false;
-            peterAnimator.speed = 1;
+            if (peterAnimator.GetFloat("Displacement Speed") < 0 && peterAnimator.GetFloat("Displacement Speed") >= -0.02)
+            {
+                peterRenderer.flipX = true;
+                peterAnimator.speed = 1; 
+            }
+            
+            
+            else
+            {
+                peterRenderer.flipX = false;
+                peterAnimator.speed = 1;
+            }
         }
 
         //if Peter is moving forward, change his animation speed to match how fast he is moving
-        else if (peterAnimator.GetFloat("Displacement Speed") > 0.05)
+        else if (peterAnimator.GetFloat("Displacement Speed") > 0.02)
         {
             peterRenderer.flipX = false;
-            peterAnimator.speed = 1 + displacementSpeed;
+            peterAnimator.speed = 1 * displacementSpeed;
         }
 
-        else if (peterAnimator.GetFloat("Displacement Speed") < -0.05)
+        else if (peterAnimator.GetFloat("Displacement Speed") < -0.02)
         {
             peterRenderer.flipX = true;
-            peterAnimator.speed = 1 + Math.Abs(displacementSpeed);
+            peterAnimator.speed = 1 * Math.Abs(displacementSpeed);
         }
     }
 }
