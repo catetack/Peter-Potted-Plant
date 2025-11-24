@@ -27,6 +27,10 @@ public class movingEnemy : MonoBehaviour
     public float chasingSpeed = 5f;
     public float rangeRadius = 80f;
 
+    //Animation
+    Animator Ani;
+    SpriteRenderer spriteRender;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,12 +40,15 @@ public class movingEnemy : MonoBehaviour
 
         playerTf = GameObject.Find("Displacement").GetComponent<Transform>();
         patrolCenterTf = transform.parent.Find("PatrolCenter");
+
+        Ani= GetComponent<Animator>();
+        spriteRender = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //Chasing logic
         if (playerTf != null)
         {
             //First, make sure the enemy chase only when the player is in the range
@@ -66,6 +73,9 @@ public class movingEnemy : MonoBehaviour
                 Chasing();
                 break;
         }
+
+        //Sprite flip
+        MoveCheck();
     }
 
     void regularMove()
@@ -88,6 +98,7 @@ public class movingEnemy : MonoBehaviour
                 }
                 timer = startWaitTime;
             }
+            //Wait for seconds
             else
             {
                 timer -= Time.deltaTime;
@@ -111,6 +122,17 @@ public class movingEnemy : MonoBehaviour
 
     private void MoveCheck()//Check the movement to flip,for animation
     {
+        if(transform.position.x> partrolPoints[i].transform.position.x)
+        {
+            spriteRender.flipX = false;
+        }
+        else if(transform.position.x == partrolPoints[i].transform.position.x)
+        {
 
+        }
+        else
+        {
+            spriteRender.flipX = true;
+        }
     }
 }
