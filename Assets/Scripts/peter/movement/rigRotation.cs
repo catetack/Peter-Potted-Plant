@@ -41,22 +41,8 @@ public class rigRotation : MonoBehaviour
     {
         
         playerInput();
-        if (PlayerState.isDowned)
-        {
-            
-            if (PlayerState.isReviving)
-            {
-             
-                playerRotations();
-                raisedRotation();
-            }
-            else
-            {
-                
-                targetRotationSpeed = 0.0f;
-            }
-        }
-        else if (!PlayerState.isDowned && !PlayerState.isHeavy)
+        
+        if (!PlayerState.isDowned && !PlayerState.isHeavy)
         {
             
             playerRotations();
@@ -68,6 +54,21 @@ public class rigRotation : MonoBehaviour
             playerRotations();
             movementRotations();
             gravityRotation();
+        }
+        else if (PlayerState.isDowned)
+        {
+            
+            if (PlayerState.isReviving)
+            {
+             
+                playerRotations();
+                raisedRotation();
+            }
+            else
+            {
+                targetRotationSpeed = 0.0f;
+                rotationSpeed = 0.0f;
+            }
         }
         ApplyRotationSpeedSmoothing();
         player.transform.Rotate(0, 0, rotationSpeed);
@@ -171,7 +172,13 @@ public class rigRotation : MonoBehaviour
 
     void ApplyRotationSpeedSmoothing()
     {
+        if (Time.timeScale == 0f)
+        {
+            rotationSpeed = 0f;
+            return;
+        }
+        
         rotationSpeed = Mathf.Lerp(targetRotationSpeed, rotationSpeed, Mathf.Pow(0.5f, 5.0f * Time.deltaTime));
-    }
+    }   
         
 }
