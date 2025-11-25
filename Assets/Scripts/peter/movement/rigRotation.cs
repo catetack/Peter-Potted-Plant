@@ -52,8 +52,12 @@ public class rigRotation : MonoBehaviour
         {
             
             playerRotations();
-            movementRotations();
-            gravityRotation();
+            if (PlayerState.isGrounded)
+            {
+                
+                movementRotations();
+                gravityRotation();
+            }
         }
         else if (PlayerState.isDowned)
         {
