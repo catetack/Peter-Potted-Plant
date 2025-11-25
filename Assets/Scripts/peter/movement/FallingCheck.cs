@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class FallingCheck : MonoBehaviour
 {
 
-    public playerStateManager PlayerState;
+    playerStateManager PlayerState;
     bool Is_Grounded;
     bool wasGrounded;
     public LayerMask ground;
