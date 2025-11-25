@@ -57,18 +57,8 @@ public class rigRotation : MonoBehaviour
         }
         else if (PlayerState.isDowned)
         {
-            
-            if (PlayerState.isReviving)
-            {
-             
-                playerRotations();
-                raisedRotation();
-            }
-            else
-            {
-                targetRotationSpeed = 0.0f;
-                rotationSpeed = 0.0f;
-            }
+
+            healingBasedRotation();
         }
         ApplyRotationSpeedSmoothing();
         player.transform.Rotate(0, 0, rotationSpeed);
@@ -169,7 +159,27 @@ public class rigRotation : MonoBehaviour
         
         targetRotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
     }
-
+    void healingBasedRotation()
+    {
+        if (PlayerState.isReviving)
+        {
+            playerRotations();
+            raisedRotation();
+        }
+        else if (!PlayerState.isReviving && PlayerState.health < 99.0f)
+        {   
+            playerRotations();
+            if (PlayerState.health > 0.0f)
+            {
+                gravityRotation();
+            }
+        }
+        else
+        {
+            targetRotationSpeed = 0.0f;
+            rotationSpeed = 0.0f;
+        }
+    }
     void ApplyRotationSpeedSmoothing()
     {
         if (Time.timeScale == 0f)

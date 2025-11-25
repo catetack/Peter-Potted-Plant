@@ -28,6 +28,17 @@ public class rigRevive : MonoBehaviour
         {
             PlayerState.health += 60.0f * Time.deltaTime;
         }
+        else if (!PlayerState.isReviving && PlayerState.isDowned)
+        {
+            if (PlayerState.health > 0.0f)
+            {
+                PlayerState.health -= 20.0f * Time.deltaTime;
+            }
+            else
+            {
+                PlayerState.health = 0.0f;
+            }
+        }
         if (PlayerState.health >= 100.0f)
         {
             PlayerState.health = 100.0f;
@@ -63,7 +74,7 @@ public class rigRevive : MonoBehaviour
                 PlayerState.isReviving = true;
                 reviveTimerLeft += Time.deltaTime;
             }
-            if (reviveRight > reviveThreshold && reviveTimerRight <= 1.0f)
+            else if (reviveRight > reviveThreshold && reviveTimerRight <= 1.0f)
             {
                 if (reviveLeft < reviveThreshold)
                 {
