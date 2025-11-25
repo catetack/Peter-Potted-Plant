@@ -41,22 +41,8 @@ public class rigRotation : MonoBehaviour
     {
         
         playerInput();
-        if (PlayerState.isDowned)
-        {
-            
-            if (PlayerState.isReviving)
-            {
-             
-                playerRotations();
-                raisedRotation();
-            }
-            else
-            {
-                
-                targetRotationSpeed = 0.0f;
-            }
-        }
-        else if (!PlayerState.isDowned && !PlayerState.isHeavy)
+        
+        if (!PlayerState.isDowned && !PlayerState.isHeavy)
         {
             
             playerRotations();
@@ -69,6 +55,11 @@ public class rigRotation : MonoBehaviour
             movementRotations();
             gravityRotation();
         }
+        else if (PlayerState.isDowned)
+        {
+
+            healingBasedRotation();
+        }
         ApplyRotationSpeedSmoothing();
         player.transform.Rotate(0, 0, rotationSpeed);
     }
@@ -79,7 +70,7 @@ public class rigRotation : MonoBehaviour
         
         //magic numbers
         raiseTorque = 2.0f;
-        gravityTorque = 3.5f;
+        gravityTorque = 1.9f;
         lightTorque = 5.0f;
         torqueModifier = 225.0f;
         resultingMovementTorque = 0;
@@ -168,10 +159,36 @@ public class rigRotation : MonoBehaviour
         
         targetRotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
     }
-
+    void healingBasedRotation()
+    {
+        if (PlayerState.isReviving)
+        {
+            playerRotations();
+            raisedRotation();
+        }
+        else if (!PlayerState.isReviving && PlayerState.health < 99.0f)
+        {   
+            playerRotations();
+            if (PlayerState.health > 0.0f)
+            {
+                gravityRotation();
+            }
+        }
+        else
+        {
+            targetRotationSpeed = 0.0f;
+            rotationSpeed = 0.0f;
+        }
+    }
     void ApplyRotationSpeedSmoothing()
     {
+        if (Time.timeScale == 0f)
+        {
+            rotationSpeed = 0f;
+            return;
+        }
+        
         rotationSpeed = Mathf.Lerp(targetRotationSpeed, rotationSpeed, Mathf.Pow(0.5f, 5.0f * Time.deltaTime));
-    }
+    }   
         
 }

@@ -8,6 +8,8 @@ public class rigDisplacement : MonoBehaviour
     const bool DEBUG = false;
     const float INPUT_DEADZONE = 0.2f;
 
+    const float PLAYER_SPEED_HEAYY = 2.0f;
+    const float PLAYER_SPEED_LIGHT = 15.0f;
 
     //References
     playerStateManager PlayerState;
@@ -63,23 +65,34 @@ public class rigDisplacement : MonoBehaviour
         PlayerInput();
         DevTools();
         InStateMovement();
-        //FallingSpeed();
+        LightHeavyModeSpeedControl();
         PlayerState.displacementSpeed = displacementSpeed;
 
         //Here is the older one
         //player.transform.Translate(displacementSpeed, 0, 0);
-        player.transform.Translate(displacementSpeed, rb.linearVelocityY*Time.deltaTime, 0);
+        player.transform.Translate(displacementSpeed, rb.linearVelocityY * Time.deltaTime, 0);
 
-        if(pm!=null)
+        if (pm != null)
         {
-            if(!pm.GetmenuKey())
+            if (!pm.GetmenuKey())
             {
                 displacementSpeed = 0.0f;
             }
-            
+
         }
     }
 
+    private void LightHeavyModeSpeedControl()
+    {
+        if (PlayerState.isHeavy)
+        {
+            baseSpeedConstant = PLAYER_SPEED_HEAYY;
+        }
+        else
+        {
+            baseSpeedConstant = PLAYER_SPEED_LIGHT;
+        }
+    }
     private void FallingSpeed()
     {
         //Limit the max falling speed

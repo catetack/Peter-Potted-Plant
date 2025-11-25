@@ -48,7 +48,7 @@ public class playerStateManager : MonoBehaviour
     void Update()
     {
 
-        UnityEngine.Debug.Log(displacementSpeed);
+        //UnityEngine.Debug.Log(displacementSpeed);
 
         headPosition = peterHead.transform.position;
         //Debug.Log(arduinoWaterValue);
