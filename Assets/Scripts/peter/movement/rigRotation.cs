@@ -52,23 +52,17 @@ public class rigRotation : MonoBehaviour
         {
             
             playerRotations();
-            movementRotations();
-            gravityRotation();
+            if (PlayerState.isGrounded)
+            {
+                
+                movementRotations();
+                gravityRotation();
+            }
         }
         else if (PlayerState.isDowned)
         {
-            
-            if (PlayerState.isReviving)
-            {
-             
-                playerRotations();
-                raisedRotation();
-            }
-            else
-            {
-                targetRotationSpeed = 0.0f;
-                rotationSpeed = 0.0f;
-            }
+
+            healingBasedRotation();
         }
         ApplyRotationSpeedSmoothing();
         player.transform.Rotate(0, 0, rotationSpeed);
@@ -80,7 +74,7 @@ public class rigRotation : MonoBehaviour
         
         //magic numbers
         raiseTorque = 2.0f;
-        gravityTorque = 3.5f;
+        gravityTorque = 1.9f;
         lightTorque = 5.0f;
         torqueModifier = 225.0f;
         resultingMovementTorque = 0;
@@ -169,7 +163,27 @@ public class rigRotation : MonoBehaviour
         
         targetRotationSpeed -= rotationClamp * lightTorque * Time.deltaTime;
     }
-
+    void healingBasedRotation()
+    {
+        if (PlayerState.isReviving)
+        {
+            playerRotations();
+            raisedRotation();
+        }
+        else if (!PlayerState.isReviving && PlayerState.health < 99.0f)
+        {   
+            playerRotations();
+            if (PlayerState.health > 0.0f)
+            {
+                gravityRotation();
+            }
+        }
+        else
+        {
+            targetRotationSpeed = 0.0f;
+            rotationSpeed = 0.0f;
+        }
+    }
     void ApplyRotationSpeedSmoothing()
     {
         if (Time.timeScale == 0f)
