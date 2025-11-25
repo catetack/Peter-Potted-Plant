@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class FallingCheck : MonoBehaviour
 {
 
-    bool isGrounded;
+    public playerStateManager PlayerState;
+    bool Is_Grounded;
     bool wasGrounded;
     public LayerMask ground;
     public Transform groundCheck;
@@ -12,25 +13,23 @@ public class FallingCheck : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        isGrounded = false;
-        wasGrounded = false;
+        Is_Grounded = false;
+        PlayerState.isGrounded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         onGround();
-        
     }
     
     private void onGround()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
-        if (isGrounded != wasGrounded)
+        Is_Grounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, ground);
+        if (Is_Grounded != PlayerState.isGrounded)
         {
-            
-            wasGrounded = isGrounded;
-            Debug.Log("isGrounded: " + isGrounded);
+            PlayerState.isGrounded = Is_Grounded;
         }
         
     }

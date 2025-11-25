@@ -8,10 +8,10 @@ public class playerStateManager : MonoBehaviour
     public bool isDowned = false;
     public bool isReviving = false;
     public bool isHeavy = false;
+    public bool isGrounded;
 
     public float health = 100.0f;
     public float arduinoWaterValue;
-
     Animator peterAnimator;
     SpriteRenderer peterRenderer;
 
