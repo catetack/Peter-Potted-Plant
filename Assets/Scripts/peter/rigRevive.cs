@@ -5,6 +5,9 @@ public class rigRevive : MonoBehaviour
 {
     float reviveLeft;
     float reviveRight;
+    float reviveTimerLeft;
+    float reviveTimerRight;
+    float reviveThreshold = 0.9f;
     InputSystem_Actions inputActions;
     playerStateManager PlayerState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,9 +52,17 @@ public class rigRevive : MonoBehaviour
     {
         if (PlayerState.isDowned)
         {
-            if (reviveLeft + reviveRight > 1.9f)
+            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 1.0f)
             {
+                reviveTimerRight = 0.0f;
                 PlayerState.isReviving = true;
+                reviveTimerLeft += Time.deltaTime;
+            }
+            if (reviveRight > reviveThreshold && reviveTimerRight <= 1.0f)
+            {
+                reviveTimerLeft = 0.0f;
+                PlayerState.isReviving = true;
+                reviveTimerRight += Time.deltaTime;
             }
             else
             {
