@@ -4,11 +4,22 @@ public class bloomBurst : MonoBehaviour
 {
     Animator Ani;
     bool isBursting = false;
+
+    InputSystem_Actions inputActions;
     void Start()
     {
         Ani=GetComponent<Animator>();
     }
+    private void Awake()
+    {
+        inputActions = new InputSystem_Actions();
+        inputActions.Player.Burst.started += ctx => Burst();
+    }
 
+    private void OnEnable()
+    {
+        inputActions.Player.Enable();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -17,7 +28,7 @@ public class bloomBurst : MonoBehaviour
             return;
         }
 
-        Burst();
+        BurstwithSpace();
     }
 
     private void LateUpdate()
@@ -35,11 +46,18 @@ public class bloomBurst : MonoBehaviour
 
     public void Burst()
     {
-        if(Input.GetKeyDown(KeyCode.Space))//Here is the input, which could change later
-        {
             Ani.Play("Burst");
             isBursting = true;
             Invoke("BurstEnd",0.3333f);
+    }
+
+    public void BurstwithSpace()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Ani.Play("Burst");
+            isBursting = true;
+            Invoke("BurstEnd", 0.3333f);
         }
     }
 
@@ -67,6 +85,9 @@ public class bloomBurst : MonoBehaviour
         Collider2D col= Physics2D.OverlapBox(transform.position,new Vector2(width,height),0,LayerMask.GetMask("Enemy"));
         if(col!=null)
         {
+            //Shake the camera
+            cameraShake.Instance.shakeStart(0.06f,0.2f);
+
             Debug.Log(col.transform.name);
             Destroy(col.gameObject);
         }

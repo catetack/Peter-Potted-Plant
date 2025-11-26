@@ -43,15 +43,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Burst",
-                    "type": "Button",
-                    "id": "9ec29611-7802-41cd-b7f9-3ce4a93e6f0b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "efd228f1-5d67-4e5d-adef-10d2f6e50036",
@@ -64,6 +55,15 @@
                     "name": "Restart",
                     "type": "Button",
                     "id": "44e6f273-0626-4160-8a28-cea7e33f2b8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Burst",
+                    "type": "Button",
+                    "id": "bed14995-9aaf-40bc-9c2c-745a02d44168",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -90,17 +90,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Legs",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6538fd72-cbc3-4f85-8e7c-7ccfb7973e81",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Burst",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -145,6 +134,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "caf03b77-c7f2-4576-bb9c-e72d2cfce20f",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Burst",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
