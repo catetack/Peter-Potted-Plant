@@ -4,54 +4,60 @@ public class waterDropManager : MonoBehaviour
 {
 
     playerStateManager pState;
-    bool playerLastDeathState = false;
-    public bool isCollected=false;
-    public GameObject childWaterDrop;
+    //bool playerLastDeathState = false;
+    public bool hasChild=false;
     public GameObject waterDropBase;
+    public GameObject childWaterDrop;
 
-    // coin
-    public GameObject coinPrefab;
-    public Transform playerHead;
-    private GameObject activeCoin;
+    private Transform playerHead;
     waterCollect playerWaterCollect;
+
+    public bool i;
 
     private void Start()
     {
         pState = GameObject.Find("Player").GetComponent<playerStateManager>();
+        playerHead = GameObject.Find("peterHead").transform;
         playerWaterCollect = GameObject.Find("Displacement").GetComponent<waterCollect>();
+        childWaterDrop = transform.Find("WaterDropBase").gameObject;
     }
 
     private void Update()
     {
-        if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)
-        {
-            isCollected = false;
+        i = playerWaterCollect.hasWaterDrop();
+        checkCollected();
+        generateNew();
+    }
 
-            if (activeCoin != null)
-            {
-                Destroy(activeCoin);
-                activeCoin = null;
-            }
+    private void checkCollected()
+    {
+        if(transform.childCount<=0)
+        {
+            hasChild = false;
+        }
+        else
+        {
+            hasChild = true;
+        }
+    }
+
+    private void generateNew()
+    {
+        //if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)
+        if (playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop())
+        {
+            //hasChild = true;
 
             GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, transform);
+            //GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, newPos);
+
             childWaterDrop = newDrop;
 
-            playerWaterCollect.touchPed = false;
+            playerWaterCollect.destroyChildWater();
+
+            //playerWaterCollect.touchPed = false;
         }
 
-        playerLastDeathState = pState.isDowned;
+        //playerLastDeathState = pState.isDowned;
     }
-
-    public void OnDropCollected()
-    {
-        // spawn coin when water drop collected
-        if (coinPrefab != null && playerHead != null)
-        {
-            activeCoin = Instantiate(coinPrefab, playerHead.position, Quaternion.identity, playerHead);
-            activeCoin.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-        }
-
-        isCollected = true;
-    }
-
 }
