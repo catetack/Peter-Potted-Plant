@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Alpha Test/tutorial.unity
     guid: 6f511dcab96c39b4bb6cdf12527ec4b6
   - enabled: 1
+    path: Assets/Scenes/Beta Test/Start Scene Beta.unity
+    guid: cee32d445e672804a9ba739a672a5a74
+  - enabled: 1
     path: Assets/Scenes/Beta Test/BetaTutorial.unity
     guid: ab7765c8301448649a39d36e6ae5be58
   m_configObjects:
