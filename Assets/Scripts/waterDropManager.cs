@@ -39,9 +39,9 @@ public class waterDropManager : MonoBehaviour
         if(transform.childCount<=0)
         {
             hasChild = false;
-            if(!Timer.isRunning)
+            //if(!Timer.isRunning)
             {
-                Timer.StartTimer();
+                //Timer.StartTimer();
             }
         }
         else
@@ -54,7 +54,9 @@ public class waterDropManager : MonoBehaviour
     private void generateNew()
     {
         //if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)
-        if ((playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop())||Timer.isEnd())
+        //if ((playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop())||Timer.isEnd())
+        //if (((playerWaterCollect.touchPed||Timer.isEnd()) && !hasChild && playerWaterCollect.hasWaterDrop()))
+        if ((playerWaterCollect.touchPed && !hasChild && playerWaterCollect.hasWaterDrop()))
         {
             //hasChild = true;
 
@@ -65,7 +67,7 @@ public class waterDropManager : MonoBehaviour
 
             playerWaterCollect.destroyChildWater();
 
-            Timer.ResetTimer();
+            //Timer.ResetTimer();
 
             //playerWaterCollect.touchPed = false;
         }

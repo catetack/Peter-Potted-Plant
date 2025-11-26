@@ -29,12 +29,6 @@ public class waterCollect : MonoBehaviour
                 DropChildWater();
             }
         }
-
-       if(Timer.isEnd())
-        {
-            destroyChildWater();
-            Timer.ResetTimer();
-        }
     }
 
     //when head touches the ground, drop the seed
@@ -92,7 +86,7 @@ public class waterCollect : MonoBehaviour
             
             childWaterdrop = collision.gameObject;
 
-            Timer.StartTimer();
+            //Timer.StartTimer();
         }
         //when it touches the pedestal
         else if(collision.gameObject.CompareTag("Pedestal"))
@@ -101,7 +95,7 @@ public class waterCollect : MonoBehaviour
 
             touchPed = true;
 
-            Timer.ResetTimer();
+            //Timer.ResetTimer();
         }
     }
 

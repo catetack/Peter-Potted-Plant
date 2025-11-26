@@ -21,7 +21,7 @@ public class baseTimer : MonoBehaviour
 
         currentTime -= Time.deltaTime;
 
-        if (currentTime <= 0)
+        if (isEnd())
         {
             currentTime = 0;
             isRunning = false;
