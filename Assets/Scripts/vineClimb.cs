@@ -7,10 +7,13 @@ public class vineClimb : MonoBehaviour
     private bool isLadder;
     private bool isClimbing;
 
+    public Animator peterAnimator;
+
     [SerializeField] private Rigidbody2D rb;
 
     void Update()
     {
+        peterAnimator = GetComponentInChildren<Animator>();
         vertical = Input.GetAxisRaw("Vertical");
 
         if (isLadder && Mathf.Abs(vertical) > 0f)
@@ -37,6 +40,7 @@ public class vineClimb : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isLadder = true;
+            peterAnimator.SetBool("Climbing", true);
         }
     }
 
@@ -44,6 +48,7 @@ public class vineClimb : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
+            peterAnimator.SetBool("Climbing", false);
             isLadder = false;
             isClimbing = false;
         }
