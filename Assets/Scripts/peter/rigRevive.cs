@@ -63,7 +63,7 @@ public class rigRevive : MonoBehaviour
     {
         if (PlayerState.isDowned)
         {
-            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 0.50f && reviveRight <= reviveThreshold)
+            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 0.10f && reviveRight <= reviveThreshold)
             {
 
                 if (reviveRight < reviveThreshold)
@@ -74,7 +74,7 @@ public class rigRevive : MonoBehaviour
                 PlayerState.isReviving = true;
                 reviveTimerLeft += Time.deltaTime;
             }
-            else if (reviveRight > reviveThreshold && reviveTimerRight <= 0.50f && reviveLeft <= reviveThreshold)
+            else if (reviveRight > reviveThreshold && reviveTimerRight <= 0.10f && reviveLeft <= reviveThreshold)
             {
                 if (reviveLeft < reviveThreshold)
                 {
