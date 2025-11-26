@@ -14,6 +14,7 @@ TagManager:
   - Ladder
   - Pedestal
   - Legs
+  - WaterDropPos
   layers:
   - Default
   - TransparentFX
@@ -51,16 +52,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: back tree
+  - name: back 2
     uniqueID: 3068071585
     locked: 0
-  - name: wood
+  - name: back
     uniqueID: 1927020169
     locked: 0
-  - name: tree
+  - name: middle
     uniqueID: 3773858835
     locked: 0
-  - name: tree details
+  - name: 'front '
     uniqueID: 368921705
     locked: 0
   m_RenderingLayers:
