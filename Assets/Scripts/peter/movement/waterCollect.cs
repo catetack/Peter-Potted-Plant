@@ -10,12 +10,14 @@ public class waterCollect : MonoBehaviour
 
     GameObject childWaterdrop;
 
-    //private void Start();
     public bool touchPed = false;
+
+    baseTimer Timer;
 
     void Start()
     {
         assignObjects();
+        Timer=GetComponent<baseTimer>();
     }
 
     private void Update()
@@ -26,6 +28,12 @@ public class waterCollect : MonoBehaviour
             {
                 DropChildWater();
             }
+        }
+
+       if(Timer.isEnd())
+        {
+            destroyChildWater();
+            Timer.ResetTimer();
         }
     }
 
@@ -83,6 +91,8 @@ public class waterCollect : MonoBehaviour
             
             
             childWaterdrop = collision.gameObject;
+
+            Timer.StartTimer();
         }
         //when it touches the pedestal
         else if(collision.gameObject.CompareTag("Pedestal"))
@@ -90,6 +100,8 @@ public class waterCollect : MonoBehaviour
             PlayerState.isHeavy = false;
 
             touchPed = true;
+
+            Timer.ResetTimer();
         }
     }
 

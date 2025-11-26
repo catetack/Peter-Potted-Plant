@@ -66,7 +66,7 @@ public class movingEnemy : MonoBehaviour
             else
             {
                 currentState = EnemyState.Patrol;
-                gameObject.tag = "Untaggeed";
+                gameObject.tag = "Untagged";
             }
         }
 

@@ -14,12 +14,16 @@ public class waterDropManager : MonoBehaviour
 
     public bool i;
 
+    //Timer
+    baseTimer Timer;
+
     private void Start()
     {
         pState = GameObject.Find("Player").GetComponent<playerStateManager>();
         playerHead = GameObject.Find("peterHead").transform;
         playerWaterCollect = GameObject.Find("Displacement").GetComponent<waterCollect>();
         childWaterDrop = transform.Find("WaterDropBase").gameObject;
+        Timer=GetComponent<baseTimer>();
     }
 
     private void Update()
@@ -46,7 +50,7 @@ public class waterDropManager : MonoBehaviour
     private void generateNew()
     {
         //if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)
-        if (playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop())
+        if (playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop()||Timer.isEnd())
         {
             //hasChild = true;
 
@@ -56,6 +60,8 @@ public class waterDropManager : MonoBehaviour
             childWaterDrop = newDrop;
 
             playerWaterCollect.destroyChildWater();
+
+            Timer.ResetTimer();
 
             //playerWaterCollect.touchPed = false;
         }
