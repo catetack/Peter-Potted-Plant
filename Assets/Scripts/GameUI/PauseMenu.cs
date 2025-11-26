@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
         inputActions = new InputSystem_Actions();
         inputActions.Player.Pause.started += ctx=>Menu();
         inputActions.Player.Restart.started += ctx=>Restart();
+
+        Time.timeScale = (1);
     }
 
     private void OnEnable()

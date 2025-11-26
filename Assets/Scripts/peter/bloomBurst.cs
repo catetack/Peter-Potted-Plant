@@ -4,11 +4,16 @@ public class bloomBurst : MonoBehaviour
 {
     Animator Ani;
     bool isBursting = false;
+
+    InputSystem_Actions inputActions;
     void Start()
     {
         Ani=GetComponent<Animator>();
     }
-
+    private void Awake()
+    {
+        inputActions = new InputSystem_Actions();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,6 +72,9 @@ public class bloomBurst : MonoBehaviour
         Collider2D col= Physics2D.OverlapBox(transform.position,new Vector2(width,height),0,LayerMask.GetMask("Enemy"));
         if(col!=null)
         {
+            //Shake the camera
+            cameraShake.Instance.shakeStart(0.06f,0.2f);
+
             Debug.Log(col.transform.name);
             Destroy(col.gameObject);
         }
