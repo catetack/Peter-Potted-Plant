@@ -1231,6 +1231,7 @@ GameObject:
   - component: {fileID: 460100235286497639}
   - component: {fileID: 3221881474388363829}
   - component: {fileID: 3759705527753191242}
+  - component: {fileID: 5283703761888078413}
   m_Layer: 0
   m_Name: Player_VMat
   m_TagString: Player
@@ -1294,6 +1295,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3a988a78c7d7644a719b2bf6594d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5283703761888078413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756416423645251802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a93ba3a6a1edbd4986ebb26c622fbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFailSound: {fileID: 8300000, guid: d5b1d0ae9b735354f8a0301565b1e8fd, type: 3}
+  playerHealSound: {fileID: 8300000, guid: dc90ff26365c1ce4abf1e1ad2aa167ed, type: 3}
+  worldSong: {fileID: 8300000, guid: cefd3a8b9f10b964bbd84dea6640dbe0, type: 3}
+  worldSongFast: {fileID: 8300000, guid: ad6caea7c3164da4ebb6732fbd90a9e9, type: 3}
 --- !u!1 &6935824405337604785
 GameObject:
   m_ObjectHideFlags: 0
