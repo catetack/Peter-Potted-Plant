@@ -3,30 +3,52 @@ using UnityEngine;
 public class reviveIcon : MonoBehaviour
 {
     playerStateManager PlayerState;
-
+    SpriteRenderer spriteRenderer;
+    
+    public Sprite[] sprites; // assign in Inspector
+    public float frameRate = 10f; // frames per second
+    
+    private int currentFrame = 0;
+    private float timer = 0f;
+    
     float offset = 5.5f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         assignObjects();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!PlayerState.isDowned)
         {
-            GetComponent<Renderer>().enabled = false;
+            spriteRenderer.enabled = false;
         }
         else
         {
-            GetComponent<Renderer>().enabled = true;
+            spriteRenderer.enabled = true;
+            AnimateSprite();
         }
     }
+    
+    void AnimateSprite()
+    {
+        timer += Time.deltaTime;
+        
+        if (timer >= 1f / frameRate)
+        {
+            timer = 0f;
+            currentFrame = (currentFrame + 1) % sprites.Length; // loop back to 0
+            spriteRenderer.sprite = sprites[currentFrame];
+        }
+    }
+    
     void LateUpdate()
     {
         transform.position = new Vector3(PlayerState.headPosition.x + offset, PlayerState.headPosition.y + offset, transform.position.z);
     }
+    
     void assignObjects()
     {
         PlayerState = GetComponentInParent<playerStateManager>();
