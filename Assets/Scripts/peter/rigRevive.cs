@@ -63,7 +63,7 @@ public class rigRevive : MonoBehaviour
     {
         if (PlayerState.isDowned)
         {
-            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 1.0f)
+            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 0.50f && reviveRight <= reviveThreshold)
             {
 
                 if (reviveRight < reviveThreshold)
@@ -74,7 +74,7 @@ public class rigRevive : MonoBehaviour
                 PlayerState.isReviving = true;
                 reviveTimerLeft += Time.deltaTime;
             }
-            else if (reviveRight > reviveThreshold && reviveTimerRight <= 1.0f)
+            else if (reviveRight > reviveThreshold && reviveTimerRight <= 0.50f && reviveLeft <= reviveThreshold)
             {
                 if (reviveLeft < reviveThreshold)
                 {
@@ -87,6 +87,14 @@ public class rigRevive : MonoBehaviour
             else
             {
                 PlayerState.isReviving = false;
+            }
+
+            //edge case: when both timers are maxed out we do a reset on both.
+            if (reviveTimerLeft > 0.50f || reviveTimerRight > 0.50f)
+            {
+
+                reviveTimerLeft = 0.0f;
+                reviveTimerRight = 0.0f;
             }
         }
     }
