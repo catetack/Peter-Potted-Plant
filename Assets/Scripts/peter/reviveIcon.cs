@@ -46,7 +46,7 @@ public class reviveIcon : MonoBehaviour
     
     void LateUpdate()
     {
-        transform.position = new Vector3(PlayerState.headPosition.x + offset, PlayerState.headPosition.y + offset, transform.position.z);
+        transform.position = new Vector3(PlayerState.headPosition.x + offset, PlayerState.headPosition.y + offset, -1.0f);
     }
     
     void assignObjects()
