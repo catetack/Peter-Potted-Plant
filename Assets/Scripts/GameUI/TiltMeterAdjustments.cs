@@ -27,7 +27,6 @@ public class TiltMeterAdjustments : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationAmount);
-        Debug.Log(rotationAmount);
     }
 
     void assignObjects()
