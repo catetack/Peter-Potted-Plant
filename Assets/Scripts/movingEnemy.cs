@@ -21,6 +21,7 @@ public class movingEnemy : MonoBehaviour
     public EnemyState currentState;
     Transform playerTf;
     Transform patrolCenterTf;
+    playerStateManager pState;
     float distancePtf;
     float awayfromCenter;
     public float chasingRadius =10f;
@@ -38,10 +39,13 @@ public class movingEnemy : MonoBehaviour
         //spawnPos=GetComponent<Transform>();
         currentState = EnemyState.Patrol;
 
-        playerTf = GameObject.Find("Displacement").GetComponent<Transform>();
+        //playerTf = GameObject.Find("Displacement").GetComponent<Transform>();
+        playerTf = GameObject.Find("peterHead").GetComponent<Transform>();
         patrolCenterTf = transform.parent.Find("PatrolCenter");
 
-        Ani= GetComponent<Animator>();
+        pState=GameObject.Find("Player").GetComponent<playerStateManager>();
+
+        Ani = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
     }
 
@@ -54,13 +58,15 @@ public class movingEnemy : MonoBehaviour
             //First, make sure the enemy chase only when the player is in the range
             awayfromCenter = (playerTf.position - patrolCenterTf.position).sqrMagnitude;
             distancePtf = (transform.position - playerTf.position).sqrMagnitude;
-            if (awayfromCenter < rangeRadius* rangeRadius && distancePtf < chasingRadius * chasingRadius)
+            if ((awayfromCenter < rangeRadius* rangeRadius && distancePtf < chasingRadius * chasingRadius)&&!pState.isDowned)
             {
                 currentState = EnemyState.Chase;
+                gameObject.tag = "Ground";
             }
             else
             {
                 currentState = EnemyState.Patrol;
+                gameObject.tag = "Untaggeed";
             }
         }
 
@@ -122,17 +128,38 @@ public class movingEnemy : MonoBehaviour
 
     private void MoveCheck()//Check the movement to flip,for animation
     {
-        if(transform.position.x> partrolPoints[i].transform.position.x)
+        switch (currentState)
         {
-            spriteRender.flipX = false;
-        }
-        else if(transform.position.x == partrolPoints[i].transform.position.x)
-        {
+            case EnemyState.Patrol:
+                if (transform.position.x > partrolPoints[i].transform.position.x)
+                {
+                    spriteRender.flipX = false;
+                }
+                else if (transform.position.x == partrolPoints[i].transform.position.x)
+                {
 
+                }
+                else
+                {
+                    spriteRender.flipX = true;
+                }
+                break;
+            case EnemyState.Chase:
+                if (transform.position.x > playerTf.position.x)
+                {
+                    spriteRender.flipX = false;
+                }
+                else if (transform.position.x == playerTf.position.x)
+                {
+
+                }
+                else
+                {
+                    spriteRender.flipX = true;
+                }
+                break;
         }
-        else
-        {
-            spriteRender.flipX = true;
-        }
+
+        
     }
 }
