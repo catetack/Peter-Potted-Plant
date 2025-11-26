@@ -13,6 +13,12 @@ public class bloomBurst : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputSystem_Actions();
+        inputActions.Player.Burst.started += ctx => Burst();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Player.Enable();
     }
     // Update is called once per frame
     void Update()
@@ -22,7 +28,7 @@ public class bloomBurst : MonoBehaviour
             return;
         }
 
-        Burst();
+        BurstwithSpace();
     }
 
     private void LateUpdate()
@@ -40,11 +46,18 @@ public class bloomBurst : MonoBehaviour
 
     public void Burst()
     {
-        if(Input.GetKeyDown(KeyCode.Space))//Here is the input, which could change later
-        {
             Ani.Play("Burst");
             isBursting = true;
             Invoke("BurstEnd",0.3333f);
+    }
+
+    public void BurstwithSpace()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Ani.Play("Burst");
+            isBursting = true;
+            Invoke("BurstEnd", 0.3333f);
         }
     }
 

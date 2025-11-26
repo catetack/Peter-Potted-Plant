@@ -129,15 +129,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Burst"",
-                    ""type"": ""Button"",
-                    ""id"": ""9ec29611-7802-41cd-b7f9-3ce4a93e6f0b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""efd228f1-5d67-4e5d-adef-10d2f6e50036"",
@@ -150,6 +141,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Restart"",
                     ""type"": ""Button"",
                     ""id"": ""44e6f273-0626-4160-8a28-cea7e33f2b8a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Burst"",
+                    ""type"": ""Button"",
+                    ""id"": ""bed14995-9aaf-40bc-9c2c-745a02d44168"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -176,17 +176,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Legs"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6538fd72-cbc3-4f85-8e7c-7ccfb7973e81"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Burst"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -231,6 +220,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""caf03b77-c7f2-4576-bb9c-e72d2cfce20f"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Burst"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -306,9 +306,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Legs = m_Player.FindAction("Legs", throwIfNotFound: true);
         m_Player_ReviveLeft = m_Player.FindAction("ReviveLeft", throwIfNotFound: true);
         m_Player_ReviveRight = m_Player.FindAction("ReviveRight", throwIfNotFound: true);
-        m_Player_Burst = m_Player.FindAction("Burst", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
+        m_Player_Burst = m_Player.FindAction("Burst", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -393,9 +393,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Legs;
     private readonly InputAction m_Player_ReviveLeft;
     private readonly InputAction m_Player_ReviveRight;
-    private readonly InputAction m_Player_Burst;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Restart;
+    private readonly InputAction m_Player_Burst;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -424,10 +424,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @ReviveRight => m_Wrapper.m_Player_ReviveRight;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Burst".
-        /// </summary>
-        public InputAction @Burst => m_Wrapper.m_Player_Burst;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
@@ -435,6 +431,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Restart".
         /// </summary>
         public InputAction @Restart => m_Wrapper.m_Player_Restart;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Burst".
+        /// </summary>
+        public InputAction @Burst => m_Wrapper.m_Player_Burst;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -473,15 +473,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ReviveRight.started += instance.OnReviveRight;
             @ReviveRight.performed += instance.OnReviveRight;
             @ReviveRight.canceled += instance.OnReviveRight;
-            @Burst.started += instance.OnBurst;
-            @Burst.performed += instance.OnBurst;
-            @Burst.canceled += instance.OnBurst;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
             @Restart.started += instance.OnRestart;
             @Restart.performed += instance.OnRestart;
             @Restart.canceled += instance.OnRestart;
+            @Burst.started += instance.OnBurst;
+            @Burst.performed += instance.OnBurst;
+            @Burst.canceled += instance.OnBurst;
         }
 
         /// <summary>
@@ -505,15 +505,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ReviveRight.started -= instance.OnReviveRight;
             @ReviveRight.performed -= instance.OnReviveRight;
             @ReviveRight.canceled -= instance.OnReviveRight;
-            @Burst.started -= instance.OnBurst;
-            @Burst.performed -= instance.OnBurst;
-            @Burst.canceled -= instance.OnBurst;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
             @Restart.started -= instance.OnRestart;
             @Restart.performed -= instance.OnRestart;
             @Restart.canceled -= instance.OnRestart;
+            @Burst.started -= instance.OnBurst;
+            @Burst.performed -= instance.OnBurst;
+            @Burst.canceled -= instance.OnBurst;
         }
 
         /// <summary>
@@ -648,13 +648,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReviveRight(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Burst" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnBurst(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -668,5 +661,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRestart(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Burst" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBurst(InputAction.CallbackContext context);
     }
 }
