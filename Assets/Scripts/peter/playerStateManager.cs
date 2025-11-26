@@ -12,7 +12,7 @@ public class playerStateManager : MonoBehaviour
 
     public float health = 100.0f;
     public float arduinoWaterValue;
-    Animator peterAnimator;
+    public Animator peterAnimator;
     SpriteRenderer peterRenderer;
 
     public float headTorque;
