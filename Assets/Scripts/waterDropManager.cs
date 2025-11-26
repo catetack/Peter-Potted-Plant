@@ -29,6 +29,7 @@ public class waterDropManager : MonoBehaviour
         generateNew();
     }
 
+    //checks when gets collected by player
     private void checkCollected()
     {
         if(transform.childCount<=0)
@@ -41,6 +42,7 @@ public class waterDropManager : MonoBehaviour
         }
     }
 
+    //respawning function
     private void generateNew()
     {
         //if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)

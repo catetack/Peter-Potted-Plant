@@ -29,6 +29,7 @@ public class waterCollect : MonoBehaviour
         }
     }
 
+    //when head touches the ground, drop the seed
     private void DropChildWater()
     {
         if (childWaterdrop != null)
@@ -39,7 +40,7 @@ public class waterCollect : MonoBehaviour
             childWaterdrop.GetComponent<Rigidbody2D>().simulated = true;
             childWaterdrop.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f,1f)*4f,ForceMode2D.Impulse);
 
-
+            //turn on simulation
             childWaterdrop.transform.SetParent(null);
 
             childWaterdrop = null;
@@ -67,8 +68,10 @@ public class waterCollect : MonoBehaviour
         }
     }
 
+    //logic for when the player collects the seed
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //pick up seed
         if (collision.gameObject.CompareTag("WaterDrop"))
         {
             PlayerState.isHeavy = true;
@@ -81,7 +84,7 @@ public class waterCollect : MonoBehaviour
             
             childWaterdrop = collision.gameObject;
         }
-
+        //when it touches the pedestal
         else if(collision.gameObject.CompareTag("Pedestal"))
         {
             PlayerState.isHeavy = false;
