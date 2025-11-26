@@ -521,7 +521,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -81301421958473223, guid: 090daf9dbbc8d2c4b9c1d3a4e4da8324, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1182,6 +1182,7 @@ MonoBehaviour:
   isGrounded: 0
   health: 100
   arduinoWaterValue: 0
+  peterAnimator: {fileID: 0}
   headTorque: 0
   rotationRatio: 0
   rotationSpeed: 0
@@ -1393,7 +1394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddd20ac277702143af98d5168e145e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropManager: {fileID: 0}
   touchPed: 0
 --- !u!1 &7706020620269370609
 GameObject:

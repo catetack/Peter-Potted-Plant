@@ -36,6 +36,7 @@ public class waterCollect : MonoBehaviour
             childWaterdrop.transform.position = peterHead.transform.position + new Vector3(8f, 4f, 0f);
             childWaterdrop.transform.rotation = Quaternion.identity;
             childWaterdrop.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            childWaterdrop.GetComponent<Rigidbody2D>().simulated = true;
             childWaterdrop.GetComponent<Rigidbody2D>().AddForce(new Vector2(1f,1f)*4f,ForceMode2D.Impulse);
 
 
@@ -73,6 +74,7 @@ public class waterCollect : MonoBehaviour
             PlayerState.isHeavy = true;
 
             collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
             collision.gameObject.transform.position = peterHead.transform.position;
             collision.gameObject.transform.SetParent(peterHead.transform);
             
