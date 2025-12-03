@@ -10,6 +10,9 @@ public class waterCollect : MonoBehaviour
 
     GameObject childWaterdrop;
 
+    //Sound
+    private AudioSource collectSound;
+
     //private void Start();
     public bool touchPed = false;
 
@@ -78,15 +81,21 @@ public class waterCollect : MonoBehaviour
 
             collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
+            collision.gameObject.GetComponent<selfDestroyTimer>().StartTimer();
             collision.gameObject.transform.position = peterHead.transform.position;
             collision.gameObject.transform.SetParent(peterHead.transform);
-            
             
             childWaterdrop = collision.gameObject;
         }
         //when it touches the pedestal
         else if(collision.gameObject.CompareTag("Pedestal"))
         {
+            if (hasWaterDrop())
+            {
+                collectSound.Play();
+            }
+
             PlayerState.isHeavy = false;
 
             touchPed = true;
@@ -97,6 +106,7 @@ public class waterCollect : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pedestal"))
         {
+
             touchPed = false;
         }
     }
@@ -105,5 +115,7 @@ public class waterCollect : MonoBehaviour
     {
         PlayerState = GetComponentInParent<playerStateManager>();
         peterHead = GameObject.Find("peterHead");
+
+        collectSound = GetComponent<AudioSource>();
     }
 }

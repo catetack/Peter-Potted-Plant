@@ -17,7 +17,7 @@ public class groundTrigger : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            if(targetGround!=null) 
+            if (targetGround!=null) 
             {
                 if(!disableGround)
                 {

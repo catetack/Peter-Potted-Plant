@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading;
+using UnityEngine;
 
 public class waterDropManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class waterDropManager : MonoBehaviour
     private Transform playerHead;
     waterCollect playerWaterCollect;
 
+    private baseTimer Timer;
+
     public bool i;
 
     private void Start()
@@ -20,6 +23,7 @@ public class waterDropManager : MonoBehaviour
         playerHead = GameObject.Find("peterHead").transform;
         playerWaterCollect = GameObject.Find("Displacement").GetComponent<waterCollect>();
         childWaterDrop = transform.Find("WaterDropBase").gameObject;
+        Timer= GetComponent<baseTimer>();
     }
 
     private void Update()
@@ -35,6 +39,11 @@ public class waterDropManager : MonoBehaviour
         if(transform.childCount<=0)
         {
             hasChild = false;
+            if(!Timer.isRunning)
+            {
+                Timer.StartTimer();
+            }
+            
         }
         else
         {
@@ -46,20 +55,42 @@ public class waterDropManager : MonoBehaviour
     private void generateNew()
     {
         //if (((!playerLastDeathState && pState.isDowned) || playerWaterCollect.touchPed) && isCollected)
-        if (playerWaterCollect.touchPed && !hasChild&&playerWaterCollect.hasWaterDrop())
+        if(!hasChild)
         {
-            //hasChild = true;
+            if (playerWaterCollect.touchPed && playerWaterCollect.hasWaterDrop())
+            {
+                SpawnNewDrop();
+            }
 
-            GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, transform);
-            //GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, newPos);
-
-            childWaterDrop = newDrop;
-
-            playerWaterCollect.destroyChildWater();
-
-            //playerWaterCollect.touchPed = false;
+            else if(Timer.isEnd)
+            {
+                SpawnNewDrop();
+                Timer.isEnd = false;
+            }
         }
+        
 
         //playerLastDeathState = pState.isDowned;
+    }
+
+    public void SpawnNewDrop()
+    {
+        //hasChild = true;
+
+        GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, transform);
+        //GameObject newDrop = Instantiate(waterDropBase, transform.position, Quaternion.identity, newPos);
+
+        childWaterDrop = newDrop;
+
+        if(playerWaterCollect.hasWaterDrop())
+        {
+            playerWaterCollect.destroyChildWater();
+
+            pState.isHeavy = false;
+        }
+        
+        Timer.ResetTimer();
+
+        //playerWaterCollect.touchPed = false;
     }
 }

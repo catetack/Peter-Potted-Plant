@@ -18,10 +18,10 @@ public class FinishLevel : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Player")
+        if (collision.gameObject.tag == "Player")
         {
             finishSound.Play();
-            LevelFinish();
+            Invoke("LevelFinish", 1.8f);
         }
     }
 
