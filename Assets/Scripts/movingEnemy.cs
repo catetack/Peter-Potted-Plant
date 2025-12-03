@@ -61,21 +61,23 @@ public class movingEnemy : MonoBehaviour
             if ((awayfromCenter < rangeRadius* rangeRadius && distancePtf < chasingRadius * chasingRadius)&&!pState.isDowned)
             {
                 currentState = EnemyState.Chase;
-                gameObject.tag = "Ground";
+                
             }
             else
             {
                 currentState = EnemyState.Patrol;
-                gameObject.tag = "Untaggeed";
+                
             }
         }
 
         switch (currentState)
         {
             case EnemyState.Patrol:
+                gameObject.tag = "Untagged";
                 regularMove();
                 break;
             case EnemyState.Chase:
+                gameObject.tag = "Ground";
                 Chasing();
                 break;
         }

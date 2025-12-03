@@ -69,8 +69,8 @@ public class bloomBurst : MonoBehaviour
     public void CheckBurstBox()
     {
         //Draw the Gizmo box frame
-        float width = 4;
-        float height=4;
+        float width = 6;
+        float height=6;
         Vector2 pos1 = transform.position+ transform.right*width*0.5f+transform.up*height * 0.5f;
         Vector2 pos2 = transform.position + transform.right * width * 0.5f - transform.up * height * 0.5f;
         Vector2 pos3 = transform.position - transform.right * width * 0.5f + transform.up * height * 0.5f;
@@ -85,11 +85,12 @@ public class bloomBurst : MonoBehaviour
         Collider2D col= Physics2D.OverlapBox(transform.position,new Vector2(width,height),0,LayerMask.GetMask("Enemy"));
         if(col!=null)
         {
+            //Debug.Log("Collision called");
+            Destroy(col.gameObject);
             //Shake the camera
             cameraShake.Instance.shakeStart(0.06f,0.2f);
 
             Debug.Log(col.transform.name);
-            Destroy(col.gameObject);
         }
     }
 }
