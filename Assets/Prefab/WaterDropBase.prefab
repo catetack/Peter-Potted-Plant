@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5138461693918037213}
   - component: {fileID: -1530888233888663661}
   - component: {fileID: -1902462408099570867}
+  - component: {fileID: 3480340325982436217}
   m_Layer: 0
   m_Name: WaterDropBase
   m_TagString: WaterDrop
@@ -231,3 +232,19 @@ PolygonCollider2D:
       - {x: 0.29142857, y: -0.45714286}
       - {x: 0.45714286, y: -0.29142857}
   m_UseDelaunayMesh: 0
+--- !u!114 &3480340325982436217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217094822486809764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13f1542153e9534eb5f34b153c45bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 30
+  currentTime: 6
+  isRunning: 0
+  isEnd: 0
