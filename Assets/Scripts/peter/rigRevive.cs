@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class rigRevive : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class rigRevive : MonoBehaviour
     float reviveTimerLeft;
     float reviveTimerRight;
     float reviveThreshold = 0.9f;
+
+    private Gamepad controller;
+
     InputSystem_Actions inputActions;
     playerStateManager PlayerState;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,6 +57,8 @@ public class rigRevive : MonoBehaviour
         {
             Debug.LogError("playerStateManager script not found on 'PlayerState' parent.");
         }
+
+        controller = Gamepad.current; //sets controller to one in use
     }
     void reviveInput()
     {
@@ -72,6 +78,8 @@ public class rigRevive : MonoBehaviour
                     reviveTimerRight = 0.0f;
                 }
                 PlayerState.isReviving = true;
+                Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
+
                 reviveTimerLeft += Time.deltaTime;
             }
             else if (reviveRight > reviveThreshold && reviveTimerRight <= 0.10f && reviveLeft <= reviveThreshold)
@@ -82,11 +90,14 @@ public class rigRevive : MonoBehaviour
                     reviveTimerLeft = 0.0f;
                 }
                 PlayerState.isReviving = true;
+                Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
+
                 reviveTimerRight += Time.deltaTime;
             }
             else
             {
                 PlayerState.isReviving = false;
+                Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
             }
 
             //edge case: when both timers are maxed out we do a reset on both.
