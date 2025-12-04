@@ -49,6 +49,16 @@ public class rigRevive : MonoBehaviour
             PlayerState.isReviving = false;
             PlayerState.isDowned = false;
         }
+
+        if (PlayerState.isReviving == true)
+        {
+            Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
+        }
+
+        else
+        {
+            Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+        }
     }
     void assignObjects()
     {
@@ -78,7 +88,6 @@ public class rigRevive : MonoBehaviour
                     reviveTimerRight = 0.0f;
                 }
                 PlayerState.isReviving = true;
-                Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
 
                 reviveTimerLeft += Time.deltaTime;
             }
@@ -90,14 +99,11 @@ public class rigRevive : MonoBehaviour
                     reviveTimerLeft = 0.0f;
                 }
                 PlayerState.isReviving = true;
-                Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
-
                 reviveTimerRight += Time.deltaTime;
             }
             else
             {
                 PlayerState.isReviving = false;
-                Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
             }
 
             //edge case: when both timers are maxed out we do a reset on both.
