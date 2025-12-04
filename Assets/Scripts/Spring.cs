@@ -11,7 +11,6 @@ public class Spring : MonoBehaviour
     void Start()
     {
         assignObjects();
-        jumpSound.Stop(); //so sound doesn't play on startup
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
