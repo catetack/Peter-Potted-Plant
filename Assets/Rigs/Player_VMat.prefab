@@ -1444,7 +1444,6 @@ GameObject:
   - component: {fileID: 1950958925386787302}
   - component: {fileID: 3322059716515769297}
   - component: {fileID: 8586133820080054407}
-  - component: {fileID: 2632579909201097475}
   m_Layer: 0
   m_Name: Displacement
   m_TagString: Player
@@ -1691,21 +1690,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2632579909201097475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7453846011536872588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7818a6a4833b93c4fb7f048a0a29693d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 3
-  currentTime: 0
-  isRunning: 0
 --- !u!1 &7706020620269370609
 GameObject:
   m_ObjectHideFlags: 0

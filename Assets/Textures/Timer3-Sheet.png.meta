@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 8c94ce1244907fb45a52da9f51ff4a90
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3192499438729870986
+    second: Timer3-Sheet_0
+  - first:
+      213: 5011017080647152147
+    second: Timer3-Sheet_1
+  - first:
+      213: -1305891877182398192
+    second: Timer3-Sheet_2
+  - first:
+      213: -9100308487972270099
+    second: Timer3-Sheet_3
+  - first:
+      213: 1214186316790453418
+    second: Timer3-Sheet_4
+  - first:
+      213: -2784979589029820010
+    second: Timer3-Sheet_5
+  - first:
+      213: -8117912446185477695
+    second: Timer3-Sheet_6
+  - first:
+      213: -8598355695018241386
+    second: Timer3-Sheet_7
+  - first:
+      213: 856505059616294481
+    second: Timer3-Sheet_8
+  - first:
+      213: 2599287886601996011
+    second: Timer3-Sheet_9
+  - first:
+      213: -8642850587890898481
+    second: Timer3-Sheet_10
+  - first:
+      213: 8773588709550649219
+    second: Timer3-Sheet_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Timer3-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8eb02f23590e4c20800000000000000
+      internalID: 3192499438729870986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 312736f3c75ba8540800000000000000
+      internalID: 5011017080647152147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 2500
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011a971b14a80ede0800000000000000
+      internalID: -1305891877182398192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 3750
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: defc0fb45a535b180800000000000000
+      internalID: -9100308487972270099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 5000
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa45f67a508a9d010800000000000000
+      internalID: 1214186316790453418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 6250
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6990a29b1d3c959d0800000000000000
+      internalID: -2784979589029820010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 7500
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c9646704a1675f80800000000000000
+      internalID: -8117912446185477695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 8750
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6921bf92d018ca880800000000000000
+      internalID: -8598355695018241386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 10000
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15601c250dae2eb00800000000000000
+      internalID: 856505059616294481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 11250
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be643edaf86821420800000000000000
+      internalID: 2599287886601996011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 12500
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9acfd9e2d6e0880800000000000000
+      internalID: -8642850587890898481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer3-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 13750
+        y: 0
+        width: 1250
+        height: 1450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38fe426627c02c970800000000000000
+      internalID: 8773588709550649219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a6be5aed4b776e44bb30edcc8c063c06
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Timer3-Sheet_0: 3192499438729870986
+      Timer3-Sheet_1: 5011017080647152147
+      Timer3-Sheet_10: -8642850587890898481
+      Timer3-Sheet_11: 8773588709550649219
+      Timer3-Sheet_2: -1305891877182398192
+      Timer3-Sheet_3: -9100308487972270099
+      Timer3-Sheet_4: 1214186316790453418
+      Timer3-Sheet_5: -2784979589029820010
+      Timer3-Sheet_6: -8117912446185477695
+      Timer3-Sheet_7: -8598355695018241386
+      Timer3-Sheet_8: 856505059616294481
+      Timer3-Sheet_9: 2599287886601996011
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

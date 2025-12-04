@@ -15,7 +15,7 @@ public class selfDestroyTimer : baseTimer
 
         if (currentTime<=0)
         {
-            Destroy(gameObject);
+                Destroy(gameObject);
         }
     }
 }

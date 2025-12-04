@@ -1,17 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class baseTimer : MonoBehaviour
 {
     public const float MAX_TIME = 30f;
 
-    private float duration = MAX_TIME;
+    public float duration;
     public float currentTime;
     public bool isRunning = false;
     public bool isEnd=false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        duration = MAX_TIME;
         currentTime = duration;
     }
 
