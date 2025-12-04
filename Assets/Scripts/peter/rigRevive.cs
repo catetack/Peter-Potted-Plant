@@ -50,6 +50,7 @@ public class rigRevive : MonoBehaviour
             PlayerState.isDowned = false;
         }
 
+        //sets vibration to when Peter is reviving
         if (PlayerState.isReviving == true)
         {
             Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
