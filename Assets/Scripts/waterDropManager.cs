@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -105,6 +106,8 @@ public class waterDropManager : MonoBehaviour
         childWaterDrop = newDrop;
         
         Timer.ResetTimer();
+
+        TimerUI.GetComponent<Animator>().Play("Timer1");
 
         Color c = TimerUI.GetComponent<Image>().color;
         c.a = 0f;
