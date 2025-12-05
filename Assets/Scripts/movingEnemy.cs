@@ -119,14 +119,14 @@ public class movingEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position,playerTf.position,chasingSpeed*Time.deltaTime);
     }
 
-    private void OnDrawGizmos()
-    {
-       Gizmos.color = Color.red;
-       Gizmos.DrawWireSphere(transform.position, chasingRadius);
+    // private void OnDrawGizmos()
+    // {
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, chasingRadius);
 
-       Gizmos.color = Color.yellow;
-       Gizmos.DrawWireSphere(patrolCenterTf.position, rangeRadius);
-    }
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(patrolCenterTf.position, rangeRadius);
+    // }
 
     private void MoveCheck()//Check the movement to flip,for animation
     {
