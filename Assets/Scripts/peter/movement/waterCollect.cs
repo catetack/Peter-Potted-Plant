@@ -77,20 +77,18 @@ public class waterCollect : MonoBehaviour
         //pick up seed
         if (collision.gameObject.CompareTag("WaterDrop"))
         {
-            if(PlayerState.isDowned)
+            if (!PlayerState.isDowned)
             {
-                return;
-            }
+                PlayerState.isHeavy = true;
+                collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+                collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
+                collision.gameObject.GetComponent<selfDestroyTimer>().StartTimer();
+                collision.gameObject.transform.position = peterHead.transform.position;
+                collision.gameObject.transform.SetParent(peterHead.transform);
 
-            PlayerState.isHeavy = true;
-            collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-            collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
-            collision.gameObject.GetComponent<selfDestroyTimer>().StartTimer();
-            collision.gameObject.transform.position = peterHead.transform.position;
-            collision.gameObject.transform.SetParent(peterHead.transform);
-            
-            childWaterdrop = collision.gameObject;
+                childWaterdrop = collision.gameObject;
+            }
         }
         //when it touches the pedestal
         else if(collision.gameObject.CompareTag("Pedestal"))
