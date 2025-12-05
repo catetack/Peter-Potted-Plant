@@ -31,6 +31,7 @@ public class rigDisplacement : MonoBehaviour
 
     //Vertical movement
     public float maxFallingSpeed;
+    public float maxUpSpeed;
 
     //Pause Menu
     PauseMenu pm;
@@ -51,7 +52,8 @@ public class rigDisplacement : MonoBehaviour
         frictionConstant = 10.0f;
         tiltSpeedModifier = 100.0f;
         displacementSpeed = 0.0f;
-        maxFallingSpeed = 5f;//This one is not working
+        maxFallingSpeed = 80f;
+        maxUpSpeed = 1000f;
         targetDisplacementSpeed = 0.0f;
 
         PlayerState = GetComponentInParent<playerStateManager>();
@@ -68,9 +70,11 @@ public class rigDisplacement : MonoBehaviour
         LightHeavyModeSpeedControl();
         PlayerState.displacementSpeed = displacementSpeed;
 
+        FallingSpeed();
+
         //Here is the older one
-        //player.transform.Translate(displacementSpeed, 0, 0);
-        player.transform.Translate(displacementSpeed, rb.linearVelocityY * Time.deltaTime, 0);
+        player.transform.Translate(displacementSpeed, 0, 0);
+        //player.transform.Translate(displacementSpeed, rb.linearVelocityY * Time.deltaTime, 0);
 
         if (pm != null)
         {
@@ -96,20 +100,12 @@ public class rigDisplacement : MonoBehaviour
     private void FallingSpeed()
     {
         //Limit the max falling speed
-        if (rb.linearVelocityY < 0f)
-        {
+        Vector2 v = rb.linearVelocity;
 
-            if (Mathf.Abs(rb.linearVelocityY) < maxFallingSpeed)
-            {
+        // 限制下落与上升速度
+        v.y = Mathf.Clamp(v.y, -maxFallingSpeed, maxUpSpeed);
 
-            }
-            else
-            {
-
-                rb.linearVelocityY = -maxFallingSpeed;
-            }
-        }
-        PlayerState.displacementSpeed = displacementSpeed;
+        rb.linearVelocity = v;
     }
 
     private void InStateMovement()

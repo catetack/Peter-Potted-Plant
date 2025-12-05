@@ -11,6 +11,17 @@ public class vineClimb : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
 
+    float originGScale;
+
+    private void Start()
+    {
+        if(rb != null)
+        {
+            originGScale = rb.gravityScale;
+        }
+        
+    }
+
     void Update()
     {
         peterAnimator = GetComponentInChildren<Animator>();
@@ -31,7 +42,7 @@ public class vineClimb : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = originGScale;
         }
     }
 
