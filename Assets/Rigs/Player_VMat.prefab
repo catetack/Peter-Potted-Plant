@@ -6324,6 +6324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c038be647d6a9f84a849a56225edaefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Is_Grounded: 0
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -6643,7 +6644,7 @@ GameObject:
   - component: {fileID: 2839745202318919233}
   m_Layer: 0
   m_Name: Displacement
-  m_TagString: Player
+  m_TagString: PlayerHillBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6937,6 +6938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025ab85118f2c394bbc7c1f2920721d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   peterAnimator: {fileID: 0}
   rb: {fileID: 1950958925386787302}
 --- !u!1 &7706020620269370609
