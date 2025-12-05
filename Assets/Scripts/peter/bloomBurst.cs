@@ -5,10 +5,13 @@ public class bloomBurst : MonoBehaviour
     Animator Ani;
     bool isBursting = false;
 
+    private AudioSource Audios;
+
     InputSystem_Actions inputActions;
     void Start()
     {
         Ani=GetComponent<Animator>();
+        Audios=GetComponent<AudioSource>();
     }
     private void Awake()
     {
@@ -87,10 +90,12 @@ public class bloomBurst : MonoBehaviour
         {
             //Debug.Log("Collision called");
             Destroy(col.gameObject);
+
+            Audios.Play();
             //Shake the camera
             cameraShake.Instance.shakeStart(0.06f,0.2f);
 
-            Debug.Log(col.transform.name);
+            //Debug.Log(col.transform.name);
         }
     }
 }

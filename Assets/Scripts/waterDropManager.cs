@@ -157,9 +157,9 @@ public class waterDropManager : MonoBehaviour
             TimerUI.GetComponent<Animator>().speed = 1f + (index - 1) / 7;
             TimerUI.GetComponent<Animator>().Play("Timer" + index);
 
-            Audios.pitch= 1f + (index - 1) / 4;
+            Audios.pitch= 0.95f + (index - 1) / 6;
 
-            if(index>4&&Audios.clip!=hurryMusic)
+            if(index>5&&Audios.clip!=hurryMusic)
             {
                 Audios.clip = hurryMusic;
                 Audios.Play();
