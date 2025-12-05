@@ -19,7 +19,7 @@ public class rigRotation : MonoBehaviour
     float rotationClamp;
 
     //forces
-    const float BASE_MOVEMENT_TORQUE = 600.0f;
+    const float BASE_MOVEMENT_TORQUE = 200.0f;
     float resultingMovementTorque;
     float headTorque;
     float raiseTorque;
