@@ -3,7 +3,7 @@ using UnityEngine;
 public class vineClimb : MonoBehaviour
 {
     private float vertical;
-    public float speed = 120f;
+    public float speed = 10f;
     private bool isLadder;
     private bool isClimbing;
 

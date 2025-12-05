@@ -82,8 +82,14 @@ public class waterCollect : MonoBehaviour
                 PlayerState.isHeavy = true;
                 collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-                collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
-                collision.gameObject.GetComponent<selfDestroyTimer>().StartTimer();
+
+                if(!collision.gameObject.GetComponent<selfDestroyTimer>().isRunning)
+                {
+                    collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
+
+                    collision.gameObject.GetComponent<selfDestroyTimer>().StartTimer();
+                }
+                
                 collision.gameObject.transform.position = peterHead.transform.position;
                 collision.gameObject.transform.SetParent(peterHead.transform);
 
