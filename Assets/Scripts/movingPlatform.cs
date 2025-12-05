@@ -8,6 +8,11 @@ public class movingPlatform : MonoBehaviour
         {
             collision.gameObject.transform.SetParent(transform);
         }
+
+        if (collision.gameObject.tag == "WaterDrop")
+        {
+            collision.gameObject.transform.SetParent(transform);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
