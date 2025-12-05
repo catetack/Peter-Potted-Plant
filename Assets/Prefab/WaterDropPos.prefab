@@ -51,8 +51,8 @@ MonoBehaviour:
   waterDropBase: {fileID: 1217094822486809764, guid: 2e8b1789ea5236844a3d51072da1428b, type: 3}
   childWaterDrop: {fileID: 0}
   i: 0
-  startMusic: {fileID: 8300000, guid: b00518385ec11884ea28e72ed5d8b708, type: 3}
-  hurryMusic: {fileID: 8300000, guid: ef6fc19e52e260a439b30f486e71dbe0, type: 3}
+  startMusic: {fileID: 8300000, guid: e68525a510f61cc4cbb5831c0cc5d3e2, type: 3}
+  hurryMusic: {fileID: 8300000, guid: 79f6f4a1c27bee242b0e0f5a1d064905, type: 3}
 --- !u!114 &7704622182098252487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.64
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
