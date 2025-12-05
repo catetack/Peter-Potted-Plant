@@ -44,7 +44,7 @@ public class PlayerSoundManager : MonoBehaviour
                 {
                     float gain = Mathf.Clamp01(100 / PlayerState.health + 0.1f);
                     healAudioSource.pitch = 1.0f + PlayerState.health/10.0f;
-                    healAudioSource.PlayOneShot(playerHealSound, 0.5f + PlayerState.health/600.0f);
+                    healAudioSource.PlayOneShot(playerHealSound, 0.5f);
                 }
                 else
                 {
