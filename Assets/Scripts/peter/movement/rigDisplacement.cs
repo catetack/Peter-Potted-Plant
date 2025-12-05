@@ -102,11 +102,21 @@ public class rigDisplacement : MonoBehaviour
         //Limit the max falling speed
         Vector2 v = rb.linearVelocity;
 
-        // 限制下落与上升速度
         v.y = Mathf.Clamp(v.y, -maxFallingSpeed, maxUpSpeed);
 
         rb.linearVelocity = v;
+
+        GroundSnapFix();
     }
+
+    private void GroundSnapFix()
+    {
+        if (PlayerState.isGrounded && rb.linearVelocityY < 0f)
+        {
+            rb.linearVelocityY = 0f;
+        }
+    }
+
 
     private void InStateMovement()
     {
