@@ -7,13 +7,14 @@ public class armRotation : MonoBehaviour
     float resultingMovementTorque;
     float targetRotationSpeed;
     float lightTorque;
+    float rotationSpeed;
 
     float armRotationValue = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerState = GameObject.FindWithTag("Player").GetComponent<playerStateManager>();
-        lightTorque = 5.0f;
+        lightTorque = 1.0f;
         resultingMovementTorque = 0.0f;
         targetRotationSpeed = 0.0f;
     }
@@ -25,8 +26,8 @@ public class armRotation : MonoBehaviour
         {
             movementRotations();
             lightRotation();
-            
-            transform.rotation = Quaternion.Euler(0.0f, 0.0f, targetRotationSpeed);
+            ApplyRotationSpeedSmoothing();
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationSpeed);
         }
         //armRotationValue is affected by speed 
     }
@@ -43,9 +44,20 @@ public class armRotation : MonoBehaviour
         //apply a small torque to bring peter back to upright when close to upright
         if (Mathf.Abs(PlayerState.rotationRatio) < 0.2f)
         {
-            lightTorque = -PlayerState.rotationRatio * 200.0f * Time.deltaTime;
+            lightTorque -= PlayerState.rotationRatio * 200.0f * Time.deltaTime;
             targetRotationSpeed = targetRotationSpeed + lightTorque;
         }
+
     }
+    void ApplyRotationSpeedSmoothing()
+    {
+        if (Time.timeScale == 0f)
+        {
+            rotationSpeed = 0f;
+            return;
+        }
+        
+        rotationSpeed = Mathf.Lerp(targetRotationSpeed, rotationSpeed, Mathf.Pow(0.1f, 5.0f * Time.deltaTime));
+    }   
 
 }
