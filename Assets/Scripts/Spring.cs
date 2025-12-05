@@ -15,7 +15,7 @@ public class Spring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag== "Player")
+        if(collision.gameObject.tag== "Player"|| collision.gameObject.tag == "WaterDrop")
         {
             jumpSound.Play(); //play sound on collision with jump pad
             //Function scripts
