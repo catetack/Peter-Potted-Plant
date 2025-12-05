@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class FallingCheck : MonoBehaviour
 {
-    //checks when player is on the ground or not. Used in rotation script to make controlling the character easier
+    //checks when player is on the ground or not. Used in rotation script to make controlling the character easier when in the air.
     playerStateManager PlayerState;
-    bool Is_Grounded;
+    public bool Is_Grounded;
     bool wasGrounded;
     public LayerMask ground;
     public Transform groundCheck;

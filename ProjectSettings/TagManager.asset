@@ -15,6 +15,7 @@ TagManager:
   - Pedestal
   - Legs
   - WaterDropPos
+  - PlayerHillBlock
   layers:
   - Default
   - TransparentFX
