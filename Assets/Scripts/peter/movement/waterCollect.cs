@@ -77,8 +77,12 @@ public class waterCollect : MonoBehaviour
         //pick up seed
         if (collision.gameObject.CompareTag("WaterDrop"))
         {
-            PlayerState.isHeavy = true;
+            if(PlayerState.isDowned)
+            {
+                return;
+            }
 
+            PlayerState.isHeavy = true;
             collision.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
             collision.gameObject.GetComponent<selfDestroyTimer>().ResetTimer();
