@@ -78,13 +78,13 @@ public class playerStateManager : MonoBehaviour
         else if (peterAnimator.GetFloat("Displacement Speed") > 0.02)
         {
             peterRenderer.flipX = false;
-            peterAnimator.speed = 1 * displacementSpeed;
+            peterAnimator.speed = 1 * displacementSpeed * Time.deltaTime;
         }
 
         else if (peterAnimator.GetFloat("Displacement Speed") < -0.02)
         {
             peterRenderer.flipX = true;
-            peterAnimator.speed = 1 * Math.Abs(displacementSpeed);
+            peterAnimator.speed = 1 * Math.Abs(displacementSpeed) * Time.deltaTime;
         }
     }
 }
