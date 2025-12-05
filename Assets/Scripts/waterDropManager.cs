@@ -26,6 +26,11 @@ public class waterDropManager : MonoBehaviour
 
     private int lastIndex = -1;
 
+    //Music
+    private AudioSource Audios;
+    public AudioClip startMusic;
+    public AudioClip hurryMusic;
+
     private void Start()
     {
         pState = GameObject.Find("Player").GetComponent<playerStateManager>();
@@ -34,6 +39,7 @@ public class waterDropManager : MonoBehaviour
         childWaterDrop = transform.Find("WaterDropBase").gameObject;
         Timer= GetComponent<baseTimer>();
         TimerUI = GameObject.Find("TimerUI");
+        Audios=GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -44,7 +50,7 @@ public class waterDropManager : MonoBehaviour
 
         if(Timer.currentTime<Timer.duration)
         {
-            TimerUIAni();
+            TimerUIAniandSound();
         }
     }
 
@@ -61,6 +67,10 @@ public class waterDropManager : MonoBehaviour
                 c.a = 1.0f;
                 TimerUI.GetComponent<Image>().color = c;
                 TimerUI.GetComponent <Animator>().speed = 1.0f;
+
+                Audios.clip = startMusic;
+                Audios.pitch = 1.0f;
+                Audios.Play();
             }
             
         }
@@ -113,6 +123,8 @@ public class waterDropManager : MonoBehaviour
         c.a = 0f;
         TimerUI.GetComponent<Image>().color = c;
 
+        Audios.Stop();
+
         //playerWaterCollect.touchPed = false;
     }
 
@@ -128,7 +140,7 @@ public class waterDropManager : MonoBehaviour
         else return 8;
     }
 
-    private void TimerUIAni()
+    private void TimerUIAniandSound()
     {
         r = Timer.currentTime / Timer.duration;
         if(r>1||r<0)
@@ -144,6 +156,14 @@ public class waterDropManager : MonoBehaviour
             lastIndex = index;
             TimerUI.GetComponent<Animator>().speed = 1f + (index - 1) / 7;
             TimerUI.GetComponent<Animator>().Play("Timer" + index);
+
+            Audios.pitch= 1f + (index - 1) / 4;
+
+            if(index>4&&Audios.clip!=hurryMusic)
+            {
+                Audios.clip = hurryMusic;
+                Audios.Play();
+            }
         }
     }
 }
