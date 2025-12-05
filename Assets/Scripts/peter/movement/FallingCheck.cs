@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class FallingCheck : MonoBehaviour
 {
-
+    //checks when player is on the ground or not. Used in rotation script to make controlling the character easier
     playerStateManager PlayerState;
     bool Is_Grounded;
     bool wasGrounded;

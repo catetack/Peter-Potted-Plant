@@ -9,6 +9,7 @@ public class rigRevive : MonoBehaviour
     float reviveTimerLeft;
     float reviveTimerRight;
     float reviveThreshold = 0.9f;
+    float buttonTimerMax = 0.25f;
 
     private Gamepad controller;
 
@@ -36,7 +37,7 @@ public class rigRevive : MonoBehaviour
         {
             if (PlayerState.health > 0.0f)
             {
-                PlayerState.health -= 20.0f * Time.deltaTime;
+                PlayerState.health -= 5.0f * Time.deltaTime;
             }
             else
             {
@@ -53,7 +54,8 @@ public class rigRevive : MonoBehaviour
         //sets vibration to when Peter is reviving
         if (PlayerState.isReviving == true)
         {
-            Gamepad.current.SetMotorSpeeds(0.2f, 0.2f);
+            float vibrationIntensity = 1.0f + (PlayerState.health * 0.1f); // Vibration intensity increases with health
+            Gamepad.current.SetMotorSpeeds(vibrationIntensity, vibrationIntensity);
         }
 
         else
@@ -80,7 +82,7 @@ public class rigRevive : MonoBehaviour
     {
         if (PlayerState.isDowned)
         {
-            if (reviveLeft > reviveThreshold && reviveTimerLeft <= 0.10f && reviveRight <= reviveThreshold)
+            if (reviveLeft > reviveThreshold && reviveTimerLeft <= buttonTimerMax && reviveRight <= reviveThreshold)
             {
 
                 if (reviveRight < reviveThreshold)
@@ -92,7 +94,7 @@ public class rigRevive : MonoBehaviour
 
                 reviveTimerLeft += Time.deltaTime;
             }
-            else if (reviveRight > reviveThreshold && reviveTimerRight <= 0.10f && reviveLeft <= reviveThreshold)
+            else if (reviveRight > reviveThreshold && reviveTimerRight <= buttonTimerMax && reviveLeft <= reviveThreshold)
             {
                 if (reviveLeft < reviveThreshold)
                 {
