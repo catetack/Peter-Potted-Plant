@@ -20,6 +20,7 @@ public class FinishLevel : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            
             finishSound.Play();
             Invoke("LevelFinish", 1.8f);
         }
