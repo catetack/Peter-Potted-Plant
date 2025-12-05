@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class PlayerSoundManager : MonoBehaviour
 {
@@ -42,9 +43,10 @@ public class PlayerSoundManager : MonoBehaviour
             {
                 if (playerHealSound != null)
                 {
-                    float gain = Mathf.Clamp01(100 / PlayerState.health + 0.1f);
+                    float gain = Mathf.Clamp(PlayerState.health / 100.0f, 0f, 1.0f);
                     healAudioSource.pitch = 1.0f + PlayerState.health/10.0f;
-                    healAudioSource.PlayOneShot(playerHealSound, 0.5f);
+                    Debug.Log("Playing heal sound with pitch: " + healAudioSource.pitch + " and gain: " + gain);
+                    healAudioSource.PlayOneShot(playerHealSound, gain * 0.2f);
                 }
                 else
                 {

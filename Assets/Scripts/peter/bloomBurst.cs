@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class bloomBurst : MonoBehaviour
 {
     Animator Ani;
+
     bool isBursting = false;
 
     private AudioSource Audios;
@@ -16,12 +18,20 @@ public class bloomBurst : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputSystem_Actions();
-        inputActions.Player.Burst.started += ctx => Burst();
+        inputActions.Player.Burst.started += OnBurstInput;
     }
 
     private void OnEnable()
     {
-        inputActions.Player.Enable();
+        inputActions?.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        if (inputActions != null)
+        {
+            inputActions.Player.Burst.started -= OnBurstInput;
+            inputActions.Player.Disable();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -74,15 +84,15 @@ public class bloomBurst : MonoBehaviour
         //Draw the Gizmo box frame
         float width = 6;
         float height=6;
-        Vector2 pos1 = transform.position+ transform.right*width*0.5f+transform.up*height * 0.5f;
-        Vector2 pos2 = transform.position + transform.right * width * 0.5f - transform.up * height * 0.5f;
-        Vector2 pos3 = transform.position - transform.right * width * 0.5f + transform.up * height * 0.5f;
-        Vector2 pos4 = transform.position - transform.right * width * 0.5f - transform.up * height * 0.5f;
+        // Vector2 pos1 = transform.position+ transform.right*width*0.5f+transform.up*height * 0.5f;
+        // Vector2 pos2 = transform.position + transform.right * width * 0.5f - transform.up * height * 0.5f;
+        // Vector2 pos3 = transform.position - transform.right * width * 0.5f + transform.up * height * 0.5f;
+        // Vector2 pos4 = transform.position - transform.right * width * 0.5f - transform.up * height * 0.5f;
 
-        Debug.DrawLine(pos1,pos2,Color.green,0.25f);
-        Debug.DrawLine(pos4, pos2, Color.green, 0.25f);
-        Debug.DrawLine(pos3, pos4, Color.green, 0.25f);
-        Debug.DrawLine(pos1, pos3, Color.green, 0.25f);
+        // Debug.DrawLine(pos1,pos2,Color.green,0.25f);
+        // Debug.DrawLine(pos4, pos2, Color.green, 0.25f);
+        // Debug.DrawLine(pos3, pos4, Color.green, 0.25f);
+        // Debug.DrawLine(pos1, pos3, Color.green, 0.25f);
 
         //Collider check
         Collider2D col= Physics2D.OverlapBox(transform.position,new Vector2(width,height),0,LayerMask.GetMask("Enemy"));
@@ -97,5 +107,10 @@ public class bloomBurst : MonoBehaviour
 
             //Debug.Log(col.transform.name);
         }
+    }
+
+    private void OnBurstInput(InputAction.CallbackContext ctx)
+    {
+        Burst();
     }
 }
