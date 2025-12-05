@@ -159,11 +159,11 @@ public class waterDropManager : MonoBehaviour
 
             Audios.pitch= 0.95f + (index - 1) / 6;
 
-            if(index>5&&Audios.clip!=hurryMusic)
-            {
-                Audios.clip = hurryMusic;
-                Audios.Play();
-            }
+            //if(index>5&&Audios.clip!=hurryMusic)
+            //{
+               // Audios.clip = hurryMusic;
+                //Audios.Play();
+            //}
         }
     }
 }

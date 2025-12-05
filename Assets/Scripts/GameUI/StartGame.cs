@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-   public void Level1()
+   public void Level3()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
