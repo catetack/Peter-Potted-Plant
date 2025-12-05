@@ -3,7 +3,7 @@ using UnityEngine;
 public class vineClimb : MonoBehaviour
 {
     private float vertical;
-    private float speed = 8f;
+    public float speed = 120f;
     private bool isLadder;
     private bool isClimbing;
 
@@ -38,7 +38,7 @@ public class vineClimb : MonoBehaviour
         if (isClimbing)
         {
             rb.gravityScale = 0f;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, vertical * speed);
+            rb.linearVelocityY = vertical*3f * speed;
         }
         else
         {
